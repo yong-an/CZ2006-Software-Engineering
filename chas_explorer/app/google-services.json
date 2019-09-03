@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "964226553905",
+    "firebase_url": "https://chasexplorer.firebaseio.com",
+    "project_id": "chasexplorer",
+    "storage_bucket": "chasexplorer.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:964226553905:android:a8ab1d26ee507918",
+        "android_client_info": {
+          "package_name": "com.example.chas_explorer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "964226553905-a651hb2689fmmqlkillaqbj2m0qb0bfm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.chas_explorer",
+            "certificate_hash": "3d936d450f8d3b2e8e2524294e77993cd7583ae7"
+          }
+        },
+        {
+          "client_id": "964226553905-gt0q9fkc4es0ej5srrpmtkk9phkm9obp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBDKvcpylMOkkyqRhp-vJs7ASk9J7lbQwI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "964226553905-gt0q9fkc4es0ej5srrpmtkk9phkm9obp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
