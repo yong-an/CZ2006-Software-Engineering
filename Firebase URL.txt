@@ -1,1 +1,1 @@
-https://chasexplorer.firebaseio.com/
+https://chasexplorer-edc94.firebaseio.com/
