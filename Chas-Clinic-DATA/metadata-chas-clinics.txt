@@ -1,0 +1,46 @@
+# Metadata for CHAS Clinics
+---
+Identifier: '31e92629-980d-4672-af33-cec147c18102'
+Name: 'chas-clinics'
+Title: 'CHAS Clinics'
+Description: 'Listing on the locations of Clincs with Community Health Assist Scheme
+  (CHAS).'
+Topics:
+  - 'Health'
+Keywords:
+  - 'CHAS'
+  - 'clinic'
+  - 'clinics'
+  - 'health'
+  - 'healthcare institution'
+  - 'hospital'
+  - 'laboratory'
+  - 'nursing home'
+  - 'onemap'
+  - 'pioneer generation'
+  - 'scheme'
+  - 'themes'
+Publisher:
+  Name: 'Ministry of Health'
+  Admin 1:
+    Name: 'Sim See Kiat Henry'
+    Department: 'MINISTRY OF HEALTH'
+    Email: 'Henry_SIM@moh.gov.sg'
+Sources:
+  - 'Ministry of Health'
+License: 'https://data.gov.sg/open-data-licence'
+Frequency: 'Daily'
+Last Updated: '2019-02-15T00:03:23.604463'
+Resources:
+  -
+    Identifier: '21dace06-c4d1-4128-9424-aba7668050dc'
+    Title: 'CHAS Clinics (KML)'
+    Url: 'https://geo.data.gov.sg/moh-chas-clinics/2019/02/12/kml/moh-chas-clinics.kml'
+    Format: 'KML'
+    Last Updated: '2019-02-11T16:00:00'
+  -
+    Identifier: 'cb94adc3-aaf6-4352-982e-01014f6a5716'
+    Title: 'CHAS Clinics (GEOJSON)'
+    Url: 'https://geo.data.gov.sg/moh-chas-clinics/2019/02/12/geojson/moh-chas-clinics.geojson'
+    Format: 'GeoJSON'
+    Last Updated: '2019-02-11T16:00:00'
