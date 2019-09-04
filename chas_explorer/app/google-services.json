@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "964226553905",
-    "firebase_url": "https://chasexplorer.firebaseio.com",
-    "project_id": "chasexplorer",
-    "storage_bucket": "chasexplorer.appspot.com"
+    "project_number": "647443419716",
+    "firebase_url": "https://chasexplorer-edc94.firebaseio.com",
+    "project_id": "chasexplorer-edc94",
+    "storage_bucket": "chasexplorer-edc94.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:964226553905:android:a8ab1d26ee507918",
+        "mobilesdk_app_id": "1:647443419716:android:a8ab1d26ee507918",
         "android_client_info": {
           "package_name": "com.example.chas_explorer"
         }
       },
       "oauth_client": [
         {
-          "client_id": "964226553905-a651hb2689fmmqlkillaqbj2m0qb0bfm.apps.googleusercontent.com",
+          "client_id": "647443419716-ui0nr86ro81qta99kl9i06f5fppe3fbv.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.chas_explorer",
@@ -23,20 +23,20 @@
           }
         },
         {
-          "client_id": "964226553905-gt0q9fkc4es0ej5srrpmtkk9phkm9obp.apps.googleusercontent.com",
+          "client_id": "647443419716-mkc9dutmv6j2u89qi1g68hpg6eaccnk4.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBDKvcpylMOkkyqRhp-vJs7ASk9J7lbQwI"
+          "current_key": "AIzaSyB_eJtvm2eO7QQ3jHw1QF_6YL29tG8QCkk"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "964226553905-gt0q9fkc4es0ej5srrpmtkk9phkm9obp.apps.googleusercontent.com",
+              "client_id": "647443419716-mkc9dutmv6j2u89qi1g68hpg6eaccnk4.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
