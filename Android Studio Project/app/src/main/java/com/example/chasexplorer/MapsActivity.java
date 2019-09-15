@@ -4,6 +4,9 @@ import androidx.fragment.app.FragmentActivity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -29,6 +32,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+//        final RadioGroup radGroup = (RadioGroup) findViewById(R.id.radio_group_list_selector);
+//        int radioID = radGroup.getCheckedRadioButtonId();
+//        RadioButton viewClinicBtn = (RadioButton) findViewById(radioID);
+//        viewClinicBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View r) {
+//                if(((RadioButton) r).isChecked()){
+//                    Log.d(TAG, "Clicked View Clinics Button");
+//
+//                }
+//            }
+//        });
     }
 
     @Override
@@ -49,10 +64,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         ArrayList<Firebase> NEWDATA = FirebaseController.passMeAllData();
         Log.d(TAG, "NEW DATA BOY \n" + NEWDATA);
         for (Firebase fb : NEWDATA) {
-            LatLng Singapore = new LatLng(fb.getXCoordinate(),fb.getYCoordinate());
-            mMap.addMarker(new MarkerOptions().position(Singapore).title(fb.getHCIName()));
-            mMap.moveCamera(CameraUpdateFactory.newLatLng(Singapore));
+            LatLng Clinic = new LatLng(fb.getXCoordinate(),fb.getYCoordinate());
+            mMap.addMarker(new MarkerOptions().position(Clinic).title(fb.getHCIName()));
+            mMap.moveCamera(CameraUpdateFactory.newLatLng(Clinic));
         }
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(SGLatLng, zoom));
+
     }
 }

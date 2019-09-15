@@ -88,5 +88,31 @@ public class FirebaseController extends AppCompatActivity {
     //Method to return all latlng for plotting of markers
     //Method to return clinic object based on latlng
     //Method to return clinic object based on name
+    public static Firebase getClinicByName (String clinicName) {
+        for (Firebase fb : FIREBASEDATA){
+            if(fb.getHCIName().equalsIgnoreCase(clinicName)){
+                return fb;
+            }
+        }
+        return null;
+    }
+
+    public static Firebase getClinicByPostalCode (String postalCode){
+        for (Firebase fb : FIREBASEDATA){
+            if(fb.getHCIName().equalsIgnoreCase(postalCode)){
+                return fb;
+            }
+        }
+        return null;
+    }
+
+    public static Firebase getClinicByTelNo (String telNo){
+        for (Firebase fb : FIREBASEDATA){
+            if(fb.getHCIName().equalsIgnoreCase(telNo)){
+                return fb;
+            }
+        }
+        return null;
+    }
 
 }
