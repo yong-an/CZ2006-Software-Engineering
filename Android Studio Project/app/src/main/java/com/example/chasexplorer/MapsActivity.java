@@ -34,7 +34,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-
+        LatLng SGLatLng = new LatLng(1.3521,103.8198);// Singapore Latitude and Longitude
+        float zoom = 10;// whatever
         //Pass Over By Using Parcel
          /* Bundle b = getIntent().getExtras();
         ArrayList<Firebase> FIREBASEDATA = b.getParcelableArrayList("FBDATA");
@@ -47,9 +48,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         ArrayList<Firebase> NEWDATA = FirebaseController.passMeAllData();
         Log.d(TAG, "NEW DATA BOY \n" + NEWDATA);
-
-        LatLng Singapore = new LatLng(-1.290270, 103.851959);
-        mMap.addMarker(new MarkerOptions().position(Singapore).title("Marker in Singapore"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(Singapore));
+        for (Firebase fb : NEWDATA) {
+            LatLng Singapore = new LatLng(fb.getXCoordinate(),fb.getYCoordinate());
+            mMap.addMarker(new MarkerOptions().position(Singapore).title(fb.getHCIName()));
+            mMap.moveCamera(CameraUpdateFactory.newLatLng(Singapore));
+        }
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(SGLatLng, zoom));
     }
 }
