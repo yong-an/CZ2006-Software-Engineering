@@ -21,7 +21,7 @@ import static android.content.ContentValues.TAG;
 
 public class FirebaseController extends AppCompatActivity {
 
-    private ArrayList<Firebase> FIREBASEDATA;
+    private static ArrayList<Firebase> FIREBASEDATA;
     private Handler mHandler;
     private Runnable mRunnable;
 
@@ -46,10 +46,6 @@ public class FirebaseController extends AppCompatActivity {
 
                 GenericTypeIndicator<ArrayList<Firebase>> t = new GenericTypeIndicator<ArrayList<Firebase>>(){};
                 FIREBASEDATA = dataSnapshot.getValue(t);
-
-                for(int i = 0; i < FIREBASEDATA.size(); i++){
-                    Log.d(TAG,"CLINIC NAMES : \n" + FIREBASEDATA.get(i).getHCIName());
-                }
             }
 
             @Override
@@ -80,5 +76,17 @@ public class FirebaseController extends AppCompatActivity {
         if(mHandler != null && mRunnable != null)
             mHandler.removeCallbacks(mRunnable);
     }
+
+    public static ArrayList<Firebase> passMeAllData (){
+        return FIREBASEDATA;
+    }
+
+    /*for(int i = 0; i < FIREBASEDATA.size(); i++){
+      Log.d(TAG,"CLINIC NAMES : \n" + FIREBASEDATA.get(i).getHCIName());
+    }*/
+
+    //Method to return all latlng for plotting of markers
+    //Method to return clinic object based on latlng
+    //Method to return clinic object based on name
 
 }

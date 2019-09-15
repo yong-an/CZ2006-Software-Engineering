@@ -21,8 +21,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private GoogleMap mMap;
 
-    ArrayList<Double> XY = new ArrayList<>();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,15 +35,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        Bundle b = getIntent().getExtras();
+        //Pass Over By Using Parcel
+         /* Bundle b = getIntent().getExtras();
         ArrayList<Firebase> FIREBASEDATA = b.getParcelableArrayList("FBDATA");
-
         if(b != null){
             Log.d(TAG, "Data Transfer Successful \n" + FIREBASEDATA);
         }
         else {
             Log.d(TAG, "Data Not Transfered \n" + FIREBASEDATA);
-        }
+        }*/
+
+        ArrayList<Firebase> NEWDATA = FirebaseController.passMeAllData();
+        Log.d(TAG, "NEW DATA BOY \n" + NEWDATA);
 
         LatLng Singapore = new LatLng(-1.290270, 103.851959);
         mMap.addMarker(new MarkerOptions().position(Singapore).title("Marker in Singapore"));
