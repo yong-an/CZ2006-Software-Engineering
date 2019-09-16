@@ -228,4 +228,15 @@ class Firebase implements Parcelable {
             return new Firebase[size];
         }
     };
+
+    /* How To Use Parcel
+    =Store in activity 1=
+    Bundle bundle = new Bundle();
+    bundle.putParcelableArrayList("ACCESSKEY", DATA);
+    i.putExtras(bundle);
+
+    =Retrieve at activity 2=
+    Bundle b = getIntent().getExtras();
+    ArrayList<Firebase> FIREBASEDATA = b.getParcelableArrayList("ACCESSKEY");
+     */
 }

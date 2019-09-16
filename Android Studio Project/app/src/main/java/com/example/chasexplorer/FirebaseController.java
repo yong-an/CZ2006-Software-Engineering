@@ -46,6 +46,7 @@ public class FirebaseController extends AppCompatActivity {
 
                 GenericTypeIndicator<ArrayList<Firebase>> t = new GenericTypeIndicator<ArrayList<Firebase>>(){};
                 FIREBASEDATA = dataSnapshot.getValue(t);
+                Log.d(TAG,"Pulled Data:  " + Rows);
             }
 
             @Override
@@ -58,15 +59,12 @@ public class FirebaseController extends AppCompatActivity {
             @Override
             public void run() {
                 Intent i = new Intent(FirebaseController.this, MapsActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putParcelableArrayList("FBDATA", FIREBASEDATA);
-                i.putExtras(bundle);
                 FirebaseController.this.startActivity(i);
             }
         };
 
         mHandler = new Handler();
-        mHandler.postDelayed(mRunnable, 2500);
+        mHandler.postDelayed(mRunnable, 1000);
 
     }
 
@@ -81,13 +79,6 @@ public class FirebaseController extends AppCompatActivity {
         return FIREBASEDATA;
     }
 
-    /*for(int i = 0; i < FIREBASEDATA.size(); i++){
-      Log.d(TAG,"CLINIC NAMES : \n" + FIREBASEDATA.get(i).getHCIName());
-    }*/
-
-    //Method to return all latlng for plotting of markers
-    //Method to return clinic object based on latlng
-    //Method to return clinic object based on name
     public static Firebase getClinicByName (String clinicName) {
         for (Firebase fb : FIREBASEDATA){
             if(fb.getHCIName().equalsIgnoreCase(clinicName)){
