@@ -1,12 +1,12 @@
 package com.example.chasexplorer;
 
+import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.fragment.app.FragmentActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -32,18 +32,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-//        final RadioGroup radGroup = (RadioGroup) findViewById(R.id.radio_group_list_selector);
-//        int radioID = radGroup.getCheckedRadioButtonId();
-//        RadioButton viewClinicBtn = (RadioButton) findViewById(radioID);
-//        viewClinicBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View r) {
-//                if(((RadioButton) r).isChecked()){
-//                    Log.d(TAG, "Clicked View Clinics Button");
-//
-//                }
-//            }
-//        });
+        AppCompatImageButton viewClinicBtn = (AppCompatImageButton) findViewById(R.id.ViewClinics);
+        viewClinicBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View r) {
+                Log.d(TAG, "Clicked View Clinics Button");
+                Intent i = new Intent(MapsActivity.this,ViewClinicActivity.class);
+                MapsActivity.this.startActivity(i);
+
+            }
+        });
     }
 
     @Override
