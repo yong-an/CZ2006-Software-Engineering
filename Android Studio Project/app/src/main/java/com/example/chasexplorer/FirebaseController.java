@@ -1,5 +1,6 @@
 package com.example.chasexplorer;
 
+import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,6 +16,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import android.os.Handler;
+import android.view.animation.LinearInterpolator;
+import android.widget.ProgressBar;
 
 
 import static android.content.ContentValues.TAG;
@@ -30,7 +33,7 @@ public class FirebaseController extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-
+        startAnimation();
         // Connection to Firebase
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference myRef = database.getReference();
@@ -65,7 +68,7 @@ public class FirebaseController extends AppCompatActivity {
 
         mHandler = new Handler();
         // minimum 2100 milliseconds for Snapdragon 675 Samsung Galaxy A70
-        mHandler.postDelayed(mRunnable, 2400);
+        mHandler.postDelayed(mRunnable, 2500);
 
     }
 
@@ -74,6 +77,14 @@ public class FirebaseController extends AppCompatActivity {
         super.onDestroy();
         if(mHandler != null && mRunnable != null)
             mHandler.removeCallbacks(mRunnable);
+    }
+
+    private void startAnimation(){
+        ProgressBar mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
+        ObjectAnimator progressAnimator = ObjectAnimator.ofInt(mProgressBar, "progress", 0, 100);
+        progressAnimator.setDuration(2600);
+        progressAnimator.setInterpolator(new LinearInterpolator());
+        progressAnimator.start();
     }
 
     public static ArrayList<Firebase> passMeAllData (){
