@@ -1,12 +1,12 @@
 Sequence Diagrams For
  
 1) Login
-3) Rate Clinic Score
-4) Give Clinic Review
-5) Search Clinic
-6) View Clinic Information
-7) Call Clinic Tel.
+2) Rate Clinic Score
+3) Give Clinic Review
+4) Search Clinic
+5) View Clinic Information
+6) Call Clinic Tel.
 
-LAB 2 : DO 1,5,6
+LAB 2 : DO 1,4,5
 
 OTHERS WILL BE DONE AT SUBSEQUENT LAB 3 4 5
