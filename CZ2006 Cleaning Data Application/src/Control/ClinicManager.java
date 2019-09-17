@@ -43,7 +43,7 @@ public class ClinicManager {
 	
 	public void findClinic(String clinicName) {
 		for (Clinic c : clinicAl) {
-			if (c.getHCIName().equalsIgnoreCase(clinicName)) {
+			if (c.getClinicName().equalsIgnoreCase(clinicName)) {
 				System.out.println("Found Clinic!\n" + c.toString());
 				return;
 			}

@@ -60,7 +60,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
        try{
            for (Firebase fb : NEWDATA) {
                LatLng Clinic = new LatLng(fb.getXCoordinate(),fb.getYCoordinate());
-               mMap.addMarker(new MarkerOptions().position(Clinic).title(fb.getHCIName()));
+               mMap.addMarker(new MarkerOptions().position(Clinic).title(fb.getClinicName()));
                mMap.moveCamera(CameraUpdateFactory.newLatLng(Clinic));
                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(SGLatLng, zoom));
            }

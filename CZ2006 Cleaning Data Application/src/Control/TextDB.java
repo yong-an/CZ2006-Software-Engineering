@@ -84,7 +84,7 @@ public class TextDB {
 	 */
 	private static Clinic saveClinic(String HCICode,int i, ArrayList stringArray) {
 		Clinic c = new Clinic();
-		c.setHCICode(HCICode);
+		c.setClinicCode(HCICode);
 		Pattern r = Pattern.compile(patternEnd);
 		Pattern r2 = Pattern.compile(patternClinicName);
 		Pattern r3 = Pattern.compile(patternLicenceType);
@@ -123,13 +123,13 @@ public class TextDB {
 			m14 = r15.matcher(line);
 			m15 = r16.matcher(line);
 			if(m.find()) {
-				c.setHCIName(cleanData(line));
+				c.setClinicName(cleanData(line));
 			} else if(m2.find()) {
 				c.setLicenceType(cleanData(line));
 			} else if(m3.find()) {
-				c.setHCITel(cleanData(line));
+				c.setClinicTelNo(cleanData(line));
 			} else if(m4.find()) {
-				c.setPostalCD(cleanData(line));
+				c.setPostalCode(Integer.parseInt(cleanData(line)));
 			} else if(m5.find()) {
 				c.setAddrType(cleanData(line));
 			} else if(m6.find()) {
@@ -143,7 +143,7 @@ public class TextDB {
 			} else if(m10.find()) {
 				c.setBuildingName(cleanData(line));
 			} else if(m11.find()) {
-				c.setClinicProgrammeCode(cleanData(line));
+				c.setProgrammeCode(cleanData(line));
 			} else if(m12.find()) {
 				c.setXCoordinate(Double.parseDouble(cleanData(line)));
 			} else if(m13.find()) {

@@ -13,80 +13,80 @@ package Entity;
 
 public class Clinic {
 	
-	private String HCICode;
-	private String HCIName;
+	private String clinicCode;
+	private String clinicName;
 	private String licenceType;
-	private String HCITel;
-	private String postalCD;
+	private String clinicTelNo;
+	private int postalCode;
 	private String addrType;
 	private String blkHseNo;
 	private String floorNo;
 	private String unitNo;
 	private String streetName;
 	private String buildingName;
-	private String clinicProgrammeCode;
+	private String programmeCode;
 	private double XCoordinate;
 	private double YCoordinate;
 	private String incCrc;
 	private String fmelUpdD;
 
 	public Clinic() {
-		this.HCICode = "null";
-		this.HCIName = "null";
+		this.clinicCode = "null";
+		this.clinicName = "null";
 		this.licenceType = "null";
-		this.HCITel = "null";
-		this.postalCD = "null";
-		this.addrType = "null";
+		this.clinicTelNo = "null";
+		this.postalCode = 0;
+		this.addrType = "a";
 		this.blkHseNo = "null";
 		this.floorNo = "null";
 		this.unitNo = "null";
 		this.streetName = "null";
 		this.buildingName = "null";
-		this.clinicProgrammeCode = "null";
+		this.programmeCode = "null";
 		this.XCoordinate = 0;
 		this.YCoordinate = 0;
 		this.incCrc = "null";
 		this.fmelUpdD = "null";
 	}
 	
-	public Clinic(String HCICode,String HCIName, String licenceType,String HCITel,String postalCD,String addrType, String blkHseNo, String floorNo, String unitNo,
-			String streetName, String buildingName, String clinicProgrammeCode, double XCoordinate, double YCoordinate,String incCrc, String fmelUpdD) {
-		this.HCICode = HCICode;
-		this.HCIName = HCIName;
+	public Clinic(String clinicCode,String clinicName, String licenceType,String clinicTelNo,int postalCode,String addrType, String blkHseNo,String floorNo, String unitNo,
+			String streetName, String buildingName, String programmeCode, double XCoordinate, double YCoordinate,String incCrc, String fmelUpdD) {
+		this.clinicCode = clinicCode;
+		this.clinicName = clinicName;
 		this.licenceType = licenceType;
-		this.HCITel = HCITel;
-		this.postalCD = postalCD;
+		this.clinicTelNo = clinicTelNo;
+		this.postalCode = postalCode;
 		this.addrType = addrType;
 		this.blkHseNo = blkHseNo;
 		this.floorNo = floorNo;
 		this.unitNo = unitNo;
 		this.streetName = streetName;
 		this.buildingName = buildingName;
-		this.clinicProgrammeCode = clinicProgrammeCode;
+		this.programmeCode = programmeCode;
 		this.XCoordinate = XCoordinate;
 		this.YCoordinate = YCoordinate;
 		this.incCrc = incCrc;
 		this.fmelUpdD = fmelUpdD;
 	}
 	
-	public String getHCICode() {
-		return HCICode;
+	public String getClinicCode() {
+		return clinicCode;
 	}
 
-	public String getHCIName() {
-		return HCIName;
+	public String getClinicName() {
+		return clinicName;
 	}
 
 	public String getLicenceType() {
 		return licenceType;
 	}
 
-	public String getHCITel() {
-		return HCITel;
+	public String getClinicTelNo() {
+		return clinicTelNo;
 	}
 
-	public String getPostalCD() {
-		return postalCD;
+	public int getPostalCode() {
+		return postalCode;
 	}
 
 	public String getAddrType() {
@@ -113,8 +113,8 @@ public class Clinic {
 		return buildingName;
 	}
 
-	public String getClinicProgrammeCode() {
-		return clinicProgrammeCode;
+	public String getProgrammeCode() {
+		return programmeCode;
 	}
 
 	public double getXCoordinate() {
@@ -133,27 +133,27 @@ public class Clinic {
 		return fmelUpdD;
 	}
 
-	public void setHCICode(String hCICode) {
-		HCICode = hCICode;
+	public void setClinicCode(String clinicCode) {
+		this.clinicCode = clinicCode;
 	}
 
-	public void setHCIName(String hCIName) {
-		if(hCIName.contains("'")) {
-			hCIName = hCIName.replaceAll("\'","");
+	public void setClinicName(String clinicName) {
+		if(clinicName.contains("'")) {
+			clinicName = clinicName.replaceAll("\'","");
 		}
-		HCIName = hCIName;
+		this.clinicName = clinicName;
 	}
 
 	public void setLicenceType(String licenceType) {
 		this.licenceType = licenceType;
 	}
 
-	public void setHCITel(String hCITel) {
-		HCITel = hCITel;
+	public void setClinicTelNo(String clinicTelNo) {
+		this.clinicTelNo = clinicTelNo;
 	}
 
-	public void setPostalCD(String postalCD) {
-		this.postalCD = postalCD;
+	public void setPostalCode(int postalCode) {
+		this.postalCode = postalCode;
 	}
 
 	public void setAddrType(String addrType) {
@@ -180,8 +180,8 @@ public class Clinic {
 		this.buildingName = buildingName;
 	}
 
-	public void setClinicProgrammeCode(String clinicProgrammeCode) {
-		this.clinicProgrammeCode = clinicProgrammeCode;
+	public void setProgrammeCode(String programmeCode) {
+		this.programmeCode = programmeCode;
 	}
 
 	public void setXCoordinate(double xCoordinate) {
@@ -203,10 +203,10 @@ public class Clinic {
 	@Override
 	public String toString() {
 		String clinicString = null;
-		clinicString = "HCI Code: " + getHCICode() + "\nClinic Name: " + getHCIName() + "\nLicence Type: " + 
-		getLicenceType() + "\nTelephone Number: " + getHCITel() + "\nPostal Code: " + getPostalCD() + "\nAddress Type: " + getAddrType() + "\nBlk Number: " + getBlkHseNo() 
+		clinicString = "Clinic Code: " + getClinicCode() + "\nClinic Name: " + getClinicName() + "\nLicence Type: " + 
+		getLicenceType() + "\nTelephone Number: " + getClinicTelNo() + "\nPostal Code: " + getPostalCode() + "\nAddress Type: " + getAddrType() + "\nBlk Number: " + getBlkHseNo() 
 		+ "\nFloor No: " + getFloorNo() + "\nUnit No: " + getUnitNo() + "\nStreet Name: " + getStreetName() + "\nBuilding Name: " + getBuildingName() + "\nClinic Programme Name: " 
-		+ getClinicProgrammeCode() + "\nX Coordinate: " + getXCoordinate() + "\nY Coordinate: " + getYCoordinate() + "\nINC CRC: " + getIncCrc() + "\nFMEL Upd D: " + getFmelUpdD() + "\n";
+		+ getProgrammeCode() + "\nX Coordinate: " + getXCoordinate() + "\nY Coordinate: " + getYCoordinate() + "\nINC CRC: " + getIncCrc() + "\nFMEL Upd D: " + getFmelUpdD() + "\n";
 		return clinicString;
 	}
 }

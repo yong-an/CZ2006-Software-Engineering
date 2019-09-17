@@ -5,18 +5,18 @@ import android.os.Parcelable;
 
 class Firebase implements Parcelable {
 
-    private String HCICode;
-    private String HCIName;
+    private String clinicCode;
+    private String clinicName;
     private String licenceType;
-    private String HCITel;
-    private String postalCD;
+    private String clinicTelNo;
+    private int postalCode;
     private String addrType;
     private String blkHseNo;
     private String floorNo;
     private String unitNo;
     private String streetName;
     private String buildingName;
-    private String clinicProgrammeCode;
+    private String programmeCode;
     private double XCoordinate;
     private double YCoordinate;
     private String incCrc;
@@ -26,39 +26,39 @@ class Firebase implements Parcelable {
         // empty default constructor, necessary for Firebase to be able to deserialize users
     }
 
-    public Firebase(String HCICode, String HCIName, String licenceType, String HCITel, String postalCD, String addrType, String blkHseNo, String floorNo, String unitNo, String streetName, String buildingName, String clinicProgrammeCode, double XCoordinate, double YCoordinate, String incCrc, String fmelUpdD) {
-        this.HCICode = HCICode;
-        this.HCIName = HCIName;
+    public Firebase(String clinicCode, String clinicName, String licenceType, String clinicTelNo, int postalCode, String addrType, String blkHseNo, String floorNo, String unitNo, String streetName, String buildingName, String programmeCode, double XCoordinate, double YCoordinate, String incCrc, String fmelUpdD) {
+        this.clinicCode = clinicCode;
+        this.clinicName = clinicName;
         this.licenceType = licenceType;
-        this.HCITel = HCITel;
-        this.postalCD = postalCD;
+        this.clinicTelNo = clinicTelNo;
+        this.postalCode = postalCode;
         this.addrType = addrType;
         this.blkHseNo = blkHseNo;
         this.floorNo = floorNo;
         this.unitNo = unitNo;
         this.streetName = streetName;
         this.buildingName = buildingName;
-        this.clinicProgrammeCode = clinicProgrammeCode;
+        this.programmeCode = programmeCode;
         this.XCoordinate = XCoordinate;
         this.YCoordinate = YCoordinate;
         this.incCrc = incCrc;
         this.fmelUpdD = fmelUpdD;
     }
 
-    public String getHCICode() {
-        return HCICode;
+    public String getClinicCode() {
+        return clinicCode;
     }
 
-    public void setHCICode(String HCICode) {
-        this.HCICode = HCICode;
+    public void setClinicCode(String HCICode) {
+        this.clinicCode = clinicCode;
     }
 
-    public String getHCIName() {
-        return HCIName;
+    public String getClinicName() {
+        return clinicName;
     }
 
-    public void setHCIName(String HCIName) {
-        this.HCIName = HCIName;
+    public void setClinicName(String clinicName) {
+        this.clinicName = clinicName;
     }
 
     public String getLicenceType() {
@@ -69,20 +69,20 @@ class Firebase implements Parcelable {
         this.licenceType = licenceType;
     }
 
-    public String getHCITel() {
-        return HCITel;
+    public String getClinicTelNo() {
+        return clinicTelNo;
     }
 
-    public void setHCITel(String HCITel) {
-        this.HCITel = HCITel;
+    public void setClinicTelNo(String clinicTelNo) {
+        this.clinicTelNo = clinicTelNo;
     }
 
-    public String getPostalCD() {
-        return postalCD;
+    public int getPostalCode() {
+        return postalCode;
     }
 
     public void setPostalCD(String postalCD) {
-        this.postalCD = postalCD;
+        this.postalCode = postalCode;
     }
 
     public String getAddrType() {
@@ -133,12 +133,12 @@ class Firebase implements Parcelable {
         this.buildingName = buildingName;
     }
 
-    public String getClinicProgrammeCode() {
-        return clinicProgrammeCode;
+    public String getProgrammeCode() {
+        return programmeCode;
     }
 
-    public void setClinicProgrammeCode(String clinicProgrammeCode) {
-        this.clinicProgrammeCode = clinicProgrammeCode;
+    public void setProgrammeCode(String programmeCode) {
+        this.programmeCode = programmeCode;
     }
 
     public double getXCoordinate() {
@@ -182,18 +182,18 @@ class Firebase implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         // TODO Auto-generated method stub
-        dest.writeString(HCICode);
-        dest.writeString(HCIName);
+        dest.writeString(clinicCode);
+        dest.writeString(clinicName);
         dest.writeString(licenceType);
-        dest.writeString(HCITel);
-        dest.writeString(postalCD);
+        dest.writeString(clinicTelNo);
+        dest.writeInt(postalCode);
         dest.writeString(addrType);
         dest.writeString(blkHseNo);
         dest.writeString(floorNo);
         dest.writeString(unitNo);
         dest.writeString(streetName);
         dest.writeString(buildingName);
-        dest.writeString(clinicProgrammeCode);
+        dest.writeString(programmeCode);
         dest.writeDouble(XCoordinate);
         dest.writeDouble(YCoordinate);
         dest.writeString(incCrc);
@@ -201,18 +201,18 @@ class Firebase implements Parcelable {
     }
 
     public Firebase(Parcel in) {
-        HCICode = in.readString();
-        HCIName = in.readString();
+        clinicCode = in.readString();
+        clinicName = in.readString();
         licenceType = in.readString();
-        HCITel = in.readString();
-        postalCD = in.readString();
+        clinicTelNo = in.readString();
+        postalCode = in.readInt();
         addrType = in.readString();
         blkHseNo = in.readString();
         floorNo = in.readString();
         unitNo = in.readString();
         streetName = in.readString();
         buildingName = in.readString();
-        clinicProgrammeCode = in.readString();
+        programmeCode = in.readString();
         XCoordinate = in.readDouble();
         YCoordinate = in.readDouble();
         incCrc = in.readString();

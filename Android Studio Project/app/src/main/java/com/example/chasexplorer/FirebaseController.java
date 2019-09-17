@@ -64,7 +64,8 @@ public class FirebaseController extends AppCompatActivity {
         };
 
         mHandler = new Handler();
-        mHandler.postDelayed(mRunnable, 1000);
+        // minimum 2100 milliseconds for Snapdragon 675 Samsung Galaxy A70
+        mHandler.postDelayed(mRunnable, 2400);
 
     }
 
@@ -81,16 +82,16 @@ public class FirebaseController extends AppCompatActivity {
 
     public static Firebase getClinicByName (String clinicName) {
         for (Firebase fb : FIREBASEDATA){
-            if(fb.getHCIName().equalsIgnoreCase(clinicName)){
+            if(fb.getClinicName().equalsIgnoreCase(clinicName)){
                 return fb;
             }
         }
         return null;
     }
 
-    public static Firebase getClinicByPostalCode (String postalCode){
+    public static Firebase getClinicByPostalCode (int postalCode){
         for (Firebase fb : FIREBASEDATA){
-            if(fb.getHCIName().equalsIgnoreCase(postalCode)){
+            if(fb.getPostalCode() == postalCode){
                 return fb;
             }
         }
@@ -99,7 +100,7 @@ public class FirebaseController extends AppCompatActivity {
 
     public static Firebase getClinicByTelNo (String telNo){
         for (Firebase fb : FIREBASEDATA){
-            if(fb.getHCIName().equalsIgnoreCase(telNo)){
+            if(fb.getClinicTelNo().equalsIgnoreCase(telNo)){
                 return fb;
             }
         }
