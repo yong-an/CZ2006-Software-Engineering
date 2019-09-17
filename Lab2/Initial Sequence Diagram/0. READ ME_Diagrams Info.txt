@@ -1,7 +1,6 @@
 Sequence Diagrams For
  
 1) Login
-2) Register
 3) Rate Clinic Score
 4) Give Clinic Review
 5) Search Clinic
