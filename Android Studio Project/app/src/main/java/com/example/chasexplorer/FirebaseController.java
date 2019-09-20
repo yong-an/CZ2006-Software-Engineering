@@ -24,7 +24,7 @@ import static android.content.ContentValues.TAG;
 
 public class FirebaseController extends AppCompatActivity {
 
-    private static ArrayList<Firebase> FIREBASEDATA;
+    private static ArrayList<Clinic> FIREBASEDATA;
     private Handler mHandler;
     private Runnable mRunnable;
 
@@ -34,7 +34,7 @@ public class FirebaseController extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         startAnimation();
-        // Connection to Firebase
+        // Connection to Clinic
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference myRef = database.getReference();
 
@@ -47,14 +47,14 @@ public class FirebaseController extends AppCompatActivity {
                 long Rows = dataSnapshot.getChildrenCount();
                 Log.d(TAG,"No Of Data Rows: " + Rows);
 
-                GenericTypeIndicator<ArrayList<Firebase>> t = new GenericTypeIndicator<ArrayList<Firebase>>(){};
+                GenericTypeIndicator<ArrayList<Clinic>> t = new GenericTypeIndicator<ArrayList<Clinic>>(){};
                 FIREBASEDATA = dataSnapshot.getValue(t);
                 Log.d(TAG,"Pulled Data:  " + Rows);
             }
 
             @Override
             public void onCancelled(DatabaseError error) {
-                Log.w(TAG, "Failed To Read From Firebase...", error.toException());
+                Log.w(TAG, "Failed To Read From Clinic...", error.toException());
             }
         });
 
@@ -87,12 +87,12 @@ public class FirebaseController extends AppCompatActivity {
         progressAnimator.start();
     }
 
-    public static ArrayList<Firebase> passMeAllData (){
+    public static ArrayList<Clinic> passMeAllData (){
         return FIREBASEDATA;
     }
 
-    public static Firebase getClinicByName (String clinicName) {
-        for (Firebase fb : FIREBASEDATA){
+    public static Clinic getClinicByName (String clinicName) {
+        for (Clinic fb : FIREBASEDATA){
             if(fb.getClinicName().equalsIgnoreCase(clinicName)){
                 return fb;
             }
@@ -100,8 +100,8 @@ public class FirebaseController extends AppCompatActivity {
         return null;
     }
 
-    public static Firebase getClinicByPostalCode (int postalCode){
-        for (Firebase fb : FIREBASEDATA){
+    public static Clinic getClinicByPostalCode (int postalCode){
+        for (Clinic fb : FIREBASEDATA){
             if(fb.getPostalCode() == postalCode){
                 return fb;
             }
@@ -109,8 +109,8 @@ public class FirebaseController extends AppCompatActivity {
         return null;
     }
 
-    public static Firebase getClinicByTelNo (String telNo){
-        for (Firebase fb : FIREBASEDATA){
+    public static Clinic getClinicByTelNo (String telNo){
+        for (Clinic fb : FIREBASEDATA){
             if(fb.getClinicTelNo().equalsIgnoreCase(telNo)){
                 return fb;
             }

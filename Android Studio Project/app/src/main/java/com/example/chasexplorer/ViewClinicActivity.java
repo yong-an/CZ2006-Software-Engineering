@@ -16,7 +16,7 @@ public class ViewClinicActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_clinic);
-        ArrayList<Firebase> NEWDATA = FirebaseController.passMeAllData();
+        ArrayList<Clinic> NEWDATA = FirebaseController.passMeAllData();
         recyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
 
         // use this setting to improve performance if you know that changes

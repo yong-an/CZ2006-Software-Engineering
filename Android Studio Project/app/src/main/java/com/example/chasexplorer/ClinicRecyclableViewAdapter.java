@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 public class ClinicRecyclableViewAdapter extends RecyclerView.Adapter<ClinicRecyclableViewAdapter.MyViewHolder> {
-    private ArrayList<Firebase> mDataset;
+    private ArrayList<Clinic> mDataset;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -29,7 +29,7 @@ public class ClinicRecyclableViewAdapter extends RecyclerView.Adapter<ClinicRecy
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public ClinicRecyclableViewAdapter(ArrayList<Firebase> myDataset)  {
+    public ClinicRecyclableViewAdapter(ArrayList<Clinic> myDataset)  {
         mDataset = myDataset;
     }
 

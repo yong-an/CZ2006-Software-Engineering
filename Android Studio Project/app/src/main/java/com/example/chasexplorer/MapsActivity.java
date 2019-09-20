@@ -19,17 +19,20 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import static android.content.ContentValues.TAG;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
+    private MapController mController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+        mController = new MapController();
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -49,25 +52,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        LatLng SGLatLng = new LatLng(1.3521,103.8198);// Singapore Latitude and Longitude
-        float zoom = 10;// whatever
-
-        ArrayList<Firebase> NEWDATA = FirebaseController.passMeAllData();
-        Log.d(TAG, "CURRENT DATA: \n" + NEWDATA);
-
-        //NEED ERROR CHECKING HERE FOR CASES WITH NO INTERNET
-        //BASED ON FUNCTIONAL REQUIREMENTS
-       try{
-           for (Firebase fb : NEWDATA) {
-               LatLng Clinic = new LatLng(fb.getXCoordinate(),fb.getYCoordinate());
-               mMap.addMarker(new MarkerOptions().position(Clinic).title(fb.getClinicName()));
-               mMap.moveCamera(CameraUpdateFactory.newLatLng(Clinic));
-               mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(SGLatLng, zoom));
-           }
-       }catch(Exception e) {
-           Log.d(TAG, "ERROR In DATA: \n" + e);
-       }
-
+        mMap = mController.getGmap(mMap);
     }
 
     @Override

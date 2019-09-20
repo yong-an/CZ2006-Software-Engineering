@@ -3,7 +3,7 @@ package com.example.chasexplorer;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-class Firebase implements Parcelable {
+class Clinic implements Parcelable {
 
     private String clinicCode;
     private String clinicName;
@@ -22,11 +22,11 @@ class Firebase implements Parcelable {
     private String incCrc;
     private String fmelUpdD;
 
-    public Firebase() {
-        // empty default constructor, necessary for Firebase to be able to deserialize users
+    public Clinic() {
+        // empty default constructor, necessary for Clinic to be able to deserialize users
     }
 
-    public Firebase(String clinicCode, String clinicName, String licenceType, String clinicTelNo, int postalCode, String addrType, String blkHseNo, String floorNo, String unitNo, String streetName, String buildingName, String programmeCode, double XCoordinate, double YCoordinate, String incCrc, String fmelUpdD) {
+    public Clinic(String clinicCode, String clinicName, String licenceType, String clinicTelNo, int postalCode, String addrType, String blkHseNo, String floorNo, String unitNo, String streetName, String buildingName, String programmeCode, double XCoordinate, double YCoordinate, String incCrc, String fmelUpdD) {
         this.clinicCode = clinicCode;
         this.clinicName = clinicName;
         this.licenceType = licenceType;
@@ -200,7 +200,7 @@ class Firebase implements Parcelable {
         dest.writeString(fmelUpdD);
     }
 
-    public Firebase(Parcel in) {
+    public Clinic(Parcel in) {
         clinicCode = in.readString();
         clinicName = in.readString();
         licenceType = in.readString();
@@ -219,13 +219,13 @@ class Firebase implements Parcelable {
         fmelUpdD = in.readString();
     }
 
-    public static final Parcelable.Creator<Firebase> CREATOR = new Parcelable.Creator<Firebase>() {
-        public Firebase createFromParcel(Parcel in) {
-            return new Firebase(in);
+    public static final Parcelable.Creator<Clinic> CREATOR = new Parcelable.Creator<Clinic>() {
+        public Clinic createFromParcel(Parcel in) {
+            return new Clinic(in);
         }
 
-        public Firebase[] newArray(int size) {
-            return new Firebase[size];
+        public Clinic[] newArray(int size) {
+            return new Clinic[size];
         }
     };
 
@@ -237,6 +237,6 @@ class Firebase implements Parcelable {
 
     =Retrieve at activity 2=
     Bundle b = getIntent().getExtras();
-    ArrayList<Firebase> FIREBASEDATA = b.getParcelableArrayList("ACCESSKEY");
+    ArrayList<Clinic> FIREBASEDATA = b.getParcelableArrayList("ACCESSKEY");
      */
 }
