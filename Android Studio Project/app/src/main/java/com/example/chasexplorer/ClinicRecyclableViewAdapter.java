@@ -1,15 +1,21 @@
 package com.example.chasexplorer;
 
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.gson.Gson;
+
 import java.util.ArrayList;
+
+import static android.content.ContentValues.TAG;
 
 public class ClinicRecyclableViewAdapter extends RecyclerView.Adapter<ClinicRecyclableViewAdapter.MyViewHolder> {
     private ArrayList<Clinic> mDataset;
@@ -46,12 +52,22 @@ public class ClinicRecyclableViewAdapter extends RecyclerView.Adapter<ClinicRecy
 
     // Replace the contents of a view (invoked by the layout manager)
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
+    public void onBindViewHolder(MyViewHolder holder, final int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
         holder.textView.setText(mDataset.get(position).getClinicName()
                 + "\n(+65)"  + mDataset.get(position).getClinicTelNo()
                 + "\n" + mDataset.get(position).getStreetName());
+        holder.textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View r) {
+                Toast.makeText(r.getContext(),"Clicked View Detailed clinics Button", Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(r.getContext(),ViewClinicDetailsActivity.class);
+                i.putExtra("clinicObj", new Gson().toJson(mDataset.get(position)));
+                r.getContext().startActivity(i);
+
+            }
+        });
 
     }
 
