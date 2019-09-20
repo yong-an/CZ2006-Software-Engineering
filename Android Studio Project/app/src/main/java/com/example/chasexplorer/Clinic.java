@@ -49,7 +49,7 @@ class Clinic implements Parcelable {
         return clinicCode;
     }
 
-    public void setClinicCode(String HCICode) {
+    public void setClinicCode(String clinicCode) {
         this.clinicCode = clinicCode;
     }
 
