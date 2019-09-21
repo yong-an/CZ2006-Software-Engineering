@@ -36,7 +36,8 @@ public class FirebaseController extends AppCompatActivity {
         startAnimation();
         // Connection to Clinic
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        database.setPersistenceEnabled(true);
+        if(database == null)
+            database.setPersistenceEnabled(true);
         final DatabaseReference myRef = database.getReference();
         myRef.keepSynced(true);
         // Read from the database
