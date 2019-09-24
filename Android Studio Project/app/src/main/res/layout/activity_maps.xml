@@ -39,8 +39,9 @@
             android:layout_height="match_parent"
             android:layout_weight="0.5"
             android:gravity="center_horizontal|center_vertical"
+            android:scaleType="centerInside"
             android:onClick="@string/app_name"
-            android:src="@mipmap/ic_launcher" />
+            android:src="@drawable/nav1_list" />
 
         <View
             android:id="@+id/VerticalLine0"
@@ -53,7 +54,9 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="0.5"
-            android:gravity="center_horizontal|center_vertical" />
+            android:gravity="center_horizontal|center_vertical"
+            android:scaleType="centerInside"
+            android:src="@drawable/nav2_map" />
 
         <View
             android:id="@+id/VerticalLine1"
@@ -66,7 +69,9 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="0.5"
-            android:gravity="center_horizontal|center_vertical" />
+            android:gravity="center_horizontal|center_vertical"
+            android:scaleType="centerInside"
+            android:src="@drawable/nav3_me" />
 
         <View
             android:id="@+id/VerticalLine2"
