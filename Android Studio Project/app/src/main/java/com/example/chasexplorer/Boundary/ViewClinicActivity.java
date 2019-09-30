@@ -1,10 +1,16 @@
-package com.example.chasexplorer;
+package com.example.chasexplorer.Boundary;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+
+import com.example.chasexplorer.Controller.ClinicRecyclableViewAdapter;
+import com.example.chasexplorer.Controller.FirebaseController;
+import com.example.chasexplorer.Entity.Clinic;
+import com.example.chasexplorer.R;
+
 import java.util.ArrayList;
 
 public class ViewClinicActivity extends AppCompatActivity {

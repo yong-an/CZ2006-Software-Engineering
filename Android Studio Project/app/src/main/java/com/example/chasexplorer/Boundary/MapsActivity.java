@@ -1,4 +1,4 @@
-package com.example.chasexplorer;
+package com.example.chasexplorer.Boundary;
 
 import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.fragment.app.FragmentActivity;
@@ -10,16 +10,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
-import com.google.android.gms.maps.CameraUpdateFactory;
+import com.example.chasexplorer.Controller.MapController;
+import com.example.chasexplorer.R;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
 
-
-import java.util.ArrayList;
-import java.util.Map;
 
 import static android.content.ContentValues.TAG;
 

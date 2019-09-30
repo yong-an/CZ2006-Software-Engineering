@@ -1,4 +1,4 @@
-package com.example.chasexplorer;
+package com.example.chasexplorer.Controller;
 
 import android.animation.ObjectAnimator;
 import android.content.Intent;
@@ -7,6 +7,9 @@ import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.chasexplorer.Entity.Clinic;
+import com.example.chasexplorer.Boundary.MapsActivity;
+import com.example.chasexplorer.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;

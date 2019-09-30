@@ -14,15 +14,15 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ViewClinicDetailsActivity"></activity>
-        <activity android:name=".ViewClinicActivity" />
+        <activity android:name=".Boundary.ViewClinicDetailsActivity"></activity>
+        <activity android:name=".Boundary.ViewClinicActivity" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".FirebaseController"
+            android:name=".Controller.FirebaseController"
             android:noHistory="true"
             android:theme="@style/SplashTheme">
             <intent-filter>
@@ -31,7 +31,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MapsActivity" />
+        <activity android:name=".Boundary.MapsActivity" />
     </application>
 
 </manifest>

@@ -1,21 +1,20 @@
-package com.example.chasexplorer;
+package com.example.chasexplorer.Controller;
 
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.chasexplorer.Entity.Clinic;
+import com.example.chasexplorer.R;
+import com.example.chasexplorer.Boundary.ViewClinicDetailsActivity;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
-
-import static android.content.ContentValues.TAG;
 
 public class ClinicRecyclableViewAdapter extends RecyclerView.Adapter<ClinicRecyclableViewAdapter.MyViewHolder> {
     private ArrayList<Clinic> mDataset;
@@ -62,7 +61,7 @@ public class ClinicRecyclableViewAdapter extends RecyclerView.Adapter<ClinicRecy
             @Override
             public void onClick(View r) {
                 Toast.makeText(r.getContext(),"Clicked View Detailed clinics Button", Toast.LENGTH_SHORT).show();
-                Intent i = new Intent(r.getContext(),ViewClinicDetailsActivity.class);
+                Intent i = new Intent(r.getContext(), ViewClinicDetailsActivity.class);
                 i.putExtra("clinicObj", new Gson().toJson(mDataset.get(position)));
                 r.getContext().startActivity(i);
 

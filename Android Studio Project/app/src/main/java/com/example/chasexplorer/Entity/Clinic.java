@@ -1,9 +1,9 @@
-package com.example.chasexplorer;
+package com.example.chasexplorer.Entity;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 
-class Clinic implements Parcelable {
+public class Clinic implements Parcelable {
 
     private String clinicCode;
     private String clinicName;

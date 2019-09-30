@@ -1,7 +1,8 @@
-package com.example.chasexplorer;
+package com.example.chasexplorer.Controller;
 
 import android.util.Log;
 
+import com.example.chasexplorer.Entity.Clinic;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;

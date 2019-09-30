@@ -1,10 +1,12 @@
-package com.example.chasexplorer;
+package com.example.chasexplorer.Boundary;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.widget.TextView;
 
+import com.example.chasexplorer.Entity.Clinic;
+import com.example.chasexplorer.R;
 import com.google.gson.Gson;
 
 public class ViewClinicDetailsActivity extends AppCompatActivity {
