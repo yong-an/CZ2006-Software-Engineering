@@ -42,7 +42,7 @@
         android:padding="4dp">
 
         <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/viewClinicsBtn"
+            android:id="@+id/backBtn"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="0.5"
@@ -50,40 +50,7 @@
             android:gravity="center_horizontal|center_vertical"
             android:onClick="@string/app_name"
             android:scaleType="centerInside"
-            android:src="@drawable/nav1_list" />
-
-        <View
-            android:id="@+id/VerticalLine0"
-            android:layout_width="1dip"
-            android:layout_height="match_parent"
-            android:background="#5F5E5E" />
-
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/mapBtn"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.5"
-            android:background="@color/colorWhite"
-            android:gravity="center_horizontal|center_vertical"
-            android:scaleType="centerInside"
-            android:src="@drawable/nav2_map"
-            android:tint="@color/colorAccent" />
-
-        <View
-            android:id="@+id/VerticalLine1"
-            android:layout_width="1dip"
-            android:layout_height="match_parent"
-            android:background="#5F5E5E" />
-
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/meBtn"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.5"
-            android:background="@color/colorWhite"
-            android:gravity="center_horizontal|center_vertical"
-            android:scaleType="centerInside"
-            android:src="@drawable/nav3_me" />
+            android:src="@drawable/nav_back" />
 
     </RadioGroup>
 

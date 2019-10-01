@@ -42,7 +42,7 @@ public class ClinicMapActivity extends FragmentActivity implements OnMapReadyCal
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_maps);
+        setContentView(R.layout.activity_clinic_map);
         mController = new MapController();
         String jsonMyObject = null;
         Bundle extras = getIntent().getExtras();
@@ -54,14 +54,11 @@ public class ClinicMapActivity extends FragmentActivity implements OnMapReadyCal
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-        AppCompatImageButton viewClinicBtn = (AppCompatImageButton) findViewById(R.id.viewClinicsBtn);
-        viewClinicBtn.setOnClickListener(new View.OnClickListener() {
+        AppCompatImageButton backBtn = (AppCompatImageButton) findViewById(R.id.backBtn);
+        backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View r) {
-                Log.d(TAG, "Clicked View Clinics Button");
-                Intent i = new Intent(ClinicMapActivity.this,ViewClinicActivity.class);
-                ClinicMapActivity.this.startActivity(i);
-
+                ClinicMapActivity.this.finish();
             }
         });
     }
@@ -72,17 +69,4 @@ public class ClinicMapActivity extends FragmentActivity implements OnMapReadyCal
         mMap = mController.getClinicLocation(mMap,clinicDetails);
     }
 
-    @Override
-    public void onBackPressed() {
-        new AlertDialog.Builder(this)
-                .setMessage("Are you sure you want to exit?")
-                .setCancelable(false)
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        ClinicMapActivity.this.finish();
-                    }
-                })
-                .setNegativeButton("No", null)
-                .show();
-    }
 }
