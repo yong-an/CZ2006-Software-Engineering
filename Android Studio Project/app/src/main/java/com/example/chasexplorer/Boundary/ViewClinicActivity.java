@@ -28,6 +28,9 @@ public class ViewClinicActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_clinic);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setLogo(R.drawable.clinic_icon);
+        getSupportActionBar().setDisplayUseLogoEnabled(true);
         ArrayList<Clinic> NEWDATA = FirebaseController.passMeAllData();
         recyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
 

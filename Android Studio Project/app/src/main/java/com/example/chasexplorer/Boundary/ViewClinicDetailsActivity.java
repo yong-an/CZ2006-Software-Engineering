@@ -26,6 +26,9 @@ public class ViewClinicDetailsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.view_clinic_details);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setLogo(R.drawable.clinic_icon);
+        getSupportActionBar().setDisplayUseLogoEnabled(true);
         String jsonMyObject = null;
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
