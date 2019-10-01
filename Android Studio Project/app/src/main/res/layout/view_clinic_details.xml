@@ -8,8 +8,8 @@
 
     <TextView
         android:id="@+id/clinicDetails"
-        android:layout_width="329dp"
-        android:layout_height="497dp"
+        android:layout_width="318dp"
+        android:layout_height="380dp"
         android:layout_marginStart="41dp"
         android:layout_marginTop="144dp"
         android:layout_marginEnd="41dp"
@@ -17,8 +17,73 @@
         android:text="TextView"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.461"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.239" />
+
+    <ImageButton
+        android:id="@+id/direction"
+        android:layout_width="66dp"
+        android:layout_height="61dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginLeft="44dp"
+        android:layout_marginTop="82dp"
+        android:background="@null"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/clinicDetails"
+        app:layout_constraintVertical_bias="0.555"
+        app:srcCompat="@drawable/clinic1_directions" />
+
+    <ImageButton
+        android:id="@+id/reviews"
+        android:layout_width="66dp"
+        android:layout_height="61dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="102dp"
+        android:layout_marginBottom="16dp"
+        android:background="@null"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/direction"
+        app:layout_constraintTop_toBottomOf="@+id/clinicDetails"
+        app:srcCompat="@drawable/clinic2_reviews" />
+
+    <ImageButton
+        android:id="@+id/call"
+        android:layout_width="66dp"
+        android:layout_height="61dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="102dp"
+        android:layout_marginBottom="16dp"
+        android:background="@null"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/reviews"
+        app:layout_constraintTop_toBottomOf="@+id/clinicDetails"
+        app:srcCompat="@drawable/clinic3_call" />
+
+    <ImageButton
+        android:id="@+id/save"
+        android:layout_width="66dp"
+        android:layout_height="61dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="102dp"
+        android:layout_marginEnd="44dp"
+        android:layout_marginRight="44dp"
+        android:layout_marginBottom="16dp"
+        android:background="@null"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/call"
+        app:layout_constraintTop_toBottomOf="@+id/clinicDetails"
+        app:srcCompat="@drawable/clinic4_save" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
