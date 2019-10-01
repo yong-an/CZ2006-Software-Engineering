@@ -73,7 +73,7 @@ public class FirebaseController extends AppCompatActivity {
 
         mHandler = new Handler();
         // minimum 2100 milliseconds for Snapdragon 675 Samsung Galaxy A70
-        mHandler.postDelayed(mRunnable, 2500);
+        mHandler.postDelayed(mRunnable, 2600);
 
     }
 
