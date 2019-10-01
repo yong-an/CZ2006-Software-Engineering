@@ -30,12 +30,16 @@ public class FirebaseController extends AppCompatActivity {
     private static ArrayList<Clinic> FIREBASEDATA;
     private Handler mHandler;
     private Runnable mRunnable;
+    private ProgressBar mProgressBar;
+    private ObjectAnimator progressAnimator;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+        mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
+        progressAnimator = ObjectAnimator.ofInt(mProgressBar, "progress", 0, 98);
         startAnimation();
         // Connection to Clinic
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -48,13 +52,15 @@ public class FirebaseController extends AppCompatActivity {
 
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-
                 long Rows = dataSnapshot.getChildrenCount();
                 Log.d(TAG,"No Of Data Rows: " + Rows);
-
                 GenericTypeIndicator<ArrayList<Clinic>> t = new GenericTypeIndicator<ArrayList<Clinic>>(){};
                 FIREBASEDATA = dataSnapshot.getValue(t);
                 Log.d(TAG,"Pulled Data:  " + Rows);
+                progressAnimator.setIntValues(100);
+                progressAnimator.start();
+                Intent i = new Intent(FirebaseController.this, MapsActivity.class);
+                FirebaseController.this.startActivity(i);
             }
 
             @Override
@@ -62,18 +68,6 @@ public class FirebaseController extends AppCompatActivity {
                 Log.w(TAG, "Failed To Read From Clinic...", error.toException());
             }
         });
-
-        mRunnable = new Runnable() {
-            @Override
-            public void run() {
-                Intent i = new Intent(FirebaseController.this, MapsActivity.class);
-                FirebaseController.this.startActivity(i);
-            }
-        };
-
-        mHandler = new Handler();
-        // minimum 2100 milliseconds for Snapdragon 675 Samsung Galaxy A70
-        mHandler.postDelayed(mRunnable, 2600);
 
     }
 
@@ -85,9 +79,7 @@ public class FirebaseController extends AppCompatActivity {
     }
 
     private void startAnimation(){
-        ProgressBar mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
-        ObjectAnimator progressAnimator = ObjectAnimator.ofInt(mProgressBar, "progress", 0, 100);
-        progressAnimator.setDuration(2600);
+        progressAnimator.setDuration(1800);
         progressAnimator.setInterpolator(new LinearInterpolator());
         progressAnimator.start();
     }
