@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -20,9 +21,8 @@ import com.example.chasexplorer.R;
 import com.google.gson.Gson;
 
 public class ViewClinicDetailsActivity extends AppCompatActivity {
-    @TargetApi(23)
-    @Override
 
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.view_clinic_details);
@@ -39,25 +39,15 @@ public class ViewClinicDetailsActivity extends AppCompatActivity {
         final String clinicTelNo = clinicDetails.getClinicTelNo();
         ImageButton callBtn = (ImageButton) findViewById(R.id.call);
         callBtn.setOnClickListener(new View.OnClickListener() {
+
+            @SuppressLint("MissingPermission")
             @Override
             public void onClick(View r) {
-                Intent callIntent = new Intent(Intent.ACTION_CALL);
-                callIntent.setData(Uri.parse("tel:" + clinicTelNo));
-                if (checkSelfPermission(Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-                    // TODO: Consider calling
-                    //    Activity#requestPermissions
-                    // here to request the missing permissions, and then overriding
-                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                    //                                          int[] grantResults)
-                    // to handle the case where the user grants the permission. See the documentation
-                    // for Activity#requestPermissions for more details.
-                    Toast.makeText(r.getContext(),"Call permission is not granted!", Toast.LENGTH_SHORT).show();
-                    ActivityCompat.requestPermissions(ViewClinicDetailsActivity.this,
-                            new String[]{Manifest.permission.CALL_PHONE},1
-                            );
-                    return;
+                if (getCallPermission()) {
+                    Intent callIntent = new Intent(Intent.ACTION_CALL);
+                    callIntent.setData(Uri.parse("tel:" + clinicTelNo));
+                    ViewClinicDetailsActivity.this.startActivity(callIntent);
                 }
-                ViewClinicDetailsActivity.this.startActivity(callIntent);
             }
 
         });
@@ -78,5 +68,27 @@ public class ViewClinicDetailsActivity extends AppCompatActivity {
                 return;
             }
         }
+    }
+
+    @TargetApi(23)
+    private boolean getCallPermission(){
+        if (checkSelfPermission(Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    Activity#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for Activity#requestPermissions for more details.
+            Toast.makeText(getApplicationContext(),"Call permission is not granted!", Toast.LENGTH_SHORT).show();
+            ActivityCompat.requestPermissions(ViewClinicDetailsActivity.this,
+                    new String[]{Manifest.permission.CALL_PHONE},1
+            );
+            return false;
+        } else {
+            // permission already granted previously
+            return true;
+        }
+
     }
 }
