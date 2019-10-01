@@ -34,7 +34,7 @@ public class ViewClinicDetailsActivity extends AppCompatActivity {
         if (extras != null) {
             jsonMyObject = extras.getString("clinicObj");
         }
-        Clinic clinicDetails = new Gson().fromJson(jsonMyObject, Clinic.class);
+        final Clinic clinicDetails = new Gson().fromJson(jsonMyObject, Clinic.class);
         TextView clinicTV = (TextView) findViewById(R.id.clinicDetails);
         clinicTV.setText(clinicDetails.getClinicName() + "\n" + clinicDetails.getClinicCode() + "\n+(65)" + clinicDetails.getClinicTelNo()
                 + "\n" + clinicDetails.getStreetName() + "\nBlk " + clinicDetails.getBlkHseNo() + clinicDetails.getAddrType() + " #" + clinicDetails.getFloorNo() + "-" + clinicDetails.getUnitNo()
@@ -53,6 +53,17 @@ public class ViewClinicDetailsActivity extends AppCompatActivity {
                 }
             }
 
+        });
+        ImageButton directionBtn = (ImageButton) findViewById(R.id.direction);
+        directionBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View r) {
+                Toast.makeText(r.getContext(),"Clicked View Clinic Location button!", Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(r.getContext(), ClinicMapActivity.class);
+                i.putExtra("clinicObj", new Gson().toJson(clinicDetails));
+                r.getContext().startActivity(i);
+
+            }
         });
     }
 

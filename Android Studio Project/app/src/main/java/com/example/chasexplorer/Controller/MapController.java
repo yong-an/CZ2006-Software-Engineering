@@ -46,5 +46,20 @@ public class MapController {
         return gmap;
     }
 
+    public GoogleMap getClinicLocation(GoogleMap mMap, Clinic clinicDetails){
+        setGmap(mMap);
+
+        //NEED ERROR CHECKING HERE FOR CASES WITH NO INTERNET
+        //BASED ON FUNCTIONAL REQUIREMENTS
+        try{
+            LatLng clinic = new LatLng(clinicDetails.getXCoordinate(),clinicDetails.getYCoordinate());
+            gmap.addMarker(new MarkerOptions().position(clinic).title(clinicDetails.getClinicName()));
+            gmap.moveCamera(CameraUpdateFactory.newLatLng(clinic));
+            gmap.moveCamera(CameraUpdateFactory.newLatLngZoom(clinic, 17));
+        }catch(Exception e) {
+            Log.d(TAG, "ERROR In DATA: \n" + e);
+        }
+        return gmap;
+    }
 
 }

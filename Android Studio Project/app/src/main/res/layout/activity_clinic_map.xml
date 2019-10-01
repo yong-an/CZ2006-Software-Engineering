@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:map="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Boundary.MapsActivity" >
+
+    <fragment
+        android:id="@+id/map"
+        class="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:scrollbars="vertical" />
+
+    <SearchView
+        android:id="@+id/searchBar"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_gravity="top"
+        android:layout_margin="25dp"
+        android:alpha="0.8"
+        android:background="@color/colorWhite"/>
+
+    <View
+        android:id="@+id/horizontalLine"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="767dp"
+        android:layout_marginBottom="20dp"
+        android:background="#5F5E5E" />
+
+    <RadioGroup
+        android:id="@+id/radio_group_list_selector"
+        android:layout_width="match_parent"
+        android:layout_height="69dp"
+        android:layout_gravity="bottom"
+        android:alpha="0.5"
+        android:background="@color/colorWhite"
+        android:orientation="horizontal"
+        android:padding="4dp">
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/viewClinicsBtn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:background="@color/colorWhite"
+            android:gravity="center_horizontal|center_vertical"
+            android:onClick="@string/app_name"
+            android:scaleType="centerInside"
+            android:src="@drawable/nav1_list" />
+
+        <View
+            android:id="@+id/VerticalLine0"
+            android:layout_width="1dip"
+            android:layout_height="match_parent"
+            android:background="#5F5E5E" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/mapBtn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:background="@color/colorWhite"
+            android:gravity="center_horizontal|center_vertical"
+            android:scaleType="centerInside"
+            android:src="@drawable/nav2_map"
+            android:tint="@color/colorAccent" />
+
+        <View
+            android:id="@+id/VerticalLine1"
+            android:layout_width="1dip"
+            android:layout_height="match_parent"
+            android:background="#5F5E5E" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/meBtn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:background="@color/colorWhite"
+            android:gravity="center_horizontal|center_vertical"
+            android:scaleType="centerInside"
+            android:src="@drawable/nav3_me" />
+
+    </RadioGroup>
+
+
+</FrameLayout>
