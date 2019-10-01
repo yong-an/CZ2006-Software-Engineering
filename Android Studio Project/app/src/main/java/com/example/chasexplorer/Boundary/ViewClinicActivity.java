@@ -1,10 +1,14 @@
 package com.example.chasexplorer.Boundary;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 
 import com.example.chasexplorer.Controller.ClinicRecyclableViewAdapter;
 import com.example.chasexplorer.Controller.FirebaseController;
@@ -12,6 +16,8 @@ import com.example.chasexplorer.Entity.Clinic;
 import com.example.chasexplorer.R;
 
 import java.util.ArrayList;
+
+import static android.content.ContentValues.TAG;
 
 public class ViewClinicActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
@@ -36,5 +42,16 @@ public class ViewClinicActivity extends AppCompatActivity {
         // specify an adapter (see also next example)
         mAdapter = new ClinicRecyclableViewAdapter(NEWDATA);
         recyclerView.setAdapter(mAdapter);
+
+        AppCompatImageButton mapBtn = (AppCompatImageButton) findViewById(R.id.mapBtn);
+        mapBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View r) {
+                Log.d(TAG, "Clicked View Clinics Button");
+                Intent i = new Intent(ViewClinicActivity.this,MapsActivity.class);
+                ViewClinicActivity.this.startActivity(i);
+
+            }
+        });
     }
 }

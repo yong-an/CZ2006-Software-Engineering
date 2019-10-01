@@ -50,7 +50,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         rlp.addRule(RelativeLayout.ALIGN_PARENT_TOP, 0);
         rlp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE);
         rlp.setMargins(0, 0, 30, 200);
-        AppCompatImageButton viewClinicBtn = (AppCompatImageButton) findViewById(R.id.ViewClinics);
+        AppCompatImageButton viewClinicBtn = (AppCompatImageButton) findViewById(R.id.viewClinicsBtn);
         viewClinicBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View r) {
