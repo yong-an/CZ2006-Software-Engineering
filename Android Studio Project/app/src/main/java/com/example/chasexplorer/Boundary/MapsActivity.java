@@ -40,6 +40,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        View bView = getWindow().getDecorView();
+        bView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
         setContentView(R.layout.activity_maps);
         mController = new MapController();
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
@@ -66,8 +68,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+        mMap.getUiSettings().setMapToolbarEnabled(false);
         mMap = mController.getGmap(mMap);
-        getGPSPermssion();
+        getGPSPermission();
     }
 
     @Override
@@ -114,7 +117,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     @TargetApi(23)
-    private void getGPSPermssion(){
+    private void getGPSPermission(){
         if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
             //    Activity#requestPermissions

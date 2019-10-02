@@ -36,16 +36,16 @@
         android:layout_width="match_parent"
         android:layout_height="69dp"
         android:layout_gravity="bottom"
-        android:alpha="0.5"
+        android:alpha="0.8"
         android:background="@color/colorWhite"
         android:orientation="horizontal"
-        android:padding="4dp">
+        android:padding="10dp">
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/backBtn"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="0.5"
+            android:layout_weight="0.8"
             android:background="@color/colorWhite"
             android:gravity="center_horizontal|center_vertical"
             android:onClick="@string/app_name"

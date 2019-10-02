@@ -42,6 +42,8 @@ public class ClinicMapActivity extends FragmentActivity implements OnMapReadyCal
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        View bView = getWindow().getDecorView();
+        bView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
         setContentView(R.layout.activity_clinic_map);
         mController = new MapController();
         String jsonMyObject = null;
