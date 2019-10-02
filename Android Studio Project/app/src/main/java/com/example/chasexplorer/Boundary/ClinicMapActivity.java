@@ -42,7 +42,6 @@ public class ClinicMapActivity extends FragmentActivity implements OnMapReadyCal
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         View bView = getWindow().getDecorView();
         bView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
         setContentView(R.layout.activity_clinic_map);
@@ -62,7 +61,6 @@ public class ClinicMapActivity extends FragmentActivity implements OnMapReadyCal
             @Override
             public void onClick(View r) {
                 ClinicMapActivity.this.finish();
-                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }
         });
     }

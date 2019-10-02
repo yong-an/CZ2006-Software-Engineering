@@ -34,7 +34,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         View bView = getWindow().getDecorView();
         bView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
         setContentView(R.layout.activity_maps);
@@ -56,7 +55,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 Log.d(TAG, "Clicked View Clinics Button");
                 Intent i = new Intent(MapsActivity.this,ViewClinicActivity.class);
                 MapsActivity.this.startActivity(i);
-                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }
         });
         AppCompatImageButton meBtn = (AppCompatImageButton) findViewById(R.id.meBtn);
@@ -66,7 +64,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 Log.d(TAG, "Clicked Login Button");
                 Intent i = new Intent(MapsActivity.this,LoginActivity.class);
                 MapsActivity.this.startActivity(i);
-                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
 
             }
         });
@@ -98,7 +95,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             homeIntent.addCategory( Intent.CATEGORY_HOME );
                             homeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(homeIntent);
-                            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                         }
                     })
                     .setNegativeButton("No", null)

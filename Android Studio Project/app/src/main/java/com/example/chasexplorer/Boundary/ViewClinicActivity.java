@@ -27,7 +27,6 @@ public class ViewClinicActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         View bView = getWindow().getDecorView();
         bView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
         setContentView(R.layout.activity_view_clinic);
@@ -56,7 +55,6 @@ public class ViewClinicActivity extends AppCompatActivity {
                 Log.d(TAG, "Clicked Map Button");
                 Intent i = new Intent(ViewClinicActivity.this,MapsActivity.class);
                 ViewClinicActivity.this.startActivity(i);
-                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }
         });
         AppCompatImageButton meBtn = (AppCompatImageButton) findViewById(R.id.meBtn);
@@ -66,7 +64,6 @@ public class ViewClinicActivity extends AppCompatActivity {
                 Log.d(TAG, "Clicked Login Button");
                 Intent i = new Intent(ViewClinicActivity.this,LoginActivity.class);
                 ViewClinicActivity.this.startActivity(i);
-                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }
         });
     }
