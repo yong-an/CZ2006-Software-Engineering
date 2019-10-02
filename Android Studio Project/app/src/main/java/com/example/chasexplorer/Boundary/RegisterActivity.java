@@ -18,8 +18,6 @@ public class RegisterActivity extends AppCompatActivity  {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        View bView = getWindow().getDecorView();
-        bView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
         setContentView(R.layout.activity_register);
 
         AppCompatImageButton mapBtn = (AppCompatImageButton) findViewById(R.id.mapBtn);
