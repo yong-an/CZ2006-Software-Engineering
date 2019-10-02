@@ -23,8 +23,12 @@
             android:label="Clinic details"
             android:launchMode="singleInstance"/>
         <activity
-            android:name=".Boundary.ViewClinicActivity"
-            android:label="List of CHAS clinics"
+        android:name=".Boundary.ViewClinicActivity"
+        android:label="List of CHAS clinics"
+        android:launchMode="singleInstance"/>
+        <activity
+            android:name=".Boundary.LoginActivity"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
             android:launchMode="singleInstance"/>
 
         <meta-data

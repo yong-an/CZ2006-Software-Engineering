@@ -31,8 +31,6 @@ public class MapController {
         ArrayList<Clinic> NEWDATA = FirebaseController.passMeAllData();
         Log.d(TAG, "CURRENT DATA: \n" + NEWDATA);
 
-        //NEED ERROR CHECKING HERE FOR CASES WITH NO INTERNET
-        //BASED ON FUNCTIONAL REQUIREMENTS
         try{
             for (Clinic fb : NEWDATA) {
                 LatLng Clinic = new LatLng(fb.getXCoordinate(),fb.getYCoordinate());
@@ -48,9 +46,6 @@ public class MapController {
 
     public GoogleMap getClinicLocation(GoogleMap mMap, Clinic clinicDetails){
         setGmap(mMap);
-
-        //NEED ERROR CHECKING HERE FOR CASES WITH NO INTERNET
-        //BASED ON FUNCTIONAL REQUIREMENTS
         try{
             LatLng clinic = new LatLng(clinicDetails.getXCoordinate(),clinicDetails.getYCoordinate());
             gmap.addMarker(new MarkerOptions().position(clinic).title(clinicDetails.getClinicName()));

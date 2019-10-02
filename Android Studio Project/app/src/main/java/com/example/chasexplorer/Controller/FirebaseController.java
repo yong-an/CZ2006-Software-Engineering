@@ -61,6 +61,7 @@ public class FirebaseController extends AppCompatActivity {
                 progressAnimator.start();
                 Intent i = new Intent(FirebaseController.this, MapsActivity.class);
                 FirebaseController.this.startActivity(i);
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }
 
             @Override

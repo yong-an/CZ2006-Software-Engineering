@@ -64,7 +64,6 @@ public class ClinicRecyclableViewAdapter extends RecyclerView.Adapter<ClinicRecy
                 Intent i = new Intent(r.getContext(), ViewClinicDetailsActivity.class);
                 i.putExtra("clinicObj", new Gson().toJson(mDataset.get(position)));
                 r.getContext().startActivity(i);
-
             }
         });
 

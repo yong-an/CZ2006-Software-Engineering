@@ -10,24 +10,18 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.example.chasexplorer.Controller.MapController;
 import com.example.chasexplorer.R;
-import com.google.android.gms.common.internal.Constants;
-import com.google.android.gms.maps.CameraUpdate;
-import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.LatLng;
 
 
 import static android.content.ContentValues.TAG;
@@ -40,6 +34,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         View bView = getWindow().getDecorView();
         bView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
         setContentView(R.layout.activity_maps);
@@ -53,6 +48,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         rlp.addRule(RelativeLayout.ALIGN_PARENT_TOP, 0);
         rlp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE);
         rlp.setMargins(0, 0, 30, 200);
+
         AppCompatImageButton viewClinicBtn = (AppCompatImageButton) findViewById(R.id.viewClinicsBtn);
         viewClinicBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,6 +56,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 Log.d(TAG, "Clicked View Clinics Button");
                 Intent i = new Intent(MapsActivity.this,ViewClinicActivity.class);
                 MapsActivity.this.startActivity(i);
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+            }
+        });
+        AppCompatImageButton meBtn = (AppCompatImageButton) findViewById(R.id.meBtn);
+        meBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View r) {
+                Log.d(TAG, "Clicked Login Button");
+                Intent i = new Intent(MapsActivity.this,LoginActivity.class);
+                MapsActivity.this.startActivity(i);
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
 
             }
         });
@@ -91,6 +98,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             homeIntent.addCategory( Intent.CATEGORY_HOME );
                             homeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(homeIntent);
+                            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                         }
                     })
                     .setNegativeButton("No", null)

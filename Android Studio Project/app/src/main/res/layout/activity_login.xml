@@ -3,24 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Boundary.MapsActivity" >
-
-    <fragment
-        android:id="@+id/map"
-        class="com.google.android.gms.maps.SupportMapFragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:scrollbars="vertical" />
-
-    <SearchView
-        android:id="@+id/searchBar"
-        android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:layout_gravity="top"
-        android:layout_margin="25dp"
-        android:alpha="0.8"
-        android:background="@color/colorWhite"/>
+    tools:context=".Boundary.LoginActivity" >
 
     <View
         android:id="@+id/horizontalLine"
@@ -65,8 +48,7 @@
             android:background="@color/colorWhite"
             android:gravity="center_horizontal|center_vertical"
             android:scaleType="centerInside"
-            android:src="@drawable/nav2_map"
-            android:tint="@color/colorAccent" />
+            android:src="@drawable/nav2_map" />
 
         <View
             android:id="@+id/VerticalLine1"
@@ -82,7 +64,8 @@
             android:background="@color/colorWhite"
             android:gravity="center_horizontal|center_vertical"
             android:scaleType="centerInside"
-            android:src="@drawable/nav3_me" />
+            android:src="@drawable/nav3_me"
+            android:tint="@color/colorAccent"/>
 
     </RadioGroup>
 

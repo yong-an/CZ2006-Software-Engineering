@@ -25,6 +25,7 @@ public class ViewClinicDetailsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         View bView = getWindow().getDecorView();
         bView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
         setContentView(R.layout.view_clinic_details);
@@ -52,6 +53,7 @@ public class ViewClinicDetailsActivity extends AppCompatActivity {
                     Intent callIntent = new Intent(Intent.ACTION_CALL);
                     callIntent.setData(Uri.parse("tel:" + clinicTelNo));
                     ViewClinicDetailsActivity.this.startActivity(callIntent);
+                    overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                 }
             }
 
@@ -64,7 +66,7 @@ public class ViewClinicDetailsActivity extends AppCompatActivity {
                 Intent i = new Intent(r.getContext(), ClinicMapActivity.class);
                 i.putExtra("clinicObj", new Gson().toJson(clinicDetails));
                 r.getContext().startActivity(i);
-
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }
         });
     }
