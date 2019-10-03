@@ -2,14 +2,16 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorWhite">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/colorRGB128"
+    tools:context=".Boundary.RegisterActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_gravity="center"
-        android:layout_marginBottom="55dp"
+        android:layout_marginBottom="35dp"
         android:layout_marginRight="55dp"
         android:layout_marginLeft="55dp"
         android:paddingBottom="15dp"
@@ -21,7 +23,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:src="@drawable/splashicon"/>
+            android:paddingBottom="10dp"
+            android:alpha="0.5"
+            android:backgroundTintMode="add"
+            android:src="@drawable/splashicon" />
 
         <EditText
             android:id="@+id/emailText"
@@ -42,9 +47,18 @@
         <androidx.appcompat.widget.AppCompatButton
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/signinBtn"
+            android:id="@+id/signupBtn"
             android:text="@string/signupText" />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:id="@+id/btnReturn"
+            android:text="@string/existingLoginText"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimaryDark"
+            android:clickable="true" />
 
     </LinearLayout>
 

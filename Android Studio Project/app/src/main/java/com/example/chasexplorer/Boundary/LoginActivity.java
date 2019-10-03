@@ -15,13 +15,14 @@ import static android.content.ContentValues.TAG;
 
 public class LoginActivity extends AppCompatActivity  {
 
+    private TextView tvRegister;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        TextView tvRegister = (TextView)findViewById(R.id.registerBtn);
+        tvRegister = (TextView)findViewById(R.id.registerBtn);
 
         tvRegister.setOnClickListener(new View.OnClickListener() {
             @Override
