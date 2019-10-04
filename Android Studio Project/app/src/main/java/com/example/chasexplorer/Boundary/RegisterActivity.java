@@ -17,6 +17,7 @@ import androidx.appcompat.widget.AppCompatImageButton;
 
 import com.example.chasexplorer.Controller.LoginController;
 import com.example.chasexplorer.R;
+import com.google.firebase.auth.FirebaseUser;
 
 import static android.content.ContentValues.TAG;
 
@@ -26,15 +27,22 @@ public class RegisterActivity extends AppCompatActivity  implements View.OnClick
     private EditText tvEmail;
     private EditText tvPassword;
     private Button btnRegister;
-    private LoginController lController;
     private boolean status;
     private String error;
     private ProgressDialog loading;
+    private LoginController lController;
+    private FirebaseUser loggedIn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+
+        lController = new LoginController();
+        if(loggedIn != null){
+            finish();
+            startActivity(new Intent(getApplicationContext(),UserProfileActivity.class));
+        }
 
         tvReturn = (TextView)findViewById(R.id.btnReturn);
         tvEmail = (EditText)findViewById(R.id.emailText);
@@ -72,23 +80,25 @@ public class RegisterActivity extends AppCompatActivity  implements View.OnClick
        handler.postDelayed(new Runnable() {
            @Override
            public void run() {
-               lController = new LoginController();
+
                status = lController.getStatus();
                error = lController.getErrorTxt();
 
                if(status == true) {
-                   loading.cancel();
+                   loading.dismiss();
+                   tvEmail.setText("");
+                   tvPassword.setText("");
                    Toast.makeText(RegisterActivity.this,"Registration Success",Toast.LENGTH_SHORT).show();
                    Intent i = new Intent(RegisterActivity.this,LoginActivity.class);
                    RegisterActivity.this.startActivity(i);
                }
                else {
-                   loading.cancel();
+                   loading.dismiss();
                    Log.d(TAG, "3. Register ACTIVITY \n\n\n" + status + " : " + error);
                    Toast.makeText(RegisterActivity.this,error,Toast.LENGTH_SHORT).show();
                }
            }
-       }, 1800);
+       }, 1888);
    }
 
     @Override
@@ -108,7 +118,6 @@ public class RegisterActivity extends AppCompatActivity  implements View.OnClick
                 return;
             }
 
-            lController = new LoginController();
             lController.registerUser(email,password);
 
             registrationSync();
