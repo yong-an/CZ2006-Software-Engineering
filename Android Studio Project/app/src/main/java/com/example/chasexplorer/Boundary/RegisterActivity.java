@@ -1,7 +1,9 @@
 package com.example.chasexplorer.Boundary;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -16,8 +18,6 @@ import androidx.appcompat.widget.AppCompatImageButton;
 import com.example.chasexplorer.Controller.LoginController;
 import com.example.chasexplorer.R;
 
-import java.util.concurrent.atomic.AtomicBoolean;
-
 import static android.content.ContentValues.TAG;
 
 public class RegisterActivity extends AppCompatActivity  implements View.OnClickListener{
@@ -27,6 +27,9 @@ public class RegisterActivity extends AppCompatActivity  implements View.OnClick
     private EditText tvPassword;
     private Button btnRegister;
     private LoginController lController;
+    private boolean status;
+    private String error;
+    private ProgressDialog loading;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +40,8 @@ public class RegisterActivity extends AppCompatActivity  implements View.OnClick
         tvEmail = (EditText)findViewById(R.id.emailText);
         tvPassword = (EditText)findViewById(R.id.passText);
         btnRegister = (Button)findViewById(R.id.signupBtn);
+
+        loading = new ProgressDialog(this);
         tvReturn.setOnClickListener(this);
         btnRegister.setOnClickListener(this);
 
@@ -62,29 +67,33 @@ public class RegisterActivity extends AppCompatActivity  implements View.OnClick
 
     }
 
-   /*Private void register(){
+   public void registrationSync (){
+       final Handler handler = new Handler();
+       handler.postDelayed(new Runnable() {
+           @Override
+           public void run() {
+               lController = new LoginController();
+               status = lController.getStatus();
+               error = lController.getErrorTxt();
 
-        firebaseAuth.createUserWithEmailAndPassword(email,password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isSuccessful()){
-
-                            Toast.makeText(RegisterActivity.this,"Registration Success",Toast.LENGTH_SHORT).show();
-                            Intent i = new Intent(RegisterActivity.this,LoginActivity.class);
-                            RegisterActivity.this.startActivity(i);
-                        }
-                        else{
-                            errorTxt= task.getException().getMessage();
-                            Toast.makeText(RegisterActivity.this,errorTxt,Toast.LENGTH_SHORT).show();
-                            return;
-                        }
-                    }
-                });
-    }*/
+               if(status == true) {
+                   loading.cancel();
+                   Toast.makeText(RegisterActivity.this,"Registration Success",Toast.LENGTH_SHORT).show();
+                   Intent i = new Intent(RegisterActivity.this,LoginActivity.class);
+                   RegisterActivity.this.startActivity(i);
+               }
+               else {
+                   loading.cancel();
+                   Log.d(TAG, "3. Register ACTIVITY \n\n\n" + status + " : " + error);
+                   Toast.makeText(RegisterActivity.this,error,Toast.LENGTH_SHORT).show();
+               }
+           }
+       }, 1800);
+   }
 
     @Override
     public void onClick(View view) {
+
         if(view == btnRegister){
 
             String email = tvEmail.getText().toString().trim();
@@ -102,18 +111,9 @@ public class RegisterActivity extends AppCompatActivity  implements View.OnClick
             lController = new LoginController();
             lController.registerUser(email,password);
 
-            boolean status = lController.getStatus();
-            String error = lController.getErrorTxt();
-
-                if(status == true) {
-                    Toast.makeText(RegisterActivity.this,"Registration Success",Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(RegisterActivity.this,LoginActivity.class);
-                    RegisterActivity.this.startActivity(i);
-                }
-                else {
-                    Log.d(TAG, "3. Register ACTIVITY \n\n\n" + status + " : " + error);
-                    Toast.makeText(RegisterActivity.this,error,Toast.LENGTH_SHORT).show();
-                }
+            registrationSync();
+            loading.setMessage("Registering User...");
+            loading.show();
 
         }
 
