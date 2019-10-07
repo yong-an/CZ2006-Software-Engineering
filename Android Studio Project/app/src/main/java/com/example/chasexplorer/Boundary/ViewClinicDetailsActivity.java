@@ -58,7 +58,7 @@ public class ViewClinicDetailsActivity extends AppCompatActivity {
         directionBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View r) {
-                Toast.makeText(r.getContext(),"Clicked View Clinic Location button!", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(r.getContext(),"Clicked View Clinic Location button!", Toast.LENGTH_SHORT).show();
                 Intent i = new Intent(r.getContext(), ClinicMapActivity.class);
                 i.putExtra("clinicObj", new Gson().toJson(clinicDetails));
                 r.getContext().startActivity(i);
