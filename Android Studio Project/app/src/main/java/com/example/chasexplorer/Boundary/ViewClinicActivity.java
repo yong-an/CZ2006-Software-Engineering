@@ -25,6 +25,7 @@ public class ViewClinicActivity extends AppCompatActivity implements SearchView.
     private ClinicRecyclableViewAdapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
     private ArrayList<Clinic> NEWDATA;
+    private SearchView editsearch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +50,7 @@ public class ViewClinicActivity extends AppCompatActivity implements SearchView.
         recyclerView.setAdapter(mAdapter);
 
         // Locate the EditText in listview_main.xml
-        SearchView editsearch = (SearchView) findViewById(R.id.search);
+        editsearch = (SearchView) findViewById(R.id.search);
         editsearch.setOnQueryTextListener(this);
 
         AppCompatImageButton mapBtn = (AppCompatImageButton) findViewById(R.id.mapBtn);
@@ -74,7 +75,8 @@ public class ViewClinicActivity extends AppCompatActivity implements SearchView.
 
     @Override
     public boolean onQueryTextSubmit(String query) {
-        return false;
+        editsearch.clearFocus();
+        return true;
     }
 
     @Override
