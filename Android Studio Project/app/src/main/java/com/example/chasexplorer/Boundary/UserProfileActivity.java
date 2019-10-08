@@ -10,38 +10,42 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.chasexplorer.Controller.FirebaseController;
+import com.example.chasexplorer.Controller.LoginController;
 import com.example.chasexplorer.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.internal.zzn;
 
 import static android.content.ContentValues.TAG;
 
 public class UserProfileActivity extends AppCompatActivity implements View.OnClickListener{
 
-    private FirebaseAuth firebaseAuth;
     private TextView userEmail;
     private Button btnSignout;
+
+    private LoginController lController;
+    private FirebaseUser loggedIn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
 
-        firebaseAuth = FirebaseAuth.getInstance();
+        lController = new LoginController();
+        loggedIn = lController.currentUserLoggedIn();
 
-        if(firebaseAuth.getCurrentUser() == null){
+        if(loggedIn == null){
             finish();
-            startActivity(new Intent(this,LoginActivity.class));
+            startActivity(new Intent(getApplicationContext(),LoginActivity.class));
         }
-        else {
-            FirebaseUser user = firebaseAuth.getCurrentUser();
 
-            userEmail = (TextView) findViewById(R.id.userEmail);
-            btnSignout= (Button)findViewById(R.id.signoutBtn);
+        userEmail = (TextView) findViewById(R.id.userEmail);
+        btnSignout= (Button)findViewById(R.id.signoutBtn);
 
-            userEmail.setText("Welcome Back" +user.getEmail());
-        }
+        userEmail.setText("Welcome Back \n" + loggedIn.getEmail());
 
         btnSignout.setOnClickListener(this);
 
@@ -70,7 +74,8 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
     public void onClick(View view) {
 
         if(view == btnSignout){
-            firebaseAuth.signOut();
+            lController.userSignout();
+            finish();
             Intent i = new Intent(UserProfileActivity.this,LoginActivity.class);
             UserProfileActivity.this.startActivity(i);
         }

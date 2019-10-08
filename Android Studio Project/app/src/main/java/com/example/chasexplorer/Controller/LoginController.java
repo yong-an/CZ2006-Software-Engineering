@@ -55,6 +55,10 @@ public class LoginController {
         });
     }
 
+    public void userSignout(){
+        firebaseAuth.signOut();
+    }
+
     public static String getErrorTxt(){return errorTxt;}
     public static boolean getStatus() {return status;}
 }

@@ -27,8 +27,12 @@ public class RegisterActivity extends AppCompatActivity  implements View.OnClick
     private EditText tvEmail;
     private EditText tvPassword;
     private Button btnRegister;
+    private AppCompatImageButton mapBtn;
+    private AppCompatImageButton viewClinicBtn;
+
     private boolean status;
     private String error;
+
     private ProgressDialog loading;
     private LoginController lController;
     private FirebaseUser loggedIn;
@@ -48,12 +52,13 @@ public class RegisterActivity extends AppCompatActivity  implements View.OnClick
         tvEmail = (EditText)findViewById(R.id.emailText);
         tvPassword = (EditText)findViewById(R.id.passText);
         btnRegister = (Button)findViewById(R.id.signupBtn);
+        mapBtn = (AppCompatImageButton) findViewById(R.id.mapBtn);
+        viewClinicBtn = (AppCompatImageButton) findViewById(R.id.viewClinicsBtn);
 
         loading = new ProgressDialog(this);
         tvReturn.setOnClickListener(this);
         btnRegister.setOnClickListener(this);
 
-        AppCompatImageButton mapBtn = (AppCompatImageButton) findViewById(R.id.mapBtn);
         mapBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View r) {
@@ -63,7 +68,6 @@ public class RegisterActivity extends AppCompatActivity  implements View.OnClick
             }
         });
 
-        AppCompatImageButton viewClinicBtn = (AppCompatImageButton) findViewById(R.id.viewClinicsBtn);
         viewClinicBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View r) {

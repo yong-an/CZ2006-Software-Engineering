@@ -56,6 +56,14 @@
         android:textAlignment="center"
         android:textColor="@color/colorPrimaryDark"
         android:clickable="true" />
+
+    <com.google.android.gms.common.SignInButton
+        android:id="@+id/googleSigninBtn"
+        android:layout_marginTop="15dp"
+        android:padding="3dp"
+        android:layout_height="50dp"
+        android:layout_width="125dp"/>
+
 </LinearLayout>
 
     <View
