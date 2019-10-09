@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/colorRGB128"
-    tools:context=".Boundary.RegisterActivity">
+    tools:context=".Boundary.LoginActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_gravity="center"
-        android:layout_marginBottom="35dp"
+        android:layout_marginBottom="55dp"
         android:layout_marginRight="55dp"
         android:layout_marginLeft="55dp"
         android:paddingBottom="15dp"
@@ -23,42 +23,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:paddingBottom="10dp"
-            android:alpha="0.5"
-            android:backgroundTintMode="add"
-            android:src="@drawable/splashicon" />
-
-        <EditText
-            android:id="@+id/emailText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/hintEmail"
-            android:ems="10"
-            android:inputType="textEmailAddress" />
-
-        <EditText
-            android:id="@+id/passText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/hintPassword"
-            android:ems="10"
-            android:inputType="textPassword" />
+            android:src="@drawable/chaslogo"/>
 
         <androidx.appcompat.widget.AppCompatButton
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/signupBtn"
-            android:text="@string/signupText" />
+            android:id="@+id/emailLoginBtn"
+            android:text="@string/emailLogin"/>
 
-        <TextView
-            android:layout_width="match_parent"
+        <com.google.android.gms.common.SignInButton
+            android:id="@+id/googleLoginBtn"
+            android:layout_marginTop="5dp"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:id="@+id/btnReturn"
-            android:text="@string/existingLoginText"
-            android:textAlignment="center"
-            android:textColor="@color/colorPrimaryDark"
-            android:clickable="true" />
+            android:layout_width="wrap_content"/>
 
     </LinearLayout>
 
@@ -125,5 +102,7 @@
             android:tint="@color/colorPrimaryDark"/>
 
     </RadioGroup>
+
+
 
 </FrameLayout>
