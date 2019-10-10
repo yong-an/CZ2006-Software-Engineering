@@ -1,12 +1,8 @@
 package com.example.chasexplorer.Boundary;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -16,12 +12,18 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+
 import com.example.chasexplorer.Entity.Clinic;
 import com.example.chasexplorer.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.gson.Gson;
 
 public class ViewClinicDetailsActivity extends AppCompatActivity {
-
+    private static FirebaseAuth firebase;
+    private static FirebaseUser loggedIn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,6 +64,27 @@ public class ViewClinicDetailsActivity extends AppCompatActivity {
                 Intent i = new Intent(r.getContext(), ClinicMapActivity.class);
                 i.putExtra("clinicObj", new Gson().toJson(clinicDetails));
                 r.getContext().startActivity(i);
+            }
+        });
+        ImageButton reviewBtn = (ImageButton) findViewById(R.id.reviews);
+        reviewBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View r) {
+                //loggedIn = firebase.getCurrentUser();
+
+                if (firebase.getInstance().getCurrentUser() != null) {
+                    //console.log("user id: " + firebase.auth().currentUser.uid);
+                    Toast.makeText(r.getContext(), "Clicked View Clinic Review button!", Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(r.getContext(), ReviewActivity.class);
+                    //i.putExtra("clinicObj", new Gson().toJson(clinicDetails));
+
+                    i.putExtra("clinicObj", new Gson().toJson(clinicDetails));
+                    r.getContext().startActivity(i);
+                }
+                else
+                {
+                    Toast.makeText(r.getContext(), "Not Logon, please login to make a review.", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }

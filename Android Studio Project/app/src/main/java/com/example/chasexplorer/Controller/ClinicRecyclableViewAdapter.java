@@ -1,7 +1,6 @@
 package com.example.chasexplorer.Controller;
 
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,20 +10,14 @@ import android.widget.Toast;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.chasexplorer.Entity.Clinic;
-import com.example.chasexplorer.Boundary.ViewClinicDetailsActivity;
 import com.example.chasexplorer.R;
+import com.example.chasexplorer.Boundary.ViewClinicDetailsActivity;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-import java.util.function.ToLongBiFunction;
-
-import static android.content.ContentValues.TAG;
 
 public class ClinicRecyclableViewAdapter extends RecyclerView.Adapter<ClinicRecyclableViewAdapter.MyViewHolder> {
     private ArrayList<Clinic> mDataset;
-    private ArrayList<Clinic> clinicList;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -42,14 +35,6 @@ public class ClinicRecyclableViewAdapter extends RecyclerView.Adapter<ClinicRecy
 
     // Provide a suitable constructor (depends on the kind of dataset)
     public ClinicRecyclableViewAdapter(ArrayList<Clinic> myDataset)  {
-        clinicList = (ArrayList<Clinic>) myDataset.clone();;
-        mDataset = myDataset;
-    }
-
-    public void setDataset(ArrayList<Clinic> myDataset){
-        clinicList.clear();
-        myDataset.clear();
-        clinicList = (ArrayList<Clinic>) myDataset.clone();;
         mDataset = myDataset;
     }
 
@@ -75,7 +60,8 @@ public class ClinicRecyclableViewAdapter extends RecyclerView.Adapter<ClinicRecy
         holder.textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View r) {
-                //Toast.makeText(r.getContext(),"Clicked View Detailed clinics Button", Toast.LENGTH_SHORT).show();
+                Toast.makeText(r.getContext(),"Clicked View Detailed clinics Button", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(r.getContext(),, Toast.LENGTH_SHORT).show();
                 Intent i = new Intent(r.getContext(), ViewClinicDetailsActivity.class);
                 i.putExtra("clinicObj", new Gson().toJson(mDataset.get(position)));
                 r.getContext().startActivity(i);
@@ -88,22 +74,5 @@ public class ClinicRecyclableViewAdapter extends RecyclerView.Adapter<ClinicRecy
     @Override
     public int getItemCount() {
         return mDataset.size();
-    }
-
-    // Filter Class
-    public void filter(String charText) {
-        charText = charText.toUpperCase(Locale.getDefault());
-        if (charText.length() == 0) {
-            mDataset = (ArrayList<Clinic>) clinicList.clone();
-            Log.d(TAG, "Adding clinicList to mDataset : " + mDataset.size());
-
-        } else {
-            mDataset.clear();
-            for (Clinic c : clinicList) {
-                if (c.getClinicName().toUpperCase(Locale.getDefault()).contains(charText)) {
-                    mDataset.add(c);
-                }
-            }
-        }
     }
 }
