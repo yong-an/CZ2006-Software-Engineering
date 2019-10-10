@@ -30,7 +30,7 @@
         <item name="android:icon">@drawable/nav3_me</item> <!--MIDMAP LOGO HERE -->
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-        <item name="android:textColorHint">@color/chasblue2</item>
+        <item name="android:textColorHint">@color/chasgrey2</item>
     </style>
 
     <style name="FirebaseUI.EditText">
