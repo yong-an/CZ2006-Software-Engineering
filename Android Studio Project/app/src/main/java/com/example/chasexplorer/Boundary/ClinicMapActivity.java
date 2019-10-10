@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 
 
-import com.example.chasexplorer.Controller.MapController;
+import com.example.chasexplorer.Controller.MapAdapter;
 import com.example.chasexplorer.Entity.Clinic;
 import com.example.chasexplorer.R;
 import com.google.android.gms.maps.GoogleMap;
@@ -20,14 +20,14 @@ import com.google.gson.Gson;
 public class ClinicMapActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
-    private MapController mController;
+    private MapAdapter mController;
     private Clinic clinicDetails;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_clinic_map);
-        mController = new MapController();
+        mController = new MapAdapter();
         String jsonMyObject = null;
         Bundle extras = getIntent().getExtras();
         if (extras != null) {

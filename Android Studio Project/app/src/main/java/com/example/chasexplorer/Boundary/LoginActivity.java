@@ -34,7 +34,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             new AuthUI.IdpConfig.EmailBuilder().build(),
             new AuthUI.IdpConfig.GoogleBuilder().build());
 
-   /* AuthMethodPickerLayout customLayout = new AuthMethodPickerLayout
+    /* AuthMethodPickerLayout customLayout = new AuthMethodPickerLayout
             .Builder(R.layout.activity_login_2)
             .setGoogleButtonId(R.id.googleLoginBtn)
             .setEmailButtonId(R.id.emailLoginBtn)
@@ -88,7 +88,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             .setAvailableProviders(providers)
                             .setTheme(R.style.LoginTheme)
                             .setIsSmartLockEnabled(false)
-                            //.setLogo(R.drawable.chaslogo)
+                            .setLogo(R.drawable.fba)
                             //.setAuthMethodPickerLayout(customLayout)
                             .build(),
                     RC_SIGN_IN);
