@@ -34,11 +34,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             new AuthUI.IdpConfig.EmailBuilder().build(),
             new AuthUI.IdpConfig.GoogleBuilder().build());
 
-    AuthMethodPickerLayout customLayout = new AuthMethodPickerLayout
+   /* AuthMethodPickerLayout customLayout = new AuthMethodPickerLayout
             .Builder(R.layout.activity_login_2)
             .setGoogleButtonId(R.id.googleLoginBtn)
             .setEmailButtonId(R.id.emailLoginBtn)
-            .build();
+            .build(); */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,7 +86,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     AuthUI.getInstance()
                             .createSignInIntentBuilder()
                             .setAvailableProviders(providers)
-                            .setTheme(R.style.ChasTheme)
+                            .setTheme(R.style.LoginTheme)
+                            .setIsSmartLockEnabled(false)
+                            //.setLogo(R.drawable.chaslogo)
                             //.setAuthMethodPickerLayout(customLayout)
                             .build(),
                     RC_SIGN_IN);
