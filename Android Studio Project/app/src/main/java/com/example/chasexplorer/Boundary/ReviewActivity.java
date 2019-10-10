@@ -38,9 +38,9 @@ public class ReviewActivity extends AppCompatActivity {
 
         //test for intent
         Intent intent = getIntent();
-        final String message = intent.getStringExtra("clinicObj");
+        final String index = intent.getStringExtra("index");
         TextView textView = (TextView)findViewById(R.id.textView2);
-        textView.setText(message);
+        textView.setText(index);
         //getting user id
         FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser() ;
         Toast.makeText(this, "" + currentFirebaseUser.getUid(), Toast.LENGTH_SHORT).show();
@@ -82,12 +82,10 @@ public class ReviewActivity extends AppCompatActivity {
                 if (mFeedback.getText().toString().isEmpty()) {
                     Toast.makeText(ReviewActivity.this, "Please fill in feedback text box", Toast.LENGTH_LONG).show();
                 } else {
-                    //method u toss in clinic code
-                    //the method will return me the json file index
-                    //store it into index
-                    DatabaseReference myRef = database.getReference().child("0");
+
+                    DatabaseReference myRef = database.getReference().child(index);
                     Map<String, Object> hopperUpdates = new HashMap<>();
-                    hopperUpdates.put("rating", "2");
+                    hopperUpdates.put("rating", mRatingBar.getRating());
                     myRef.updateChildren(hopperUpdates);
                     mFeedback.setText("");
 

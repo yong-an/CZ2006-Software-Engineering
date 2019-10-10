@@ -79,9 +79,10 @@ public class ClinicRecyclableViewAdapter extends RecyclerView.Adapter<ClinicRecy
 //=======
                 //Toast.makeText(r.getContext(),"Clicked View Detailed clinics Button", Toast.LENGTH_SHORT).show();
 //>>>>>>> 5c30ed5ac915e74aafb6ea52414af704e09d2669
-
+                int index = mDataset.indexOf(mDataset.get(position));
                 Intent i = new Intent(r.getContext(), ViewClinicDetailsActivity.class);
                 i.putExtra("clinicObj", new Gson().toJson(mDataset.get(position)));
+                i.putExtra("index" ,index);
                 r.getContext().startActivity(i);
             }
         });

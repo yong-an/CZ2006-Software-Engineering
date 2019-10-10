@@ -32,17 +32,22 @@ public class ViewClinicDetailsActivity extends AppCompatActivity {
         getSupportActionBar().setLogo(R.drawable.clinic_icon);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
         String jsonMyObject = null;
-        //int index = 0;
+        int index = 0;
+
         Bundle extras = getIntent().getExtras();
+
         if (extras != null) {
             jsonMyObject = extras.getString("clinicObj");
-            //index = extras.getInt("clinicObj");
+
+            index = extras.getInt("index");
+
         }
+        final String index1= String.valueOf(index);
         final Clinic clinicDetails = new Gson().fromJson(jsonMyObject, Clinic.class);
         TextView clinicTV = (TextView) findViewById(R.id.clinicDetails);
         clinicTV.setText(clinicDetails.getClinicName() + "\n" + clinicDetails.getClinicCode() + "\n+(65)" + clinicDetails.getClinicTelNo()
                 + "\n" + clinicDetails.getStreetName() + "\nBlk " + clinicDetails.getBlkHseNo() + clinicDetails.getAddrType() + " #" + clinicDetails.getFloorNo() + "-" + clinicDetails.getUnitNo()
-                + "\nSingapore " + clinicDetails.getPostalCode());
+                + "\nSingapore " + clinicDetails.getPostalCode()+"\n"+index);
         final String clinicTelNo = clinicDetails.getClinicTelNo();
         ImageButton callBtn = (ImageButton) findViewById(R.id.call);
         callBtn.setOnClickListener(new View.OnClickListener() {
@@ -78,9 +83,7 @@ public class ViewClinicDetailsActivity extends AppCompatActivity {
                     //console.log("user id: " + firebase.auth().currentUser.uid);
                     Toast.makeText(r.getContext(), "Clicked View Clinic Review button!", Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(r.getContext(), ReviewActivity.class);
-                    //i.putExtra("clinicObj", new Gson().toJson(clinicDetails));
-
-                    i.putExtra("clinicObj", new Gson().toJson(clinicDetails));
+                    i.putExtra("index",index1);
                     r.getContext().startActivity(i);
                 }
                 else
