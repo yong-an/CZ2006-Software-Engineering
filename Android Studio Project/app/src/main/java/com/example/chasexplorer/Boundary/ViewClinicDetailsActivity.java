@@ -32,9 +32,11 @@ public class ViewClinicDetailsActivity extends AppCompatActivity {
         getSupportActionBar().setLogo(R.drawable.clinic_icon);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
         String jsonMyObject = null;
+        //int index = 0;
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             jsonMyObject = extras.getString("clinicObj");
+            //index = extras.getInt("clinicObj");
         }
         final Clinic clinicDetails = new Gson().fromJson(jsonMyObject, Clinic.class);
         TextView clinicTV = (TextView) findViewById(R.id.clinicDetails);
