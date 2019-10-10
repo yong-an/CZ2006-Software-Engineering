@@ -24,7 +24,7 @@ import java.util.ArrayList;
 
 import static android.content.ContentValues.TAG;
 
-public class FirebaseController extends AppCompatActivity {
+public class FirebaseAdapter extends AppCompatActivity {
 
     private static ArrayList<Clinic> FIREBASEDATA;
     private Handler mHandler;
@@ -58,8 +58,8 @@ public class FirebaseController extends AppCompatActivity {
                 Log.d(TAG,"Pulled Data:  " + Rows);
                 progressAnimator.setIntValues(100);
                 progressAnimator.start();
-                Intent i = new Intent(FirebaseController.this, MapsActivity.class);
-                FirebaseController.this.startActivity(i);
+                Intent i = new Intent(FirebaseAdapter.this, MapsActivity.class);
+                FirebaseAdapter.this.startActivity(i);
             }
 
             @Override

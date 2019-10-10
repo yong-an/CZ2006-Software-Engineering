@@ -43,7 +43,7 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".Controller.FirebaseController"
+            android:name=".Controller.FirebaseAdapter"
             android:noHistory="true"
             android:theme="@style/SplashTheme">
             <intent-filter>
