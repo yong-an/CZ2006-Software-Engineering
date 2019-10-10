@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import android.widget.SearchView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,10 +20,12 @@ import java.util.ArrayList;
 
 import static android.content.ContentValues.TAG;
 
-public class ViewClinicActivity extends AppCompatActivity {
+public class ViewClinicActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
     private RecyclerView recyclerView;
     private ClinicRecyclableViewAdapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
+    private ArrayList<Clinic> NEWDATA;
+    private SearchView editsearch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +34,7 @@ public class ViewClinicActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setLogo(R.drawable.clinic_icon);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
-        ArrayList<Clinic> NEWDATA = FirebaseController.passMeAllData();
+        NEWDATA = FirebaseController.passMeAllData();
         recyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
 
         // use this setting to improve performance if you know that changes
@@ -45,6 +48,10 @@ public class ViewClinicActivity extends AppCompatActivity {
         // specify an adapter (see also next example)
         mAdapter = new ClinicRecyclableViewAdapter(NEWDATA);
         recyclerView.setAdapter(mAdapter);
+
+        // Locate the EditText in listview_main.xml
+        editsearch = (SearchView) findViewById(R.id.search);
+        editsearch.setOnQueryTextListener(this);
 
         AppCompatImageButton mapBtn = (AppCompatImageButton) findViewById(R.id.mapBtn);
         mapBtn.setOnClickListener(new View.OnClickListener() {
@@ -64,5 +71,20 @@ public class ViewClinicActivity extends AppCompatActivity {
                 ViewClinicActivity.this.startActivity(i);
             }
         });
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        editsearch.clearFocus();
+        return true;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        Log.d(TAG, "Inputted text: " + newText);
+        String text = newText;
+        mAdapter.filter(text);
+        mAdapter.notifyDataSetChanged();
+        return false;
     }
 }

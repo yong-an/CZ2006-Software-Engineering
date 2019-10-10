@@ -2,11 +2,7 @@
     <string name="app_name">ChasExplorer</string>
     <string name="title_activity_maps">Map</string>
     <string name="title_activity_splash">Splash</string>
-    <string name="hintEmail">Enter Your Email</string>
-    <string name="hintPassword">Enter Your Password</string>
     <string name="loginText">Login</string>
     <string name="logoutText">Log out</string>
-    <string name="signupText">Sign up</string>
-    <string name="registrationText">No account yet? Create one</string>
-    <string name="existingLoginText">Already registered? Login here</string>
+    <string name="emailLogin">Sign in</string>
 </resources>

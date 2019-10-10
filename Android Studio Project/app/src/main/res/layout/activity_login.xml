@@ -23,23 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        android:src="@drawable/chaslogo"/>
-
-    <EditText
-        android:id="@+id/emailText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/hintEmail"
-        android:ems="10"
-        android:inputType="textEmailAddress" />
-
-    <EditText
-        android:id="@+id/passText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/hintPassword"
-        android:ems="10"
-        android:inputType="textPassword" />
+        android:src="@drawable/chaslogo" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:layout_width="match_parent"
@@ -47,15 +31,6 @@
         android:id="@+id/signinBtn"
         android:text="@string/loginText" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:id="@+id/registerBtn"
-        android:text="@string/registrationText"
-        android:textAlignment="center"
-        android:textColor="@color/colorPrimaryDark"
-        android:clickable="true" />
 </LinearLayout>
 
     <View

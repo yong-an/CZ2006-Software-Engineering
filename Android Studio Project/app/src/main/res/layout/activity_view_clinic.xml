@@ -6,6 +6,17 @@
     android:layout_height="match_parent"
     tools:context=".Boundary.ViewClinicActivity">
 
+
+    <SearchView
+        android:id="@+id/search"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="3dp"
+        app:layout_constraintBottom_toTopOf="@id/my_recycler_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <View
         android:id="@+id/horizontalLine"
         android:layout_width="match_parent"
@@ -20,9 +31,9 @@
         android:layout_width="match_parent"
         android:layout_height="650dp"
         android:layout_marginLeft="15dp"
+        android:layout_marginTop="50dp"
         android:layout_marginRight="15dp"
-        android:layout_marginBottom="15dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginBottom="5dp"
         app:layout_constraintBottom_toTopOf="@+id/radio_group_list_selector"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

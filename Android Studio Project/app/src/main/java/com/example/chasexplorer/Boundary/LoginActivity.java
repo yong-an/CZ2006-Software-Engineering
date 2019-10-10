@@ -1,61 +1,62 @@
 package com.example.chasexplorer.Boundary;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageButton;
 
-import com.example.chasexplorer.Controller.LoginController;
 import com.example.chasexplorer.R;
-import com.google.firebase.auth.FirebaseUser;
+import com.firebase.ui.auth.AuthMethodPickerLayout;
+import com.firebase.ui.auth.AuthUI;
+import com.firebase.ui.auth.ErrorCodes;
+import com.firebase.ui.auth.IdpResponse;
+import com.google.firebase.auth.FirebaseAuth;
+
+import java.util.Arrays;
+import java.util.List;
 
 import static android.content.ContentValues.TAG;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private EditText tvEmail;
-    private EditText tvPassword;
+    private AppCompatImageButton mapBtn;
+    private AppCompatImageButton viewClinicBtn;
     private Button btnLogin;
-    private TextView tvRegister;
-    private boolean status;
-    private String error;
-    private ProgressDialog loading;
-    private LoginController lController;
-    private FirebaseUser loggedIn;
+
+    private final static int RC_SIGN_IN = 18;
+
+    List<AuthUI.IdpConfig> providers = Arrays.asList(
+            new AuthUI.IdpConfig.EmailBuilder().build(),
+            new AuthUI.IdpConfig.GoogleBuilder().build());
+
+   /* AuthMethodPickerLayout customLayout = new AuthMethodPickerLayout
+            .Builder(R.layout.activity_login_2)
+            .setGoogleButtonId(R.id.googleLoginBtn)
+            .setEmailButtonId(R.id.emailLoginBtn)
+            .build(); */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        lController = new LoginController();
-        loggedIn = lController.currentUserLoggedIn();
-
-        if(loggedIn != null){
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        if (auth.getCurrentUser() != null) {
             finish();
             startActivity(new Intent(getApplicationContext(),UserProfileActivity.class));
         }
 
-        tvEmail = (EditText)findViewById(R.id.emailText);
-        tvPassword = (EditText)findViewById(R.id.passText);
-        btnLogin = (Button)findViewById(R.id.signinBtn);
-        tvRegister = (TextView)findViewById(R.id.registerBtn);
+        btnLogin = (Button) findViewById(R.id.signinBtn);
+        mapBtn = (AppCompatImageButton) findViewById(R.id.mapBtn);
+        viewClinicBtn = (AppCompatImageButton) findViewById(R.id.viewClinicsBtn);
 
-        loading = new ProgressDialog(this);
         btnLogin.setOnClickListener(this);
-        tvRegister.setOnClickListener(this);
 
-        AppCompatImageButton mapBtn = (AppCompatImageButton) findViewById(R.id.mapBtn);
         mapBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View r) {
@@ -65,7 +66,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             }
         });
 
-        AppCompatImageButton viewClinicBtn = (AppCompatImageButton) findViewById(R.id.viewClinicsBtn);
         viewClinicBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View r) {
@@ -77,55 +77,56 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     }
 
-    public void loginSync (){
-        final Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-
-                status = lController.getStatus();
-                error = lController.getErrorTxt();
-
-                if(status == true) {
-                    loading.dismiss();
-                    Toast.makeText(LoginActivity.this,"Login Success",Toast.LENGTH_SHORT).show();
-                    finish();
-                    startActivity(new Intent(getApplicationContext(),UserProfileActivity.class));
-                }
-                else {
-                    loading.dismiss();
-                    Toast.makeText(LoginActivity.this,error,Toast.LENGTH_SHORT).show();
-                }
-            }
-        }, 1888);
-    }
 
     @Override
     public void onClick(View view) {
 
         if(view == btnLogin){
-            String email = tvEmail.getText().toString().trim();
-            String password = tvPassword.getText().toString().trim();
-
-            if(TextUtils.isEmpty(email)){
-                Toast.makeText(this,"Please enter a valid email",Toast.LENGTH_SHORT).show();
-                return;
-            }
-            if(TextUtils.isEmpty(password)){
-                Toast.makeText(this,"Please enter a valid password",Toast.LENGTH_SHORT).show();
-                return;
-            }
-
-            lController.loginUser(email,password);
-            loginSync();
-            loading.setMessage("Logging in User...");
-            loading.show();
-
-        }
-        if(view == tvRegister){
-            Intent i = new Intent(LoginActivity.this,RegisterActivity.class);
-            LoginActivity.this.startActivity(i);
+            startActivityForResult(
+                    AuthUI.getInstance()
+                            .createSignInIntentBuilder()
+                            .setAvailableProviders(providers)
+                            .setTheme(R.style.LoginTheme)
+                            .setIsSmartLockEnabled(false)
+                            //.setLogo(R.drawable.chaslogo)
+                            //.setAuthMethodPickerLayout(customLayout)
+                            .build(),
+                    RC_SIGN_IN);
         }
 
     }
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        // RC_SIGN_IN is the request code you passed into startActivityForResult(...) when starting the sign in flow.
+        if (requestCode == RC_SIGN_IN) {
+            IdpResponse response = IdpResponse.fromResultIntent(data);
+
+            // Successfully signed in
+            if (resultCode == RESULT_OK) {
+                finish();
+                Toast.makeText(LoginActivity.this,"Login Success",Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(getApplicationContext(),UserProfileActivity.class));
+            } else {
+                // Sign in failed
+                if (response == null) {
+                    // User pressed back button
+                    Toast.makeText(LoginActivity.this,"Sign in cancelled",Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (response.getError().getErrorCode() == ErrorCodes.NO_NETWORK) {
+                    Toast.makeText(LoginActivity.this,"No internet connection",Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                Toast.makeText(LoginActivity.this,"Something went wrong.",Toast.LENGTH_SHORT).show();
+                Log.e(TAG, "Sign-in error: ", response.getError());
+            }
+        }
+    }
+
+
+
+
 }

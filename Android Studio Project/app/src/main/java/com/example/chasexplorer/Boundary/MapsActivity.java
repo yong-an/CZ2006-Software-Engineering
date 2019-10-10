@@ -77,7 +77,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     @Override
     public void onBackPressed() {
-        Toast.makeText(getApplicationContext(),"Long press on back button to exit the app!", Toast.LENGTH_SHORT).show();
+        if(!isTaskRoot())
+            super.onBackPressed();
+        Toast.makeText(getApplicationContext(), "Long press on back button to exit the app!", Toast.LENGTH_SHORT).show();
     }
 
     @Override

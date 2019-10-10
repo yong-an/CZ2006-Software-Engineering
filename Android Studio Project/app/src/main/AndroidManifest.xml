@@ -34,10 +34,6 @@
             android:launchMode="singleInstance"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
         <activity
-            android:name=".Boundary.RegisterActivity"
-            android:launchMode="singleInstance"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
-        <activity
             android:name=".Boundary.UserProfileActivity"
             android:launchMode="singleInstance"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
