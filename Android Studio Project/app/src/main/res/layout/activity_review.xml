@@ -41,9 +41,10 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/ratingBar2"
         android:layout_centerHorizontal="true"
-        android:text="Awesome. I love it"
         android:textSize="24sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:max="5"
+        android:stepSize="0.01" />
 
     <EditText
         android:id="@+id/editTextFeedback"

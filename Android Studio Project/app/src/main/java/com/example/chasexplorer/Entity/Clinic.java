@@ -3,6 +3,9 @@ package com.example.chasexplorer.Entity;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 public class Clinic implements Parcelable {
 
     private String clinicCode;
@@ -21,12 +24,13 @@ public class Clinic implements Parcelable {
     private double YCoordinate;
     private String incCrc;
     private String fmelUpdD;
+    private ArrayList<Review> reviewAl;
 
     public Clinic() {
         // empty default constructor, necessary for Clinic to be able to deserialize users
     }
 
-    public Clinic(String clinicCode, String clinicName, String licenceType, String clinicTelNo, int postalCode, String addrType, String blkHseNo, String floorNo, String unitNo, String streetName, String buildingName, String programmeCode, double XCoordinate, double YCoordinate, String incCrc, String fmelUpdD) {
+    public Clinic(String clinicCode, String clinicName, String licenceType, String clinicTelNo, int postalCode, String addrType, String blkHseNo, String floorNo, String unitNo, String streetName, String buildingName, String programmeCode, double XCoordinate, double YCoordinate, String incCrc, String fmelUpdD, ArrayList<Review> reviewAl) {
         this.clinicCode = clinicCode;
         this.clinicName = clinicName;
         this.licenceType = licenceType;
@@ -43,6 +47,7 @@ public class Clinic implements Parcelable {
         this.YCoordinate = YCoordinate;
         this.incCrc = incCrc;
         this.fmelUpdD = fmelUpdD;
+        this.reviewAl = reviewAl;
     }
 
     public String getClinicCode() {
@@ -173,6 +178,14 @@ public class Clinic implements Parcelable {
         this.fmelUpdD = fmelUpdD;
     }
 
+    public ArrayList<Review> getReviewAl() {
+        return reviewAl;
+    }
+
+    public void setReviewAl(ArrayList<Review> reviewAl) {
+        this.reviewAl = reviewAl;
+    }
+
     @Override
     public int describeContents() {
         // TODO Auto-generated method stub
@@ -197,7 +210,7 @@ public class Clinic implements Parcelable {
         dest.writeDouble(XCoordinate);
         dest.writeDouble(YCoordinate);
         dest.writeString(incCrc);
-        dest.writeString(fmelUpdD);
+        dest.writeList(reviewAl);
     }
 
     public Clinic(Parcel in) {
@@ -234,6 +247,12 @@ public class Clinic implements Parcelable {
         return getClinicName() + "\n" + getClinicCode() + "\n+(65)" + getClinicTelNo()
                 + "\n" + getStreetName() + "\nBlk " + getBlkHseNo() + getAddrType() + " #" + getFloorNo() + "-" + getUnitNo()
                 + "\nSingapore " + getPostalCode()+"\n";
+    }
+
+    public String toString2(){
+        return getClinicName()
+                + "\n(+65)"  + getClinicTelNo()
+                + "\n" + getStreetName();
     }
 
     /* How To Use Parcel

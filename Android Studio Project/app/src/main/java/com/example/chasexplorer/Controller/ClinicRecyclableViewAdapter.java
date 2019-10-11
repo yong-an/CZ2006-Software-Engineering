@@ -67,9 +67,7 @@ public class ClinicRecyclableViewAdapter extends RecyclerView.Adapter<ClinicRecy
     public void onBindViewHolder(MyViewHolder holder, final int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
-        holder.textView.setText(mDataset.get(position).getClinicName()
-                + "\n(+65)"  + mDataset.get(position).getClinicTelNo()
-                + "\n" + mDataset.get(position).getStreetName());
+        holder.textView.setText(mDataset.get(position).toString2());
         holder.textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View r) {
