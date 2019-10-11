@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,71 +8,70 @@
 
 
     <TextView
+        android:id="@+id/clinicName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:textSize="18sp" />
+
+    <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/clinicName"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:text="Please give us a rating"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textSize="20sp" />
 
     <RatingBar
         android:id="@+id/ratingBar2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/textView"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:numStars="5"
-        android:stepSize="0.5"
         android:rating="5"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        android:stepSize="0.5" />
 
     <TextView
         android:id="@+id/tvRatingScale"
-        android:layout_width="2dp"
-        android:layout_height="17dp"
-        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ratingBar2"
+        android:layout_centerHorizontal="true"
         android:text="Awesome. I love it"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ratingBar2" />
+        android:textSize="24sp"
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/editTextFeedback"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/tvRatingScale"
+        android:layout_alignParentLeft="false"
+        android:layout_marginTop="100dp"
         android:gravity="top"
         android:hint="Tell us more"
         android:inputType="textMultiLine"
-        android:lines="5"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvRatingScale"
-        app:layout_constraintVertical_bias="0.495" />
+        android:lines="5" />
 
     <Button
-        android:id="@+id/buttonAddR"
+        android:id="@+id/submitFeedBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/editTextFeedback"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
         android:background="#e57373"
-        android:text="Add Review"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextFeedback" />
+        android:text="Add Review" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/textViewClinicIndex"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonAddR" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_below="@id/submitFeedBack"
+        android:layout_centerHorizontal="true"
+        android:text="TextView" />
+</RelativeLayout>

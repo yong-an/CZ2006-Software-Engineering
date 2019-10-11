@@ -9,9 +9,11 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
@@ -19,11 +21,20 @@ import com.example.chasexplorer.Entity.Clinic;
 import com.example.chasexplorer.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
 
 public class ViewClinicDetailsActivity extends AppCompatActivity {
     private static FirebaseAuth firebase;
     private static FirebaseUser loggedIn;
+    private RatingBar mRatingBar;
+    FirebaseDatabase database = FirebaseDatabase.getInstance();;
+    DatabaseReference myRef;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +54,23 @@ public class ViewClinicDetailsActivity extends AppCompatActivity {
 
         }
         final String index1= String.valueOf(index);
+        mRatingBar = (RatingBar) findViewById(R.id.ratingBar);
+        myRef = database.getReference().child(index1).child("rating");
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                float rating = 0;
+                if(dataSnapshot.exists()){
+                    rating = dataSnapshot.getValue(Float.class);
+                    mRatingBar.setRating(rating);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
         final Clinic clinicDetails = new Gson().fromJson(jsonMyObject, Clinic.class);
         TextView clinicTV = (TextView) findViewById(R.id.clinicDetails);
         clinicTV.setText(clinicDetails.getClinicName() + "\n" + clinicDetails.getClinicCode() + "\n+(65)" + clinicDetails.getClinicTelNo()
@@ -84,6 +112,7 @@ public class ViewClinicDetailsActivity extends AppCompatActivity {
                     Toast.makeText(r.getContext(), "Clicked View Clinic Review button!", Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(r.getContext(), ReviewActivity.class);
                     i.putExtra("index",index1);
+                    i.putExtra("clinicObj", new Gson().toJson(clinicDetails));
                     r.getContext().startActivity(i);
                 }
                 else
@@ -92,7 +121,10 @@ public class ViewClinicDetailsActivity extends AppCompatActivity {
                 }
             }
         });
+
     }
+
+
 
     @Override
     public void onRequestPermissionsResult(int requestCode,
