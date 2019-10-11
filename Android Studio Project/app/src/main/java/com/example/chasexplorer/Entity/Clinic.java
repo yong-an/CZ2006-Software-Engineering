@@ -229,6 +229,13 @@ public class Clinic implements Parcelable {
         }
     };
 
+    @Override
+    public String toString(){
+        return getClinicName() + "\n" + getClinicCode() + "\n+(65)" + getClinicTelNo()
+                + "\n" + getStreetName() + "\nBlk " + getBlkHseNo() + getAddrType() + " #" + getFloorNo() + "-" + getUnitNo()
+                + "\nSingapore " + getPostalCode()+"\n";
+    }
+
     /* How To Use Parcel
     =Store in activity 1=
     Bundle bundle = new Bundle();

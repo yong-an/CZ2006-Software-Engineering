@@ -4,12 +4,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.view.KeyEvent;
 import android.widget.SearchView;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.chasexplorer.Controller.ClinicRecyclableViewAdapter;
 import com.example.chasexplorer.Controller.FirebaseAdapter;
@@ -71,6 +76,33 @@ public class ViewClinicActivity extends AppCompatActivity implements SearchView.
                 ViewClinicActivity.this.startActivity(i);
             }
         });
+    }
+
+    @Override
+    public void onBackPressed(){
+        Toast.makeText(ViewClinicActivity.this,"Use the navigation buttons instead!",Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public boolean onKeyLongPress(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK)
+        {
+            new AlertDialog.Builder(this)
+                    .setMessage("Are you sure you want to exit?")
+                    .setCancelable(false)
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            Intent homeIntent = new Intent(Intent.ACTION_MAIN);
+                            homeIntent.addCategory( Intent.CATEGORY_HOME );
+                            homeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(homeIntent);
+                        }
+                    })
+                    .setNegativeButton("No", null)
+                    .show();
+            return true;
+        }
+        return super.onKeyLongPress(keyCode, event);
     }
 
     @Override

@@ -77,6 +77,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     }
 
+    @Override
+    public void onBackPressed(){
+        Toast.makeText(LoginActivity.this,"Use the navigation buttons instead!",Toast.LENGTH_SHORT).show();
+    }
 
     @Override
     public void onClick(View view) {
