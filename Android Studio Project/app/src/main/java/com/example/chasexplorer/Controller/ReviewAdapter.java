@@ -60,6 +60,7 @@ public class ReviewAdapter {
 
     public float getUsersRatingForClinic (String userId, ArrayList<Review> reviewArray){
         if(reviewArray != null) {
+            Log.d(TAG, "its not null woohooo");
             for (Review r : reviewArray) {
                 if (r.getUserId() == userId) {
                     return r.getRating();

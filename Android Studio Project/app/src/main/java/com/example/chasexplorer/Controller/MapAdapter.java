@@ -29,7 +29,6 @@ public class MapAdapter {
         float zoom = 10;// whatever
 
         ArrayList<Clinic> NEWDATA = FirebaseAdapter.passMeAllData();
-        Log.d(TAG, "CURRENT DATA: \n" + NEWDATA);
 
         try{
             for (Clinic fb : NEWDATA) {
