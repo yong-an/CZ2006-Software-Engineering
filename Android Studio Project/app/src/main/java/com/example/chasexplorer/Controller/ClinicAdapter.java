@@ -100,33 +100,4 @@ public class ClinicAdapter extends AppCompatActivity {
         return FIREBASEDATA;
     }
 
-    public static Clinic getClinicByName (String clinicName) {
-        for (Clinic fb : FIREBASEDATA){
-            if(fb.getClinicName().equalsIgnoreCase(clinicName)){
-                return fb;
-            }
-        }
-        return null;
-    }
-
-    public static Clinic getClinicByPostalCode (int postalCode){
-        for (Clinic fb : FIREBASEDATA){
-            if(fb.getPostalCode() == postalCode){
-                return fb;
-            }
-        }
-        return null;
-    }
-
-    public static Clinic getClinicByTelNo (String telNo){
-        for (Clinic fb : FIREBASEDATA){
-            if(fb.getClinicTelNo().equalsIgnoreCase(telNo)){
-                return fb;
-            }
-        }
-        return null;
-    }
-
-    //public static void
-
 }

@@ -90,7 +90,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     AuthUI.getInstance()
                             .createSignInIntentBuilder()
                             .setAvailableProviders(providers)
-                            .setTheme(R.style.LoginTheme)
+                            .setTheme(R.style.chasTheme)
                             .setIsSmartLockEnabled(false)
                             .setLogo(R.drawable.fba)
                             //.setAuthMethodPickerLayout(customLayout)

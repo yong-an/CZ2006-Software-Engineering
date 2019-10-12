@@ -115,7 +115,7 @@ public class ViewClinicDetailsActivity extends AppCompatActivity {
                 }
                 else
                 {
-                    Toast.makeText(r.getContext(), "Not Logon, please login to make a review.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(r.getContext(), "Please login to leave a review.", Toast.LENGTH_SHORT).show();
                 }
             }
         });

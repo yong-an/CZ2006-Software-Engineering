@@ -14,15 +14,6 @@
         android:layout_weight="1"
         android:scrollbars="vertical" />
 
-    <SearchView
-        android:id="@+id/searchBar"
-        android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:layout_gravity="top"
-        android:layout_margin="25dp"
-        android:alpha="0.8"
-        android:background="@color/colorWhite"/>
-
     <View
         android:id="@+id/horizontalLine"
         android:layout_width="match_parent"
@@ -36,7 +27,6 @@
         android:layout_width="match_parent"
         android:layout_height="69dp"
         android:layout_gravity="bottom"
-        android:alpha="0.8"
         android:background="@color/colorWhite"
         android:orientation="horizontal"
         android:padding="10dp">
@@ -50,7 +40,8 @@
             android:gravity="center_horizontal|center_vertical"
             android:onClick="@string/app_name"
             android:scaleType="centerInside"
-            android:src="@drawable/nav_back" />
+            android:src="@drawable/nav_back"
+            android:tint="@color/chasblue1" />
 
     </RadioGroup>
 
