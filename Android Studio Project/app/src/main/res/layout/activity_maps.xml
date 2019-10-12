@@ -89,5 +89,16 @@
 
     </RadioGroup>
 
+    <Button
+        android:id="@+id/nearbyBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="90dp"
+        android:layout_marginLeft="10dp"
+        android:alpha="0.8"
+        android:background="@color/colorWhite"
+        android:padding="10dp"
+        android:text="@string/NearbyClinics"/>
 
 </FrameLayout>

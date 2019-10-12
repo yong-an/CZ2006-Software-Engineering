@@ -1,20 +1,26 @@
 package com.example.chasexplorer.Controller;
 
+import android.location.Location;
 import android.util.Log;
 
 import com.example.chasexplorer.Entity.Clinic;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.maps.android.SphericalUtil;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static android.content.ContentValues.TAG;
 
 public class MapAdapter {
 
     private static GoogleMap gmap;
+    private static List<Marker> markers = new ArrayList<>();
     private ArrayList<Clinic> CLINICDATA = ClinicAdapter.passMeAllData();
 
     public MapAdapter(){
@@ -33,9 +39,15 @@ public class MapAdapter {
         Log.d(TAG, "CURRENT DATA: \n" + CLINICDATA);
 
         try{
+            MarkerOptions markerOptions = new MarkerOptions();
+
             for (Clinic fb : CLINICDATA) {
                 LatLng Clinic = new LatLng(fb.getXCoordinate(),fb.getYCoordinate());
-                gmap.addMarker(new MarkerOptions().position(Clinic).title(fb.getClinicName()));
+                markerOptions.position(Clinic);
+                markerOptions.title(fb.getClinicName());
+                markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
+
+                gmap.addMarker(markerOptions);
                 gmap.moveCamera(CameraUpdateFactory.newLatLng(Clinic));
                 gmap.moveCamera(CameraUpdateFactory.newLatLngZoom(SGLatLng, zoom));
             }
@@ -46,6 +58,39 @@ public class MapAdapter {
         gmap.moveCamera(CameraUpdateFactory.newLatLngZoom(SGLatLng, zoom));
         return gmap;
     }
+
+    public GoogleMap getGmapWithGPS(GoogleMap mMap){
+        setGmap(mMap);
+        try{
+            MarkerOptions markerOptions = new MarkerOptions();
+
+            for (Clinic fb : CLINICDATA) {
+                LatLng locationClinic = new LatLng(fb.getXCoordinate(),fb.getYCoordinate());
+
+                markerOptions.position(locationClinic);
+                markerOptions.title(fb.getClinicName());
+                markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
+                Marker m = gmap.addMarker(markerOptions.visible(false));
+                markers.add(m);
+            }
+
+        }catch(Exception e) {
+            Log.d(TAG, "ERROR In DATA: \n" + e);
+        }
+
+        return gmap;
+    }
+
+    public void revealMarkers(GoogleMap mMap, LatLng LL){
+
+        for(int i = 0; i < markers.size(); i++){
+            if (SphericalUtil.computeDistanceBetween(LL, markers.get(i).getPosition()) < 1000) {
+                markers.get(i).setVisible(true);
+            }
+        }
+    }
+
+
 
     public GoogleMap getClinicLocation(GoogleMap mMap, Clinic clinicDetails){
         setGmap(mMap);
@@ -59,6 +104,7 @@ public class MapAdapter {
         }
         return gmap;
     }
+
 
 
     public void plotSearchMarkers (String Query){
@@ -77,19 +123,26 @@ public class MapAdapter {
 
         CharSequence subQuery = Query.toLowerCase();
 
-        for (Clinic fb : CLINICDATA){
-            LatLng location = new LatLng(fb.getXCoordinate(),fb.getYCoordinate());
+        MarkerOptions markerOptions = new MarkerOptions();
 
+        for (Clinic fb : CLINICDATA){
+            LatLng clinicLocation = new LatLng(fb.getXCoordinate(),fb.getYCoordinate());
             existClinicName = fb.getClinicName().toLowerCase().contains(subQuery);
             existTelNo = fb.getClinicTelNo().toLowerCase().contains(subQuery);
 
-            if(existTelNo == true || existClinicName == true)
-                gmap.addMarker(new MarkerOptions().position(location).title(fb.getClinicName()));
-            
-            
-            if(fb.getPostalCode() == postalCode)
-                gmap.addMarker(new MarkerOptions().position(location).title(fb.getClinicName()));
+            if(existTelNo == true || existClinicName == true){
+                markerOptions.position(clinicLocation);
+                markerOptions.title(fb.getClinicName());
+                markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
+                gmap.addMarker(markerOptions);
+            }
 
+            if(fb.getPostalCode() == postalCode){
+                markerOptions.position(clinicLocation);
+                markerOptions.title(fb.getClinicName());
+                markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
+                gmap.addMarker(markerOptions);
+            }
         }
     }
 

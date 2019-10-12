@@ -47,4 +47,9 @@
         <item name="android:textColor">@color/chasgrey2</item>
     </style>
 
+    <style name="RatingBar" parent="Theme.AppCompat">
+        <item name="colorControlNormal">@color/chasgrey</item>
+        <item name="colorControlActivated">@color/mellow</item>
+    </style>
+
 </resources>

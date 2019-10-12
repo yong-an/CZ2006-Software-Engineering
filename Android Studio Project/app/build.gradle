@@ -43,6 +43,7 @@ dependencies {
     implementation "com.google.android.material:material:1.1.0-alpha06"
     implementation "com.paulrybitskyi.persistentsearchview:persistentsearchview:$psvVersion"
     implementation "androidx.appcompat:appcompat:1.0.0-beta01"
+    implementation 'com.google.maps.android:android-maps-utils:0.5+'
 
 }
 

@@ -20,9 +20,6 @@
         android:theme="@style/AppTheme">
         <activity android:name=".Boundary.ReviewActivity"></activity>
         <activity
-            android:name=".Boundary.ClinicMapActivity"
-            android:launchMode="singleInstance" />
-        <activity
             android:name=".Boundary.ViewClinicDetailsActivity"
             android:label="Clinic Details"
             android:launchMode="singleInstance" />

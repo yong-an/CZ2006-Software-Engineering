@@ -1,8 +1,9 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">ChasExplorer</string>
     <string name="title_activity_maps">Map</string>
     <string name="title_activity_splash">Splash</string>
     <string name="loginText">Login</string>
     <string name="logoutText">Log out</string>
     <string name="emailLogin">Sign in</string>
+    <string name="NearbyClinics">Nearby Clinics</string>
 </resources>

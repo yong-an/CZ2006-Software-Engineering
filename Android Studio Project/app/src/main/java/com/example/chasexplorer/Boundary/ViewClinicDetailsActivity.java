@@ -49,10 +49,10 @@ public class ViewClinicDetailsActivity extends AppCompatActivity {
 
         if (extras != null) {
             jsonMyObject = extras.getString("clinicObj");
-
             index = extras.getInt("index");
 
         }
+
         final String index1= String.valueOf(index);
         mRatingBar = (RatingBar) findViewById(R.id.ratingBar);
         myRef = database.getReference().child(index1).child("rating");
@@ -71,10 +71,12 @@ public class ViewClinicDetailsActivity extends AppCompatActivity {
 
             }
         });
+
         final Clinic clinicDetails = new Gson().fromJson(jsonMyObject, Clinic.class);
         TextView clinicTV = (TextView) findViewById(R.id.clinicDetails);
         clinicTV.setText(clinicDetails.toString()+index);
         final String clinicTelNo = clinicDetails.getClinicTelNo();
+
         ImageButton callBtn = (ImageButton) findViewById(R.id.call);
         callBtn.setOnClickListener(new View.OnClickListener() {
 
@@ -93,10 +95,18 @@ public class ViewClinicDetailsActivity extends AppCompatActivity {
         directionBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View r) {
-                //Toast.makeText(r.getContext(),"Clicked View Clinic Location button!", Toast.LENGTH_SHORT).show();
-                Intent i = new Intent(r.getContext(), ClinicMapActivity.class);
-                i.putExtra("clinicObj", new Gson().toJson(clinicDetails));
-                r.getContext().startActivity(i);
+                Uri.Builder builder = new Uri.Builder();
+                builder.scheme("https")
+                        .authority("www.google.com")
+                        .appendPath("maps")
+                        .appendPath("dir")
+                        .appendPath("")
+                        .appendQueryParameter("api", "1")
+                        .appendQueryParameter("destination", clinicDetails.getXCoordinate() + "," + clinicDetails.getYCoordinate());
+                String url = builder.build().toString();
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(url));
+                startActivity(i);
             }
         });
         ImageButton reviewBtn = (ImageButton) findViewById(R.id.reviews);

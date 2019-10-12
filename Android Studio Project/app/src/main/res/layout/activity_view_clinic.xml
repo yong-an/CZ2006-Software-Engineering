@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginTop="3dp"
+        app:iconifiedByDefault="false"
         app:layout_constraintBottom_toTopOf="@id/my_recycler_view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
