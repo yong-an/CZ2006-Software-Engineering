@@ -16,8 +16,14 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.chasexplorer.Controller.ClinicRecyclableViewAdapter;
+import com.example.chasexplorer.Controller.ReviewAdapter;
+import com.example.chasexplorer.Controller.ReviewRecyclableViewAdapter;
 import com.example.chasexplorer.Entity.Clinic;
+import com.example.chasexplorer.Entity.Review;
 import com.example.chasexplorer.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -28,10 +34,18 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
 
+import java.util.ArrayList;
+
 public class ViewClinicDetailsActivity extends AppCompatActivity {
     private static FirebaseAuth firebase;
     private static FirebaseUser loggedIn;
     private RatingBar mRatingBar;
+    private ReviewAdapter reviewAdapter;
+    private RecyclerView recyclerView;
+    private ReviewRecyclableViewAdapter mAdapter;
+    private RecyclerView.LayoutManager layoutManager;
+    private ArrayList<Review> NEWDATA;
+    private int postalCode;
     FirebaseDatabase database = FirebaseDatabase.getInstance();;
     DatabaseReference myRef;
 
@@ -43,6 +57,7 @@ public class ViewClinicDetailsActivity extends AppCompatActivity {
         getSupportActionBar().setLogo(R.drawable.clinic_icon);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
         String jsonMyObject = null;
+        reviewAdapter = new ReviewAdapter();
         int index = 0;
 
         Bundle extras = getIntent().getExtras();
@@ -54,27 +69,29 @@ public class ViewClinicDetailsActivity extends AppCompatActivity {
         }
 
         final String index1= String.valueOf(index);
-        mRatingBar = (RatingBar) findViewById(R.id.ratingBar);
-        myRef = database.getReference().child(index1).child("rating");
-        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                float rating = 0;
-                if(dataSnapshot.exists()){
-                    rating = dataSnapshot.getValue(Float.class);
-                    mRatingBar.setRating(rating);
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
 
         final Clinic clinicDetails = new Gson().fromJson(jsonMyObject, Clinic.class);
+        postalCode = clinicDetails.getPostalCode();
+        NEWDATA = reviewAdapter.getAllFeedbackForClinic(postalCode);
+        recyclerView = (RecyclerView) findViewById(R.id.my_recycler_view2);
+
+        // use this setting to improve performance if you know that changes
+        // in content do not change the layout size of the RecyclerView
+        recyclerView.setHasFixedSize(true);
+
+        // use a linear layout manager
+        layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+
+        // specify an adapter (see also next example)
+        mAdapter = new ReviewRecyclableViewAdapter(NEWDATA);
+        recyclerView.setAdapter(mAdapter);
+
+        mRatingBar = (RatingBar) findViewById(R.id.ratingBar);
+        mRatingBar.setRating(reviewAdapter.getAvgRatingForClinic(clinicDetails.getPostalCode()));
+        mRatingBar.setEnabled(false);
         TextView clinicTV = (TextView) findViewById(R.id.clinicDetails);
-        clinicTV.setText(clinicDetails.toString()+index);
+        clinicTV.setText(clinicDetails.toString());
         final String clinicTelNo = clinicDetails.getClinicTelNo();
 
         ImageButton callBtn = (ImageButton) findViewById(R.id.call);
@@ -132,7 +149,11 @@ public class ViewClinicDetailsActivity extends AppCompatActivity {
 
     }
 
-
+    @Override
+    public void onResume(){
+        super.onResume();
+        mRatingBar.setRating(reviewAdapter.getAvgRatingForClinic(postalCode));
+    }
 
     @Override
     public void onRequestPermissionsResult(int requestCode,

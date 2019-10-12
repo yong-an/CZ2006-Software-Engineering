@@ -56,17 +56,17 @@ public class ClinicAdapter extends AppCompatActivity {
                 long Rows = dataSnapshot.getChildrenCount();
                 Log.d(TAG,"No Of Data Rows: " + Rows);
                 ArrayList<Clinic> t = new ArrayList<Clinic>();
+                List<Review> reviewArrayList = new ArrayList<Review>();
                 for(DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-                    Log.d(TAG, "reviewAl get children " + dataSnapshot.child("reviewAl").getChildrenCount());
                     Clinic chasClinic = postSnapshot.getValue(Clinic.class);
-                    List<Review> reviewArrayList = new ArrayList<Review>();
-                    for(DataSnapshot reviews: dataSnapshot.child("reviewAl").getChildren()) {
+                    for(DataSnapshot reviews: postSnapshot.child("reviewAl").getChildren()) {
+                        Log.d(TAG, "LOOPING THROUGH REVIEWAL CHILDREN");
                         Review clinicReview = reviews.getValue(Review.class);
                         reviewArrayList.add(clinicReview);
                     }
-                    chasClinic.setReviewAl((ArrayList) reviewArrayList);
                     t.add(chasClinic);
                 }
+                ReviewAdapter.setReviewAl((ArrayList) reviewArrayList);
                 FIREBASEDATA = (ArrayList<Clinic>) t.clone();
                 Log.d(TAG,"Pulled Data:  " + Rows);
                 progressAnimator.setIntValues(100);
@@ -91,7 +91,7 @@ public class ClinicAdapter extends AppCompatActivity {
     }
 
     private void startAnimation(){
-        progressAnimator.setDuration(1800);
+        progressAnimator.setDuration(2500);
         progressAnimator.setInterpolator(new LinearInterpolator());
         progressAnimator.start();
     }

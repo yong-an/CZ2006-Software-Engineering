@@ -15,50 +15,75 @@ public class ReviewAdapter {
     private static ArrayList<Review> reviewAl;
 
     public ReviewAdapter(){
-        reviewAl = new ArrayList<Review>();
-        for (Clinic c : ClinicAdapter.passMeAllData()){
-            if (c.getReviewAl() != null) {
-                reviewAl.addAll(c.getReviewAl());
-            }
-        }
+
+    }
+
+    public static void setReviewAl(ArrayList<Review> reviewArrayList){
+        reviewAl = reviewArrayList;
     }
 
     public int saveReview(Clinic clinic, String feedback, float rating, String userId, String index, FirebaseDatabase fbDatabase, String imei){
         Review newReview = new Review();
         DatabaseReference myRef = fbDatabase.getReference().child(index);
         if (userId == null) {
-            userId = " ";
+            userId = "null";
         }
-        Review r = new Review (rating,feedback,imei,userId);
-        List<Review> rArraylist = new ArrayList<Review>();
-        if(clinic.getReviewAl() != null)
-            rArraylist.addAll(clinic.getReviewAl());
-        rArraylist.add(r);
-        myRef.child("reviewAl").push().setValue(rArraylist);
+        try {
+            Review r = new Review(rating, feedback, imei, userId, clinic.getPostalCode());
+            myRef.child("reviewAl").child(userId).setValue(r);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0;
+        }
         return 1;
     }
 
-    public String getUsersFeedbackForClinic(String userId, ArrayList<Review> reviewArray){
-        if(reviewArray != null) {
-            for (Review r : reviewArray) {
-                if (r.getUserId() == userId) {
+    public String getUsersFeedbackForClinic(String userId, int clinicPostalCode){
+        if(reviewAl != null) {
+            for (Review r : reviewAl) {
+                if ((r.getUserId().equalsIgnoreCase(userId))&& r.getClinicPostalCode() == clinicPostalCode) {
                     return r.getFeedbackText();
                 }
             }
         }
-        return " ";
+        return null;
     }
 
-    public float getUsersRatingForClinic (String userId, ArrayList<Review> reviewArray){
-        if(reviewArray != null) {
-            Log.d("", "its not null woohooo");
-            for (Review r : reviewArray) {
-                if (r.getUserId() == userId) {
+    public float getUsersRatingForClinic (String userId, int clinicPostalCode){
+        if(reviewAl != null) {
+            for (Review r : reviewAl) {
+                if (r.getUserId().equalsIgnoreCase(userId) && r.getClinicPostalCode() == clinicPostalCode) {
                     return r.getRating();
                 }
             }
         }
         return 0;
+    }
+
+    public float getAvgRatingForClinic(int clinicPostalCode){
+        int size = 0;
+        float rating = 0;
+        if(reviewAl != null){
+            for(Review r: reviewAl){
+                if(r.getClinicPostalCode() == clinicPostalCode){
+                    rating += r.getRating();
+                    size++;
+                }
+            }
+        }
+        return ((float) rating/size);
+    }
+
+    public ArrayList<Review> getAllFeedbackForClinic(int clinicPostalCode){
+        ArrayList<Review> newReviewAl = new ArrayList<Review>();
+        if(reviewAl != null) {
+            for (Review r : reviewAl) {
+                if (r.getClinicPostalCode() == clinicPostalCode){
+                    newReviewAl.add(r);
+                }
+            }
+        }
+        return newReviewAl;
     }
 
 }

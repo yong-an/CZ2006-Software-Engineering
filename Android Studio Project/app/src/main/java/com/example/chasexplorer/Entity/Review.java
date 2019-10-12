@@ -9,16 +9,18 @@ public class Review implements  Parcelable {
     private String feedbackText;
     private String imei;
     private String userId;
+    private int clinicPostalCode;
 
     public Review(){
         // Empty constructor for Firebase
     }
 
-    public Review(float rating, String feedbackText, String imei, String userId) {
+    public Review(float rating, String feedbackText, String imei, String userId, int clinicPostalCode) {
         this.rating = rating;
         this.feedbackText = feedbackText;
         this.imei = imei;
         this.userId = userId;
+        this.clinicPostalCode = clinicPostalCode;
     }
     public float getRating() {
         return rating;
@@ -40,6 +42,10 @@ public class Review implements  Parcelable {
 
     public void setUserId(String userId) { this.userId = userId; }
 
+    public int getClinicPostalCode(){ return clinicPostalCode; }
+
+    public void setClinicPostalCode(int clinicPostalCode) { this.clinicPostalCode = clinicPostalCode; }
+
     @Override
     public int describeContents() {
         // TODO Auto-generated method stub
@@ -53,6 +59,7 @@ public class Review implements  Parcelable {
         dest.writeString(feedbackText);
         dest.writeString(imei);
         dest.writeString(userId);
+        dest.writeInt(clinicPostalCode);
     }
 
     public Review(Parcel in) {
@@ -60,6 +67,7 @@ public class Review implements  Parcelable {
         feedbackText = in.readString();
         imei = in.readString();
         userId = in.readString();
+        clinicPostalCode = in.readInt();
     }
 
     public static final Parcelable.Creator<Review> CREATOR = new Parcelable.Creator<Review>() {

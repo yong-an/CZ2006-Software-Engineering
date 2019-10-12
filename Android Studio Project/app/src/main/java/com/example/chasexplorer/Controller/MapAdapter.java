@@ -36,8 +36,6 @@ public class MapAdapter {
         LatLng SGLatLng = new LatLng(1.3521,103.8198);// Singapore Latitude and Longitude
         float zoom = 10;// whatever
 
-        Log.d(TAG, "CURRENT DATA: \n" + CLINICDATA);
-
         try{
             MarkerOptions markerOptions = new MarkerOptions();
 
