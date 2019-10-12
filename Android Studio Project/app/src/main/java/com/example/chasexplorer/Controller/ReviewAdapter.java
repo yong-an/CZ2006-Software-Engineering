@@ -1,5 +1,7 @@
 package com.example.chasexplorer.Controller;
 
+import android.util.Log;
+
 import com.example.chasexplorer.Entity.Clinic;
 import com.example.chasexplorer.Entity.Review;
 import com.google.firebase.database.DatabaseReference;
@@ -49,7 +51,7 @@ public class ReviewAdapter {
 
     public float getUsersRatingForClinic (String userId, ArrayList<Review> reviewArray){
         if(reviewArray != null) {
-            Log.d(TAG, "its not null woohooo");
+            Log.d("", "its not null woohooo");
             for (Review r : reviewArray) {
                 if (r.getUserId() == userId) {
                     return r.getRating();

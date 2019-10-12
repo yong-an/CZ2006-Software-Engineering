@@ -3,31 +3,30 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorPrimary">@color/chasblue1</item>
+        <item name="colorPrimaryDark">@color/chasblue2</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="SplashTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="SplashTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
         <item name="android:windowBackground">@drawable/splash</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="colorPrimary">@color/chasblue1</item>
+        <item name="colorPrimaryDark">@color/chasblue2</item>
+        <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="LoginTheme" parent="FirebaseUI">
+    <style name="chasTheme" parent ="FirebaseUI">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_gravity">bottom</item>
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/chasblue1</item>
+        <item name="colorPrimary">@color/chasblue1</item>
+        <item name="colorPrimaryDark">@color/chasblue2</item>
+        <item name="colorAccent">@color/chasblue2</item>
         <item name="colorButtonNormal">@color/chasblue1</item>
-        <item name="colorControlNormal">@android:color/white</item>
-        <item name="colorControlActivated">@android:color/white</item>
         <item name="colorControlHighlight">@color/chasblue1</item>
-        <item name="android:textColor">@color/colorWhite</item>
-        <item name="android:textColorPrimary">@color/colorWhite</item>
-        <item name="android:textColorSecondary">@color/colorWhite</item>
-        <item name="android:windowBackground">@color/chasgrey</item>
-        <item name="android:icon">@drawable/nav3_me</item> <!--MIDMAP LOGO HERE -->
+        <item name="android:icon">@drawable/clinic_icon</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="android:textColorHint">@color/chasgrey2</item>
@@ -38,17 +37,14 @@
         <item name="android:paddingTop">14dp</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="colorControlActivated">@color/colorWhite</item>
-        <item name="colorControlHighlight">@color/colorWhite</item>
-        <item name="android:textColorHint">@color/colorWhite</item>
-        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textColor">@color/chasgrey2</item>
     </style>
 
     <style name="FirebaseUI.Text.TextInputLayout" parent="@style/FirebaseUI.EditText" />
     <style name="FirebaseUI.Text.HintText" parent="@style/FirebaseUI.EditText" />
 
     <style name="FirebaseUI.Text.Link">
-        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textColor">@color/chasgrey2</item>
     </style>
 
 </resources>

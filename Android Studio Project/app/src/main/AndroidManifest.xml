@@ -10,7 +10,7 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"></uses-permission>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <application
         android:allowBackup="true"
@@ -24,20 +24,20 @@
             android:launchMode="singleInstance" />
         <activity
             android:name=".Boundary.ViewClinicDetailsActivity"
-            android:label="Clinic details"
+            android:label="Clinic Details"
             android:launchMode="singleInstance" />
         <activity
             android:name=".Boundary.ViewClinicActivity"
-            android:label="List of CHAS clinics"
+            android:label="List Of CHAS Clinics"
             android:launchMode="singleInstance" />
         <activity
             android:name=".Boundary.LoginActivity"
             android:launchMode="singleInstance"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
+            android:theme="@style/chasTheme" />
         <activity
             android:name=".Boundary.UserProfileActivity"
             android:launchMode="singleInstance"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
+            android:theme="@style/chasTheme" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"

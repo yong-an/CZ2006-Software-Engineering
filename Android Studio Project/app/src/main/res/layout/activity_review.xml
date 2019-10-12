@@ -65,7 +65,6 @@
         android:layout_below="@id/editTextFeedback"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
-        android:background="#e57373"
         android:text="Add Review" />
 
     <TextView
