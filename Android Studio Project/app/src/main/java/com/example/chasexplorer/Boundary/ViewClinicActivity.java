@@ -17,7 +17,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.chasexplorer.Controller.ClinicRecyclableViewAdapter;
-import com.example.chasexplorer.Controller.FirebaseAdapter;
+import com.example.chasexplorer.Controller.ClinicAdapter;
 import com.example.chasexplorer.Entity.Clinic;
 import com.example.chasexplorer.R;
 
@@ -39,7 +39,7 @@ public class ViewClinicActivity extends AppCompatActivity implements SearchView.
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setLogo(R.drawable.clinic_icon);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
-        NEWDATA = FirebaseAdapter.passMeAllData();
+        NEWDATA = ClinicAdapter.passMeAllData();
         recyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
 
         // use this setting to improve performance if you know that changes

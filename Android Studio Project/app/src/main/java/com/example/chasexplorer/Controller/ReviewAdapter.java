@@ -1,23 +1,12 @@
 package com.example.chasexplorer.Controller;
 
-import android.Manifest;
-import android.content.Context;
-import android.telephony.TelephonyManager;
-import android.util.Log;
-
-import androidx.core.content.ContextCompat;
-
 import com.example.chasexplorer.Entity.Clinic;
 import com.example.chasexplorer.Entity.Review;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-
-import static android.content.ContentValues.TAG;
 
 public class ReviewAdapter {
 
@@ -25,7 +14,7 @@ public class ReviewAdapter {
 
     public ReviewAdapter(){
         reviewAl = new ArrayList<Review>();
-        for (Clinic c : FirebaseAdapter.passMeAllData()){
+        for (Clinic c : ClinicAdapter.passMeAllData()){
             if (c.getReviewAl() != null) {
                 reviewAl.addAll(c.getReviewAl());
             }

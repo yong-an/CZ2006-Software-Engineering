@@ -28,7 +28,7 @@ public class MapAdapter {
         LatLng SGLatLng = new LatLng(1.3521,103.8198);// Singapore Latitude and Longitude
         float zoom = 10;// whatever
 
-        ArrayList<Clinic> NEWDATA = FirebaseAdapter.passMeAllData();
+        ArrayList<Clinic> NEWDATA = ClinicAdapter.passMeAllData();
         Log.d(TAG, "CURRENT DATA: \n" + NEWDATA);
 
         try{

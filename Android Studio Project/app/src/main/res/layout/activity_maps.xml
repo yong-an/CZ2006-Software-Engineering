@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Boundary.MapsActivity" >
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Boundary.MapsActivity">
 
     <fragment
         android:id="@+id/map"
@@ -12,15 +13,6 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:scrollbars="vertical" />
-
-    <SearchView
-        android:id="@+id/searchBar"
-        android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:layout_gravity="top"
-        android:layout_margin="25dp"
-        android:alpha="0.8"
-        android:background="@color/colorWhite"/>
 
     <View
         android:id="@+id/horizontalLine"
