@@ -210,7 +210,6 @@ public class Clinic implements Parcelable {
         dest.writeDouble(XCoordinate);
         dest.writeDouble(YCoordinate);
         dest.writeString(incCrc);
-        dest.writeList(reviewAl);
     }
 
     public Clinic(Parcel in) {

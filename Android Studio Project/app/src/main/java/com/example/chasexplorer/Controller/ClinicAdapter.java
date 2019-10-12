@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.chasexplorer.Boundary.MapsActivity;
 import com.example.chasexplorer.Entity.Clinic;
+import com.example.chasexplorer.Entity.Review;
 import com.example.chasexplorer.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -21,6 +22,7 @@ import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static android.content.ContentValues.TAG;
 
@@ -53,8 +55,19 @@ public class ClinicAdapter extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 long Rows = dataSnapshot.getChildrenCount();
                 Log.d(TAG,"No Of Data Rows: " + Rows);
-                GenericTypeIndicator<ArrayList<Clinic>> t = new GenericTypeIndicator<ArrayList<Clinic>>(){};
-                FIREBASEDATA = dataSnapshot.getValue(t);
+                ArrayList<Clinic> t = new ArrayList<Clinic>();
+                for(DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                    Log.d(TAG, "reviewAl get children " + dataSnapshot.child("reviewAl").getChildrenCount());
+                    Clinic chasClinic = postSnapshot.getValue(Clinic.class);
+                    List<Review> reviewArrayList = new ArrayList<Review>();
+                    for(DataSnapshot reviews: dataSnapshot.child("reviewAl").getChildren()) {
+                        Review clinicReview = reviews.getValue(Review.class);
+                        reviewArrayList.add(clinicReview);
+                    }
+                    chasClinic.setReviewAl((ArrayList) reviewArrayList);
+                    t.add(chasClinic);
+                }
+                FIREBASEDATA = (ArrayList<Clinic>) t.clone();
                 Log.d(TAG,"Pulled Data:  " + Rows);
                 progressAnimator.setIntValues(100);
                 progressAnimator.start();

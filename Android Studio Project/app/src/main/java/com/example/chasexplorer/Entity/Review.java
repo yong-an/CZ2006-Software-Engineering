@@ -1,6 +1,9 @@
 package com.example.chasexplorer.Entity;
 
-public class Review {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Review implements  Parcelable {
 
     private float rating;
     private String feedbackText;
@@ -8,7 +11,7 @@ public class Review {
     private String userId;
 
     public Review(){
-
+        // Empty constructor for Firebase
     }
 
     public Review(float rating, String feedbackText, String imei, String userId) {
@@ -37,4 +40,35 @@ public class Review {
 
     public void setUserId(String userId) { this.userId = userId; }
 
+    @Override
+    public int describeContents() {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        // TODO Auto-generated method stub
+        dest.writeFloat(rating);
+        dest.writeString(feedbackText);
+        dest.writeString(imei);
+        dest.writeString(userId);
+    }
+
+    public Review(Parcel in) {
+        rating = in.readFloat();
+        feedbackText = in.readString();
+        imei = in.readString();
+        userId = in.readString();
+    }
+
+    public static final Parcelable.Creator<Review> CREATOR = new Parcelable.Creator<Review>() {
+        public Review createFromParcel(Parcel in) {
+            return new Review(in);
+        }
+
+        public Review[] newArray(int size) {
+            return new Review[size];
+        }
+    };
 }
