@@ -1,10 +1,13 @@
 package com.example.chasexplorer.Controller;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,6 +18,9 @@ import com.example.chasexplorer.Entity.Clinic;
 import com.example.chasexplorer.Entity.Review;
 import com.example.chasexplorer.R;
 import com.google.gson.Gson;
+import com.squareup.picasso.Picasso;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -23,23 +29,31 @@ import static android.content.ContentValues.TAG;
 
 public class ReviewRecyclableViewAdapter extends RecyclerView.Adapter<ReviewRecyclableViewAdapter.MyViewHolder> {
     private ArrayList<Review> mDataset;
+    private Context mCtx;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
     // you provide access to all the views for a data item in a view holder
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
-        public TextView textView;
+        public TextView reviewView;
+        public TextView usernameView;
+        public ImageView dpView;
 
         public MyViewHolder(View v) {
             super(v);
-            TextView clinic = (TextView) v.findViewById(R.id.reviewsList);
-            textView = clinic;
+            TextView feedbackView = (TextView) v.findViewById(R.id.feedbackView);
+            TextView displayNameView = (TextView) v.findViewById(R.id.displayNameView);
+            ImageView profilePicView = (ImageView) v.findViewById(R.id.profilePicView);
+            reviewView = feedbackView;
+            usernameView =  displayNameView;
+            dpView = profilePicView;
         }
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public ReviewRecyclableViewAdapter(ArrayList<Review> myDataset) {
+    public ReviewRecyclableViewAdapter(Context mCtx, ArrayList<Review> myDataset) {
+        mCtx = mCtx;
         mDataset = myDataset;
     }
 
@@ -63,7 +77,10 @@ public class ReviewRecyclableViewAdapter extends RecyclerView.Adapter<ReviewRecy
     public void onBindViewHolder(MyViewHolder holder, final int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
-        holder.textView.setText(mDataset.get(position).getDisplayName() + "\n" + mDataset.get(position).getFeedbackText());
+        Uri dpUrl = Uri.parse(mDataset.get(position).getPhotoUrl());
+        holder.usernameView.setText(mDataset.get(position).getDisplayName());
+        holder.reviewView.setText(mDataset.get(position).getFeedbackText());
+        Picasso.get().load(dpUrl).error(R.drawable.chaslogo).into(holder.dpView);
 
     }
 

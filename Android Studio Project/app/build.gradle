@@ -44,6 +44,8 @@ dependencies {
     implementation "com.paulrybitskyi.persistentsearchview:persistentsearchview:$psvVersion"
     implementation "androidx.appcompat:appcompat:1.0.0-beta01"
     implementation 'com.google.maps.android:android-maps-utils:0.5+'
+    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'com.squareup.picasso:picasso:2.71828'
 
 }
 

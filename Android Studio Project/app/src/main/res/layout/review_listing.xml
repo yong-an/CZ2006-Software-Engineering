@@ -4,14 +4,45 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingTop="10dp"
-    android:paddingBottom="10dp"
-    >
+    android:paddingBottom="10dp">
 
-    <TextView
-        android:id="@+id/reviewsList"
-        android:layout_width="0dp"
+<androidx.cardview.widget.CardView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="2dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="Reviews List" />
+        android:padding="2dp">
+
+        <ImageView
+            android:id="@+id/profilePicView"
+            android:layout_width="80dp"
+            android:layout_height="60dp"
+            android:padding="2dp" />
+
+        <TextView
+            android:id="@+id/displayNameView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:layout_toEndOf="@id/profilePicView"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+            android:textColor="#000000" />
+
+        <TextView
+            android:id="@+id/feedbackView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/displayNameView"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="2dp"
+            android:layout_toEndOf="@id/profilePicView"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small" />
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>
 
 </LinearLayout>

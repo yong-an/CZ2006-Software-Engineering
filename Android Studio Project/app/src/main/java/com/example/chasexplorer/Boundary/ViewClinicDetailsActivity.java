@@ -84,7 +84,7 @@ public class ViewClinicDetailsActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
 
         // specify an adapter (see also next example)
-        mAdapter = new ReviewRecyclableViewAdapter(NEWDATA);
+        mAdapter = new ReviewRecyclableViewAdapter(this,NEWDATA);
         recyclerView.setAdapter(mAdapter);
 
         mRatingBar = (RatingBar) findViewById(R.id.ratingBar);
