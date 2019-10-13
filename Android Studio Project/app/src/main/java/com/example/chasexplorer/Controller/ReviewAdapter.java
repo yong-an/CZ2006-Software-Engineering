@@ -22,15 +22,12 @@ public class ReviewAdapter {
         reviewAl = reviewArrayList;
     }
 
-    public int saveReview(Clinic clinic, String feedback, float rating, String userId, String index, FirebaseDatabase fbDatabase, String imei){
+    public int saveReview(Clinic clinic, String feedback, float rating, String uid, String email,String photoUrl, String index, FirebaseDatabase fbDatabase, String displayName){
         Review newReview = new Review();
         DatabaseReference myRef = fbDatabase.getReference().child(index);
-        if (userId == null) {
-            userId = "null";
-        }
         try {
-            Review r = new Review(rating, feedback, imei, userId, clinic.getPostalCode());
-            myRef.child("reviewAl").child(userId).setValue(r);
+            Review r = new Review(rating, feedback,uid, displayName, email, photoUrl, clinic.getPostalCode());
+            myRef.child("reviewAl").child(uid).setValue(r);
         } catch (Exception e) {
             e.printStackTrace();
             return 0;
@@ -38,10 +35,10 @@ public class ReviewAdapter {
         return 1;
     }
 
-    public String getUsersFeedbackForClinic(String userId, int clinicPostalCode){
+    public String getUsersFeedbackForClinic(String Uid, int clinicPostalCode){
         if(reviewAl != null) {
             for (Review r : reviewAl) {
-                if ((r.getUserId().equalsIgnoreCase(userId))&& r.getClinicPostalCode() == clinicPostalCode) {
+                if ((r.getUid().equalsIgnoreCase(Uid))&& r.getClinicPostalCode() == clinicPostalCode) {
                     return r.getFeedbackText();
                 }
             }
@@ -49,10 +46,10 @@ public class ReviewAdapter {
         return null;
     }
 
-    public float getUsersRatingForClinic (String userId, int clinicPostalCode){
+    public float getUsersRatingForClinic (String Uid, int clinicPostalCode){
         if(reviewAl != null) {
             for (Review r : reviewAl) {
-                if (r.getUserId().equalsIgnoreCase(userId) && r.getClinicPostalCode() == clinicPostalCode) {
+                if (r.getUid().equalsIgnoreCase(Uid) && r.getClinicPostalCode() == clinicPostalCode) {
                     return r.getRating();
                 }
             }

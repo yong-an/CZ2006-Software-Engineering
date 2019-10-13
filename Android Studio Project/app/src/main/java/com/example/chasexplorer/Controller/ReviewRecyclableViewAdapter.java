@@ -43,6 +43,10 @@ public class ReviewRecyclableViewAdapter extends RecyclerView.Adapter<ReviewRecy
         mDataset = myDataset;
     }
 
+    public void setmDataset(ArrayList<Review> mDataset) {
+        this.mDataset = mDataset;
+    }
+
     // Create new views (invoked by the layout manager)
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent,
@@ -59,7 +63,7 @@ public class ReviewRecyclableViewAdapter extends RecyclerView.Adapter<ReviewRecy
     public void onBindViewHolder(MyViewHolder holder, final int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
-        holder.textView.setText(mDataset.get(position).getUserId() + "\n" + mDataset.get(position).getFeedbackText());
+        holder.textView.setText(mDataset.get(position).getDisplayName() + "\n" + mDataset.get(position).getFeedbackText());
 
     }
 

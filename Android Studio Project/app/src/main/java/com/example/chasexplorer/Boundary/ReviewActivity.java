@@ -42,6 +42,7 @@ public class ReviewActivity extends AppCompatActivity {
     private Button mSendFeedback;
     private Clinic clinicDetails;
     private ReviewAdapter reviewAdapter;
+    private FirebaseUser currFirebaseUser;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
 
     @Override
@@ -69,34 +70,10 @@ public class ReviewActivity extends AppCompatActivity {
         mClinicIndex.setText("Index of clinic: " + index);
         //getting user id
         final FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser() ;
+        currFirebaseUser = currentFirebaseUser;
         Toast.makeText(this, "" + currentFirebaseUser.getUid(), Toast.LENGTH_SHORT).show();
         mRatingBar.setRating(reviewAdapter.getUsersRatingForClinic(currentFirebaseUser.getUid(),clinicDetails.getPostalCode()));
         mFeedback.setText(reviewAdapter.getUsersFeedbackForClinic(currentFirebaseUser.getUid(),clinicDetails.getPostalCode()));
-        mRatingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
-            @Override
-            public void onRatingChanged(RatingBar ratingBar, float v, boolean b) {
-                mRatingScale.setText(String.valueOf(v));
-                switch ((int) ratingBar.getRating()) {
-                    case 1:
-                        mRatingScale.setText("Very bad");
-                        break;
-                    case 2:
-                        mRatingScale.setText("Need some improvement");
-                        break;
-                    case 3:
-                        mRatingScale.setText("Good");
-                        break;
-                    case 4:
-                        mRatingScale.setText("Great");
-                        break;
-                    case 5:
-                        mRatingScale.setText("Awesome Chas Clinic. I love it");
-                        break;
-                    default:
-                        mRatingScale.setText("");
-                }
-            }
-        });
         mSendFeedback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -104,55 +81,14 @@ public class ReviewActivity extends AppCompatActivity {
                 if (mFeedback.getText().toString().isEmpty()) {
                     Toast.makeText(ReviewActivity.this, "Please fill in feedback text box", Toast.LENGTH_LONG).show();
                 } else {
-                    if(getDeviceImei() != null) {
-                        result = reviewAdapter.saveReview(clinicDetails, mFeedback.getText().toString(), mRatingBar.getRating(), currentFirebaseUser.getUid(), index, database, getDeviceImei());
+                        result = reviewAdapter.saveReview(clinicDetails, mFeedback.getText().toString(), mRatingBar.getRating(), currentFirebaseUser.getUid(), currentFirebaseUser.getEmail(), (currentFirebaseUser.getPhotoUrl()).toString(),index, database, currentFirebaseUser.getDisplayName());
                         if (result == 1)
                             Toast.makeText(ReviewActivity.this, "Thank you for sharing your feedback! Feedback saved successfully", Toast.LENGTH_SHORT).show();
                         else
                             Toast.makeText(ReviewActivity.this, "Feedback not saved successfully", Toast.LENGTH_SHORT).show();
                     }
-                }
             }
         });
     }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode,
-                                           String permissions[], int[] grantResults) {
-        switch (requestCode) {
-            case 1: {
-                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    Toast.makeText(getApplicationContext(),"User granted read phone state permission! Click submit again!", Toast.LENGTH_SHORT).show();
-                    // permission was granted, yay! do the
-                    // calendar task you need to do.
-                } else {
-                    Toast.makeText(getApplicationContext(),"User did not grant read phone state permission!", Toast.LENGTH_SHORT).show();
-                }
-                return;
-            }
-        }
-    }
-
-    public boolean getReadPhoneStatePermission(){
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            Toast.makeText(getApplicationContext(),"Call permission is not granted!", Toast.LENGTH_SHORT).show();
-            ActivityCompat.requestPermissions(ReviewActivity.this,
-                    new String[]{Manifest.permission.READ_PHONE_STATE},1);
-            return false;
-        } else {
-            return true;
-        }
-    }
-
-    @SuppressLint("MissingPermission")
-    public String getDeviceImei(){
-        String imei = null;
-        if(getReadPhoneStatePermission()) {
-            TelephonyManager telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
-            imei = telephonyManager.getDeviceId();
-            return imei;
-        }
-        return imei;
-    }
 }

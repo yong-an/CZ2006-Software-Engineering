@@ -152,7 +152,9 @@ public class ViewClinicDetailsActivity extends AppCompatActivity {
     @Override
     public void onResume(){
         super.onResume();
+        mAdapter.setmDataset(reviewAdapter.getAllFeedbackForClinic(postalCode));
         mRatingBar.setRating(reviewAdapter.getAvgRatingForClinic(postalCode));
+        mAdapter.notifyDataSetChanged();
     }
 
     @Override

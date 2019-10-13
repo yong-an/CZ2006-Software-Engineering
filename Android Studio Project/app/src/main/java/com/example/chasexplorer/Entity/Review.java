@@ -7,19 +7,23 @@ public class Review implements  Parcelable {
 
     private float rating;
     private String feedbackText;
-    private String imei;
-    private String userId;
+    private String uid;
+    private String displayName;
+    private String email;
+    private String photoUrl;
     private int clinicPostalCode;
 
     public Review(){
         // Empty constructor for Firebase
     }
 
-    public Review(float rating, String feedbackText, String imei, String userId, int clinicPostalCode) {
+    public Review(float rating, String feedbackText, String uid, String displayName, String email, String photoUrl, int clinicPostalCode) {
         this.rating = rating;
         this.feedbackText = feedbackText;
-        this.imei = imei;
-        this.userId = userId;
+        this.uid = uid;
+        this.displayName = displayName;
+        this.email = email;
+        this.photoUrl = photoUrl;
         this.clinicPostalCode = clinicPostalCode;
     }
     public float getRating() {
@@ -34,13 +38,21 @@ public class Review implements  Parcelable {
 
     public void setFeedbackText(String feedbackText) { this.feedbackText = feedbackText; }
 
-    public String getImei() { return imei; }
+    public String getUid() { return uid; }
 
-    public void setImei(String imei) { this.imei = imei; }
+    public void setUid() { this.uid = uid; }
 
-    public String getUserId() { return userId; }
+    public String getDisplayName() { return displayName; }
 
-    public void setUserId(String userId) { this.userId = userId; }
+    public void setDisplayName(String displayName) { this.displayName = displayName; }
+
+    public String getEmail() { return email; }
+
+    public void setEmail(String email) { this.email = email; }
+
+    public String getPhotoUrl() { return photoUrl; }
+
+    public void setPhotoUrl() { this.photoUrl = photoUrl; }
 
     public int getClinicPostalCode(){ return clinicPostalCode; }
 
@@ -57,16 +69,20 @@ public class Review implements  Parcelable {
         // TODO Auto-generated method stub
         dest.writeFloat(rating);
         dest.writeString(feedbackText);
-        dest.writeString(imei);
-        dest.writeString(userId);
+        dest.writeString(uid);
+        dest.writeString(displayName);
+        dest.writeString(email);
+        dest.writeString(photoUrl);
         dest.writeInt(clinicPostalCode);
     }
 
     public Review(Parcel in) {
         rating = in.readFloat();
         feedbackText = in.readString();
-        imei = in.readString();
-        userId = in.readString();
+        uid = in.readString();
+        displayName = in.readString();
+        email = in.readString();
+        photoUrl = in.readString();
         clinicPostalCode = in.readInt();
     }
 
