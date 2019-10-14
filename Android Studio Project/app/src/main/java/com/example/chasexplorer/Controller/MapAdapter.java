@@ -1,6 +1,5 @@
 package com.example.chasexplorer.Controller;
 
-import android.location.Location;
 import android.util.Log;
 
 import com.example.chasexplorer.Entity.Clinic;
@@ -82,7 +81,7 @@ public class MapAdapter {
     public void revealMarkers(GoogleMap mMap, LatLng LL){
 
         for(int i = 0; i < markers.size(); i++){
-            if (SphericalUtil.computeDistanceBetween(LL, markers.get(i).getPosition()) < 1000) {
+            if (SphericalUtil.computeDistanceBetween(LL, markers.get(i).getPosition()) < 2400) {
                 markers.get(i).setVisible(true);
             }
         }
@@ -105,11 +104,12 @@ public class MapAdapter {
 
 
 
-    public void plotSearchMarkers (String Query){
+    public boolean plotSearchMarkers (String Query){
 
         if(Query.isEmpty())
-            return;
+            return false;
 
+        boolean plot = false;
         boolean check;
         boolean existTelNo, existClinicName;
         int postalCode = -1;
@@ -133,6 +133,7 @@ public class MapAdapter {
                 markerOptions.title(fb.getClinicName());
                 markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
                 gmap.addMarker(markerOptions);
+                plot = true;
             }
 
             if(fb.getPostalCode() == postalCode){
@@ -140,8 +141,11 @@ public class MapAdapter {
                 markerOptions.title(fb.getClinicName());
                 markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
                 gmap.addMarker(markerOptions);
+                plot = true;
             }
         }
+
+        return plot;
     }
 
     public static boolean isMyQueryAllInteger(String str) {

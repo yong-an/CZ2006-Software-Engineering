@@ -1,14 +1,11 @@
 package com.example.chasexplorer.Controller;
 
-import android.util.Log;
-
 import com.example.chasexplorer.Entity.Clinic;
 import com.example.chasexplorer.Entity.Review;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class ReviewAdapter {
 
@@ -22,17 +19,16 @@ public class ReviewAdapter {
         reviewAl = reviewArrayList;
     }
 
-    public int saveReview(Clinic clinic, String feedback, float rating, String uid, String email,String photoUrl, String index, FirebaseDatabase fbDatabase, String displayName){
-        Review newReview = new Review();
+    public boolean saveReview(Clinic clinic, String feedback, float rating, String uid, String email,String photoUrl, String index, FirebaseDatabase fbDatabase, String displayName){
         DatabaseReference myRef = fbDatabase.getReference().child(index);
         try {
             Review r = new Review(rating, feedback,uid, displayName, email, photoUrl, clinic.getPostalCode());
             myRef.child("reviewAl").child(uid).setValue(r);
         } catch (Exception e) {
             e.printStackTrace();
-            return 0;
+            return false;
         }
-        return 1;
+        return true;
     }
 
     public String getUsersFeedbackForClinic(String Uid, int clinicPostalCode){
@@ -81,6 +77,19 @@ public class ReviewAdapter {
             }
         }
         return newReviewAl;
+    }
+
+    public int getNumberOfFeedbackForClinic(int clinicPostalCode){
+        int size = 0;
+
+        if(reviewAl != null) {
+            for (Review r : reviewAl) {
+                if (r.getClinicPostalCode() == clinicPostalCode){
+                    size++;
+                }
+            }
+        }
+        return size;
     }
 
 }

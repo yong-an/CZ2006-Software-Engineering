@@ -6,4 +6,6 @@
     <string name="logoutText">Log out</string>
     <string name="emailLogin">Sign in</string>
     <string name="NearbyClinics">Nearby Clinics</string>
+    <string name="Rating">Please give us a rating</string>
+    <string name="Review">Tell us more</string>
 </resources>

@@ -39,6 +39,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private MapAdapter mController;
     private PersistentSearchView persistentSearchView;
     private Button nearbyBtn;
+    private boolean result;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +72,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             public void onSearchConfirmed(PersistentSearchView searchView, String query) {
                 mMap.clear();
                 searchView.collapse(true);
-                mController.plotSearchMarkers(query);
+                result = mController.plotSearchMarkers(query);
+
+                if(result == false)
+                    Toast.makeText(getApplicationContext(), "No Results Found", Toast.LENGTH_SHORT).show();
             }
 
         });

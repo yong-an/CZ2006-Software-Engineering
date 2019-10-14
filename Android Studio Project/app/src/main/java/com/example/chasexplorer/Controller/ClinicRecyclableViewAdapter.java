@@ -40,14 +40,14 @@ public class ClinicRecyclableViewAdapter extends RecyclerView.Adapter<ClinicRecy
 
     // Provide a suitable constructor (depends on the kind of dataset)
     public ClinicRecyclableViewAdapter(ArrayList<Clinic> myDataset)  {
-        clinicList = (ArrayList<Clinic>) myDataset.clone();;
+        clinicList = (ArrayList<Clinic>) myDataset.clone();
         mDataset = myDataset;
     }
 
     public void setDataset(ArrayList<Clinic> myDataset){
         clinicList.clear();
         myDataset.clear();
-        clinicList = (ArrayList<Clinic>) myDataset.clone();;
+        clinicList = (ArrayList<Clinic>) myDataset.clone();
         mDataset = myDataset;
     }
 
@@ -71,12 +71,7 @@ public class ClinicRecyclableViewAdapter extends RecyclerView.Adapter<ClinicRecy
         holder.textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View r) {
-//<<<<<<< HEAD
-                Toast.makeText(r.getContext(),"Clicked View Detailed clinics Button", Toast.LENGTH_SHORT).show();
-                //Toast.makeText(r.getContext(),, Toast.LENGTH_SHORT).show();
-//=======
-                //Toast.makeText(r.getContext(),"Clicked View Detailed clinics Button", Toast.LENGTH_SHORT).show();
-//>>>>>>> 5c30ed5ac915e74aafb6ea52414af704e09d2669
+
                 int index = mDataset.indexOf(mDataset.get(position));
                 Intent i = new Intent(r.getContext(), ViewClinicDetailsActivity.class);
                 i.putExtra("clinicObj", new Gson().toJson(mDataset.get(position)));

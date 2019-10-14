@@ -6,69 +6,112 @@
     android:layout_height="match_parent"
     tools:context=".Boundary.ViewClinicDetailsActivity">
 
-    <TextView
-        android:id="@+id/clinicDetails"
-        android:layout_width="318dp"
-        android:layout_height="130dp"
-        android:layout_marginStart="45dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="45dp"
-        android:layout_marginBottom="200dp"
-        android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.460"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.240" />
-
-    <RatingBar
-        android:id="@+id/ratingBar"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/activity_Recipe_detail_linearview"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:numStars="5"
-        android:stepSize="0.5"
-        android:theme="@style/RatingBar"
-        app:layout_constraintBottom_toTopOf="@id/my_recycler_view2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/clinicDetails" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/my_recycler_view2"
-        android:layout_width="353dp"
-        android:layout_height="320dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="320dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginBottom="2dp"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/radio_group_list_selector"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        tools:layout_constraintBottom_toTopOf="@id/radio_group_list_selector2" />
+        app:layout_constraintVertical_bias="0.0">
+
+        <TextView
+            android:id="@+id/clinicDetails"
+            style="@android:style/Widget.DeviceDefault.Light.TextView"
+            android:layout_width="match_parent"
+            android:layout_height="125dp"
+            android:layout_margin="15dp"
+            android:background="@drawable/bg_round"
+            android:fontFamily="@font/roboto_slab"
+            android:text="TextView"
+            android:textAlignment="textStart"
+            android:textAllCaps="true"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textStyle="normal"
+            app:autoSizeTextType="uniform"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <RatingBar
+            android:id="@+id/ratingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:numStars="5"
+            android:scaleX="0.65"
+            android:scaleY="0.65"
+            android:stepSize="0.5"
+            android:theme="@style/RatingBar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.719"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/clinicDetails" />
+
+    </LinearLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/activity_Recipe_detail_scrollview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/radio_group_list_selector2"
+        app:layout_constraintTop_toBottomOf="@+id/activity_Recipe_detail_linearview"
+        app:layout_constraintVertical_bias="0.1337"
+        tools:layout_editor_absoluteX="0dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/noOfReviews"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginBottom="2dp"
+                android:textColor="@color/chasblue1"
+                android:text="@string/title_activity_splash" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/my_recycler_view2"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_margin="15dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/radio_group_list_selector"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.325"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0"
+                tools:layout_constraintBottom_toTopOf="@id/radio_group_list_selector2" />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 
     <RadioGroup
         android:id="@+id/radio_group_list_selector2"
         android:layout_width="wrap_content"
-        android:layout_height="69dp"
+        android:layout_height="65dp"
         android:background="@null"
         android:orientation="horizontal"
-        android:padding="3dp"
+        android:padding="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.500"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/my_recycler_view2">
+        app:layout_constraintTop_toBottomOf="@+id/activity_Recipe_detail_scrollview">
 
         <ImageButton
             android:id="@+id/direction"
             android:layout_width="66dp"
             android:layout_height="61dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="16dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
             android:background="@null"
             android:scaleType="fitCenter"
             android:tint="@color/chasblue1"
@@ -107,5 +150,6 @@
             app:srcCompat="@drawable/clinic3_call" />
 
     </RadioGroup>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
