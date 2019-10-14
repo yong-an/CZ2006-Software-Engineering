@@ -22,6 +22,8 @@ import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import static android.content.ContentValues.TAG;
@@ -68,6 +70,15 @@ public class ClinicAdapter extends AppCompatActivity {
                 }
                 ReviewAdapter.setReviewAl((ArrayList) reviewArrayList);
                 FIREBASEDATA = (ArrayList<Clinic>) t.clone();
+                Collections.sort(FIREBASEDATA, new Comparator<Clinic>(){
+                    public int compare(Clinic clinic1, Clinic clinic2) {
+                        // ## Ascending order
+                        return clinic1.getClinicName().compareToIgnoreCase(clinic2.getClinicName()); // To compare string values
+
+                        // ## Descending order
+                        //return clinic2.getClinicName().compareToIgnoreCase(clinic1.getClinicName()); // To compare string values
+                    }
+                });
                 Log.d(TAG,"Pulled Data:  " + Rows);
                 progressAnimator.setIntValues(100);
                 progressAnimator.start();
@@ -96,8 +107,6 @@ public class ClinicAdapter extends AppCompatActivity {
         progressAnimator.start();
     }
 
-    public static ArrayList<Clinic> passMeAllData (){
-        return FIREBASEDATA;
-    }
+    public static ArrayList<Clinic> passMeAllData (){ return FIREBASEDATA; }
 
 }
