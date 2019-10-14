@@ -2,7 +2,6 @@ package com.example.chasexplorer.Boundary;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,7 +21,6 @@ import com.google.gson.Gson;
 public class ReviewActivity extends AppCompatActivity {
     private RatingBar mRatingBar;
     private TextView mClinicName;
-    private TextView mRatingScale;
     private EditText mFeedback;
     private Button mSendFeedback;
     private Clinic clinicDetails;
@@ -38,7 +36,6 @@ public class ReviewActivity extends AppCompatActivity {
 
         mRatingBar = (RatingBar) findViewById(R.id.ratingBar2);
         mClinicName = (TextView) findViewById(R.id.clinicName);
-        mRatingScale = (TextView) findViewById(R.id.tvRatingScale);
         mFeedback = (EditText) findViewById(R.id.editTextFeedback);
         mSendFeedback = (Button) findViewById(R.id.submitFeedBack);
         reviewAdapter = new ReviewAdapter();

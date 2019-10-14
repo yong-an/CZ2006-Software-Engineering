@@ -79,4 +79,17 @@ public class ReviewAdapter {
         return newReviewAl;
     }
 
+    public int getNumberOfFeedbackForClinic(int clinicPostalCode){
+        int size = 0;
+
+        if(reviewAl != null) {
+            for (Review r : reviewAl) {
+                if (r.getClinicPostalCode() == clinicPostalCode){
+                    size++;
+                }
+            }
+        }
+        return size;
+    }
+
 }

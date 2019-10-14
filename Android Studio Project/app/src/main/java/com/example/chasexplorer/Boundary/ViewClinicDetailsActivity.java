@@ -39,6 +39,7 @@ public class ViewClinicDetailsActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager layoutManager;
     private ArrayList<Review> NEWDATA;
     private int postalCode;
+    private TextView mRatingAmt;
 
 
     @Override
@@ -80,6 +81,9 @@ public class ViewClinicDetailsActivity extends AppCompatActivity {
         mRatingBar = (RatingBar) findViewById(R.id.ratingBar);
         mRatingBar.setRating(reviewAdapter.getAvgRatingForClinic(clinicDetails.getPostalCode()));
         mRatingBar.setEnabled(false);
+
+        mRatingAmt = (TextView) findViewById(R.id.noOfReviews);
+        mRatingAmt.setText("No. Reviews: " + reviewAdapter.getNumberOfFeedbackForClinic(clinicDetails.getPostalCode()));
 
         TextView clinicTV = (TextView) findViewById(R.id.clinicDetails);
         clinicTV.setText(clinicDetails.toString());

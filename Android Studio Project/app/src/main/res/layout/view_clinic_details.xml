@@ -6,49 +6,59 @@
     android:layout_height="match_parent"
     tools:context=".Boundary.ViewClinicDetailsActivity">
 
-
-    <TextView
-        android:id="@+id/clinicDetails"
-        style="@android:style/Widget.DeviceDefault.Light.TextView"
-        android:layout_width="315dp"
-        android:layout_height="150dp"
-        android:layout_marginBottom="200dp"
-        android:autoText="true"
-        android:background="@drawable/bg_round"
-        android:fontFamily="@font/roboto_slab"
-        android:text="TextView"
-        android:textAlignment="textStart"
-        android:textAllCaps="true"
-        android:textAppearance="@style/TextAppearance.AppCompat.Small"
-        android:textStyle="normal"
-        app:autoSizeTextType="uniform"
+    <LinearLayout
+        android:id="@+id/activity_Recipe_detail_linearview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.081" />
+        app:layout_constraintVertical_bias="0.0">
 
-    <RatingBar
-        android:id="@+id/ratingBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:numStars="5"
-        android:scaleX="0.65"
-        android:scaleY="0.65"
-        android:stepSize="0.5"
-        android:theme="@style/RatingBar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.50"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/clinicDetails" />
+        <TextView
+            android:id="@+id/clinicDetails"
+            style="@android:style/Widget.DeviceDefault.Light.TextView"
+            android:layout_width="match_parent"
+            android:layout_height="125dp"
+            android:layout_margin="15dp"
+            android:background="@drawable/bg_round"
+            android:fontFamily="@font/roboto_slab"
+            android:text="TextView"
+            android:textAlignment="textStart"
+            android:textAllCaps="true"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textStyle="normal"
+            app:autoSizeTextType="uniform"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <RatingBar
+            android:id="@+id/ratingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:numStars="5"
+            android:scaleX="0.65"
+            android:scaleY="0.65"
+            android:stepSize="0.5"
+            android:theme="@style/RatingBar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.719"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/clinicDetails" />
+
+    </LinearLayout>
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/activity_Recipe_detail_scrollview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@+id/radio_group_list_selector2"
-        app:layout_constraintTop_toBottomOf="@+id/ratingBar"
+        app:layout_constraintTop_toBottomOf="@+id/activity_Recipe_detail_linearview"
         app:layout_constraintVertical_bias="0.1337"
         tools:layout_editor_absoluteX="0dp">
 
@@ -57,10 +67,19 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <TextView
+                android:id="@+id/noOfReviews"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginBottom="2dp"
+                android:textColor="@color/chasblue1"
+                android:text="@string/title_activity_splash" />
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/my_recycler_view2"
                 android:layout_width="match_parent"
-                android:layout_height="252dp"
+                android:layout_height="250dp"
                 android:layout_margin="15dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintBottom_toTopOf="@+id/radio_group_list_selector"
@@ -131,5 +150,6 @@
             app:srcCompat="@drawable/clinic3_call" />
 
     </RadioGroup>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

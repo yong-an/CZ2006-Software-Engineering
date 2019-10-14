@@ -71,7 +71,6 @@ public class ClinicRecyclableViewAdapter extends RecyclerView.Adapter<ClinicRecy
         holder.textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View r) {
-                Toast.makeText(r.getContext(),"Clicked View Detailed clinics Button", Toast.LENGTH_SHORT).show();
 
                 int index = mDataset.indexOf(mDataset.get(position));
                 Intent i = new Intent(r.getContext(), ViewClinicDetailsActivity.class);
