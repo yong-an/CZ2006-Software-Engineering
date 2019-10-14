@@ -233,15 +233,26 @@ public class Clinic implements Parcelable {
 
     @Override
     public String toString(){
-        return getClinicName() + "\n" + getClinicCode() + "\n+(65)" + getClinicTelNo()
-                + "\n" + getStreetName() + "\nBlk " + getBlkHseNo() + getAddrType() + " #" + getFloorNo() + "-" + getUnitNo()
-                + "\nSingapore " + getPostalCode()+"\n";
+        String clinicDetails = new String();
+        clinicDetails = getClinicName() + "\n" + getClinicCode();
+        if(!(getClinicTelNo().equalsIgnoreCase(" ")))
+            clinicDetails += "\n(+65)"  + getClinicTelNo();
+        clinicDetails += "\n" + getStreetName() + "\nBlk " + getBlkHseNo() + getAddrType();
+        if(!(getFloorNo().equalsIgnoreCase(" ") && getUnitNo().equalsIgnoreCase(" ")))
+            clinicDetails += " #" + getFloorNo() + "-" + getUnitNo();
+        else if ((getUnitNo().equalsIgnoreCase(" ")) && !(getFloorNo().equalsIgnoreCase(" ")))
+            clinicDetails += " #" + getFloorNo();
+        clinicDetails += "\nSingapore " + getPostalCode()+"\n";
+        return clinicDetails;
     }
 
     public String toString2(){
-        return getClinicName()
-                + "\n(+65)"  + getClinicTelNo()
-                + "\n" + getStreetName();
+        String clinicDetails = new String();
+        clinicDetails = getClinicName();
+        if(!(getClinicTelNo().equalsIgnoreCase(" ")))
+            clinicDetails += "\n(+65)"  + getClinicTelNo();
+        clinicDetails += "\n" + getStreetName();
+        return clinicDetails;
     }
 
     /* How To Use Parcel

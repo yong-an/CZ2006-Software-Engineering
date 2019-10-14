@@ -18,6 +18,7 @@ public class Clinic {
 	private String licenceType;
 	private String clinicTelNo;
 	private int postalCode;
+	private String placeID;
 	private String addrType;
 	private String blkHseNo;
 	private String floorNo;
@@ -36,6 +37,7 @@ public class Clinic {
 		this.licenceType = "null";
 		this.clinicTelNo = "null";
 		this.postalCode = 0;
+		this.placeID = "null";
 		this.addrType = "a";
 		this.blkHseNo = "null";
 		this.floorNo = "null";
@@ -49,13 +51,14 @@ public class Clinic {
 		this.fmelUpdD = "null";
 	}
 	
-	public Clinic(String clinicCode,String clinicName, String licenceType,String clinicTelNo,int postalCode,String addrType, String blkHseNo,String floorNo, String unitNo,
+	public Clinic(String clinicCode,String clinicName, String licenceType,String clinicTelNo,int postalCode,String placeID,String addrType, String blkHseNo,String floorNo, String unitNo,
 			String streetName, String buildingName, String programmeCode, double XCoordinate, double YCoordinate,String incCrc, String fmelUpdD) {
 		this.clinicCode = clinicCode;
 		this.clinicName = clinicName;
 		this.licenceType = licenceType;
 		this.clinicTelNo = clinicTelNo;
 		this.postalCode = postalCode;
+		this.placeID = placeID;
 		this.addrType = addrType;
 		this.blkHseNo = blkHseNo;
 		this.floorNo = floorNo;
@@ -111,6 +114,14 @@ public class Clinic {
 
 	public String getBuildingName() {
 		return buildingName;
+	}
+
+	public String getPlaceID() {
+		return placeID;
+	}
+
+	public void setPlaceID(String placeID) {
+		this.placeID = placeID;
 	}
 
 	public String getProgrammeCode() {
@@ -204,7 +215,7 @@ public class Clinic {
 	public String toString() {
 		String clinicString = null;
 		clinicString = "Clinic Code: " + getClinicCode() + "\nClinic Name: " + getClinicName() + "\nLicence Type: " + 
-		getLicenceType() + "\nTelephone Number: " + getClinicTelNo() + "\nPostal Code: " + getPostalCode() + "\nAddress Type: " + getAddrType() + "\nBlk Number: " + getBlkHseNo() 
+		getLicenceType() + "\nTelephone Number: " + getClinicTelNo() + "\nPostal Code: " + getPostalCode() + "\nPlace ID: " + getPlaceID() +  "\nAddress Type: " + getAddrType() + "\nBlk Number: " + getBlkHseNo() 
 		+ "\nFloor No: " + getFloorNo() + "\nUnit No: " + getUnitNo() + "\nStreet Name: " + getStreetName() + "\nBuilding Name: " + getBuildingName() + "\nClinic Programme Name: " 
 		+ getProgrammeCode() + "\nX Coordinate: " + getXCoordinate() + "\nY Coordinate: " + getYCoordinate() + "\nINC CRC: " + getIncCrc() + "\nFMEL Upd D: " + getFmelUpdD() + "\n";
 		return clinicString;

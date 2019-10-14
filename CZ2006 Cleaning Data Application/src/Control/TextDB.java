@@ -6,7 +6,9 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -14,7 +16,10 @@ import java.util.StringTokenizer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.google.gson.*;
+
 import Entity.Clinic;
+
 
 /**
  * The {@code TextDB} is a control class that manages the reading and writing of
@@ -45,6 +50,17 @@ public class TextDB {
 	private static final String patternIncCrc = "<SimpleData name=\"INC_CRC\">";
 	private static final String patternFMEL = "<SimpleData name=\"FMEL_UPD_D\">";
 
+    private static final String PLACES_API_BASE = "https://maps.googleapis.com/maps/api/place";
+
+    private static final String TYPE_AUTOCOMPLETE = "/autocomplete";
+    private static final String TYPE_DETAILS = "/details";
+    private static final String TYPE_SEARCH = "/search";
+
+    private static final String OUT_JSON = "/json";
+
+    // KEY!
+    private static final String API_KEY = "AIzaSyAIBxxcXjzv456wmYzLDuWJ03zXte9agMc";
+    
 	/**
 	 * Reads in Clinic from text file. Returns ArrayList[Clinic].
 	 * 
@@ -160,6 +176,7 @@ public class TextDB {
 			m20 = r.matcher(line);
 		}
 		c = convertXYCoord(c,String.valueOf(c.getXCoordinate()),String.valueOf(c.getYCoordinate()));
+		c = getPlaceID(c);
 		return c;
 	}
 
@@ -231,4 +248,39 @@ public class TextDB {
 		} catch (Exception e) {e.printStackTrace();}		
 		return c;
 	}
+	
+	private static Clinic getPlaceID(Clinic c) {
+		c.setClinicName(c.getClinicName().replaceAll("&amp;", "&"));
+		String USER_AGENT = "Mozilla/5.0";
+		//https://maps.googleapis.com/maps/api/place/details/json?place_id=ChIJXUTTjhEU2jERQha4BXoGirM&fields=name,rating,opening_hours&key=AIzaSyAIBxxcXjzv456wmYzLDuWJ03zXte9agMc
+		String url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + c.getXCoordinate() + "," + c.getYCoordinate() + "&radius=50&type=clinic&keyword=" + c.getClinicName() +  "&key=" + API_KEY;
+		try {
+			URL obj = new URL(url);
+			HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+			// optional default is GET
+			con.setRequestMethod("GET");
+			//add request header
+			con.setRequestProperty("User-Agent", USER_AGENT);
+			int responseCode = con.getResponseCode();
+			System.out.println("\nSending 'GET' request to URL : " + url);
+			System.out.println("Response Code : " + responseCode);
+			BufferedReader in = new BufferedReader(
+			        new InputStreamReader(con.getInputStream()));
+			String inputLine;
+			StringBuffer response = new StringBuffer();
+			while ((inputLine = in.readLine()) != null) {
+				response.append(inputLine);
+			}
+			StringTokenizer st = new StringTokenizer(response.toString(),",");
+			while(st.hasMoreTokens()) {
+				String s = st.nextToken();
+				System.out.println("String token: "  + s);
+			}
+			//print result
+			System.out.println(response.toString());
+			in.close();
+		} catch (Exception e) {e.printStackTrace();}	
+		return c;
+	}
+	
 }
