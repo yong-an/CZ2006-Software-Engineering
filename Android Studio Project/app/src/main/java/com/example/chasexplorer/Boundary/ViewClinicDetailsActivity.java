@@ -13,13 +13,11 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.chasexplorer.Controller.ClinicRecyclableViewAdapter;
 import com.example.chasexplorer.Controller.ReviewAdapter;
 import com.example.chasexplorer.Controller.ReviewRecyclableViewAdapter;
 import com.example.chasexplorer.Entity.Clinic;
@@ -27,11 +25,6 @@ import com.example.chasexplorer.Entity.Review;
 import com.example.chasexplorer.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
@@ -46,16 +39,12 @@ public class ViewClinicDetailsActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager layoutManager;
     private ArrayList<Review> NEWDATA;
     private int postalCode;
-    FirebaseDatabase database = FirebaseDatabase.getInstance();;
-    DatabaseReference myRef;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.view_clinic_details);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setLogo(R.drawable.clinic_icon);
-        getSupportActionBar().setDisplayUseLogoEnabled(true);
         String jsonMyObject = null;
         reviewAdapter = new ReviewAdapter();
         int index = 0;
@@ -72,6 +61,7 @@ public class ViewClinicDetailsActivity extends AppCompatActivity {
 
         final Clinic clinicDetails = new Gson().fromJson(jsonMyObject, Clinic.class);
         postalCode = clinicDetails.getPostalCode();
+
         NEWDATA = reviewAdapter.getAllFeedbackForClinic(postalCode);
         recyclerView = (RecyclerView) findViewById(R.id.my_recycler_view2);
 
@@ -90,10 +80,11 @@ public class ViewClinicDetailsActivity extends AppCompatActivity {
         mRatingBar = (RatingBar) findViewById(R.id.ratingBar);
         mRatingBar.setRating(reviewAdapter.getAvgRatingForClinic(clinicDetails.getPostalCode()));
         mRatingBar.setEnabled(false);
+
         TextView clinicTV = (TextView) findViewById(R.id.clinicDetails);
         clinicTV.setText(clinicDetails.toString());
-        final String clinicTelNo = clinicDetails.getClinicTelNo();
 
+        final String clinicTelNo = clinicDetails.getClinicTelNo();
         ImageButton callBtn = (ImageButton) findViewById(R.id.call);
         callBtn.setOnClickListener(new View.OnClickListener() {
 
@@ -134,7 +125,6 @@ public class ViewClinicDetailsActivity extends AppCompatActivity {
 
                 if (firebase.getInstance().getCurrentUser() != null) {
                     //console.log("user id: " + firebase.auth().currentUser.uid);
-                    Toast.makeText(r.getContext(), "Clicked View Clinic Review button!", Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(r.getContext(), ReviewActivity.class);
                     i.putExtra("index",index1);
                     i.putExtra("clinicObj", new Gson().toJson(clinicDetails));

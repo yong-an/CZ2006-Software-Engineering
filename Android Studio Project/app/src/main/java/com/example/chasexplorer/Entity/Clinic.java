@@ -233,8 +233,12 @@ public class Clinic implements Parcelable {
 
     @Override
     public String toString(){
-        return getClinicName() + "\n" + getClinicCode() + "\n+(65)" + getClinicTelNo()
-                + "\n" + getStreetName() + "\nBlk " + getBlkHseNo() + getAddrType() + " #" + getFloorNo() + "-" + getUnitNo()
+        return getClinicName() +
+                "\n" + "Licence Type: " + getLicenceType() +
+                "\nTel. No: +(65)" + getClinicTelNo() +
+                "\nBuilding: " + getBuildingName() +
+                "\nStreet: " + getStreetName() +
+                "\nBlk " + getBlkHseNo() + getAddrType() + " #" + getFloorNo() + "-" + getUnitNo()
                 + "\nSingapore " + getPostalCode()+"\n";
     }
 
