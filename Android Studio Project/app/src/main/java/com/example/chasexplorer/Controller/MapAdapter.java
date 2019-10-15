@@ -42,9 +42,11 @@ public class MapAdapter {
                 LatLng Clinic = new LatLng(fb.getXCoordinate(),fb.getYCoordinate());
                 markerOptions.position(Clinic);
                 markerOptions.title(fb.getClinicName());
+                markerOptions.snippet("+65" + fb.getClinicTelNo());
                 markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
-
-                gmap.addMarker(markerOptions);
+                Marker m = gmap.addMarker(markerOptions);
+                int position = CLINICDATA.indexOf(fb);
+                m.setTag(fb +"|"+ position);
                 gmap.moveCamera(CameraUpdateFactory.newLatLng(Clinic));
                 gmap.moveCamera(CameraUpdateFactory.newLatLngZoom(SGLatLng, zoom));
             }
@@ -63,11 +65,13 @@ public class MapAdapter {
 
             for (Clinic fb : CLINICDATA) {
                 LatLng locationClinic = new LatLng(fb.getXCoordinate(),fb.getYCoordinate());
-
                 markerOptions.position(locationClinic);
                 markerOptions.title(fb.getClinicName());
+                markerOptions.snippet("+65" + fb.getClinicTelNo());
                 markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
                 Marker m = gmap.addMarker(markerOptions.visible(false));
+                int position = CLINICDATA.indexOf(fb);
+                m.setTag(fb +"|"+ position);
                 markers.add(m);
             }
 
@@ -131,16 +135,23 @@ public class MapAdapter {
             if(existTelNo == true || existClinicName == true){
                 markerOptions.position(clinicLocation);
                 markerOptions.title(fb.getClinicName());
+                markerOptions.snippet("+65" + fb.getClinicTelNo());
                 markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
-                gmap.addMarker(markerOptions);
+                Marker m = gmap.addMarker(markerOptions);
+                int position = CLINICDATA.indexOf(fb);
+                m.setTag(fb +" "+ position);
                 plot = true;
             }
 
             if(fb.getPostalCode() == postalCode){
                 markerOptions.position(clinicLocation);
                 markerOptions.title(fb.getClinicName());
+                markerOptions.snippet("+65" + fb.getClinicTelNo());
                 markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
                 gmap.addMarker(markerOptions);
+                Marker m = gmap.addMarker(markerOptions);
+                int position = CLINICDATA.indexOf(fb);
+                m.setTag(fb +" "+ position);
                 plot = true;
             }
         }

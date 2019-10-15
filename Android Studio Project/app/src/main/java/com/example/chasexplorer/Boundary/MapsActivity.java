@@ -27,6 +27,8 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.gson.Gson;
 import com.paulrybitskyi.persistentsearchview.PersistentSearchView;
 import com.paulrybitskyi.persistentsearchview.listeners.OnSearchConfirmedListener;
 import com.paulrybitskyi.persistentsearchview.utils.VoiceRecognitionDelegate;
@@ -133,6 +135,32 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         getGPSPermission();
         mMap.getUiSettings().setMapToolbarEnabled(false);
         mMap = mController.getGmap(mMap);
+
+        mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+
+            @Override
+            public void onInfoWindowClick(Marker marker) {
+
+                /*int index = mDataset.indexOf(mDataset.get(position));
+                Intent i = new Intent(MapsActivity.this,ViewClinicDetailsActivity.class);
+                i.putExtra("clinicObj", new Gson().toJson(mDataset.get(position)));
+                i.putExtra("index" ,index);
+                MapsActivity.this.startActivity(i);*/
+                //String hello = new Gson().toJson(marker.getTag());
+
+               // String markerInfo = marker.getTag().toString();
+                //String clinicObject = markerInfo.substring(0, markerInfo.indexOf("|"));
+               // String stringPosition = markerInfo.substring(markerInfo.lastIndexOf("|") + 1);
+               // int position = Integer.parseInt(stringPosition);
+
+               // Intent i = new Intent(MapsActivity.this,ViewClinicDetailsActivity.class);
+              //  i.putExtra("clinicObj", new Gson().toJson(clinicObject);
+              //  i.putExtra("index" ,position);
+              //  MapsActivity.this.startActivity(i);
+
+               // Toast.makeText(getApplicationContext(), "" + clinicObject, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override

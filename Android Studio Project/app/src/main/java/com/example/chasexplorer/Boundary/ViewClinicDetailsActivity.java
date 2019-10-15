@@ -24,14 +24,12 @@ import com.example.chasexplorer.Entity.Clinic;
 import com.example.chasexplorer.Entity.Review;
 import com.example.chasexplorer.R;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
 public class ViewClinicDetailsActivity extends AppCompatActivity {
     private static FirebaseAuth firebase;
-    private static FirebaseUser loggedIn;
     private RatingBar mRatingBar;
     private ReviewAdapter reviewAdapter;
     private RecyclerView recyclerView;
@@ -125,10 +123,8 @@ public class ViewClinicDetailsActivity extends AppCompatActivity {
         reviewBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View r) {
-                //loggedIn = firebase.getCurrentUser();
 
                 if (firebase.getInstance().getCurrentUser() != null) {
-                    //console.log("user id: " + firebase.auth().currentUser.uid);
                     Intent i = new Intent(r.getContext(), ReviewActivity.class);
                     i.putExtra("index",index1);
                     i.putExtra("clinicObj", new Gson().toJson(clinicDetails));
