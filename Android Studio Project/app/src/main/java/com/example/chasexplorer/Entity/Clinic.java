@@ -234,7 +234,7 @@ public class Clinic implements Parcelable {
     @Override
     public String toString(){
         String clinicDetails = new String();
-        clinicDetails = getClinicName() + "\n" + getClinicCode();
+        clinicDetails = getClinicName() + "\nClinic Code: " + getClinicCode();
         if(!(getClinicTelNo().equalsIgnoreCase(" ")))
             clinicDetails += "\n(+65)"  + getClinicTelNo();
         clinicDetails += "\n" + getStreetName() + "\nBlk " + getBlkHseNo() + getAddrType();
