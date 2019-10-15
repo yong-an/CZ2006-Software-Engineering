@@ -10,6 +10,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 import java.util.Scanner;
 import java.util.StringTokenizer;
@@ -251,11 +252,13 @@ public class TextDB {
 	
 	private static Clinic getPlaceID(Clinic c) {
 		c.setClinicName(c.getClinicName().replaceAll("&amp;", "&"));
-		String USER_AGENT = "Mozilla/5.0";
+		String USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.90 Safari/537.36";
 		//https://maps.googleapis.com/maps/api/place/details/json?place_id=ChIJXUTTjhEU2jERQha4BXoGirM&fields=name,rating,opening_hours&key=AIzaSyAIBxxcXjzv456wmYzLDuWJ03zXte9agMc
 		String url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + c.getXCoordinate() + "," + c.getYCoordinate() + "&radius=50&type=clinic&keyword=" + c.getClinicName() +  "&key=" + API_KEY;
 		try {
+			url = url.replaceAll(" ", "%20");
 			URL obj = new URL(url);
+			Thread.sleep(1000);
 			HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 			// optional default is GET
 			con.setRequestMethod("GET");
@@ -274,7 +277,19 @@ public class TextDB {
 			StringTokenizer st = new StringTokenizer(response.toString(),",");
 			while(st.hasMoreTokens()) {
 				String s = st.nextToken();
-				System.out.println("String token: "  + s);
+				if(s.contains("place_id")) {
+					s = s.replaceAll("\"place_id\" : \"","");
+					s = s.replaceAll("\"", "");
+					s = s.replaceAll(" ", "");
+					System.out.println(s);
+					c.setPlaceID(s);
+				}  else if (s.contains("photo_reference")) {
+					s = s.replaceAll("\"photo_reference\" : \"","");
+					s = s.replaceAll("\"", "");
+					s = s.replaceAll(" ", "");
+					System.out.println(s);
+					c.setPhotoRef(s);
+				} 
 			}
 			//print result
 			System.out.println(response.toString());

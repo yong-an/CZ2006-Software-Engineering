@@ -19,6 +19,7 @@ public class Clinic {
 	private String clinicTelNo;
 	private int postalCode;
 	private String placeID;
+	private String photoRef;
 	private String addrType;
 	private String blkHseNo;
 	private String floorNo;
@@ -38,6 +39,7 @@ public class Clinic {
 		this.clinicTelNo = "null";
 		this.postalCode = 0;
 		this.placeID = "null";
+		this.photoRef = "null";
 		this.addrType = "a";
 		this.blkHseNo = "null";
 		this.floorNo = "null";
@@ -51,7 +53,7 @@ public class Clinic {
 		this.fmelUpdD = "null";
 	}
 	
-	public Clinic(String clinicCode,String clinicName, String licenceType,String clinicTelNo,int postalCode,String placeID,String addrType, String blkHseNo,String floorNo, String unitNo,
+	public Clinic(String clinicCode,String clinicName, String licenceType,String clinicTelNo,int postalCode,String placeID,String photoRef, String addrType, String blkHseNo,String floorNo, String unitNo,
 			String streetName, String buildingName, String programmeCode, double XCoordinate, double YCoordinate,String incCrc, String fmelUpdD) {
 		this.clinicCode = clinicCode;
 		this.clinicName = clinicName;
@@ -59,6 +61,7 @@ public class Clinic {
 		this.clinicTelNo = clinicTelNo;
 		this.postalCode = postalCode;
 		this.placeID = placeID;
+		this.photoRef = photoRef;
 		this.addrType = addrType;
 		this.blkHseNo = blkHseNo;
 		this.floorNo = floorNo;
@@ -205,6 +208,14 @@ public class Clinic {
 
 	public void setIncCrc(String incCrc) {
 		this.incCrc = incCrc;
+	}
+
+	public String getPhotoRef() {
+		return photoRef;
+	}
+
+	public void setPhotoRef(String photoRef) {
+		this.photoRef = photoRef;
 	}
 
 	public void setFmelUpdD(String fmelUpdD) {
