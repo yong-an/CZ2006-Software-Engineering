@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.chasexplorer.Boundary.ViewClinicDetailsActivity;
@@ -20,7 +21,7 @@ import java.util.Locale;
 
 import static android.content.ContentValues.TAG;
 
-public class ClinicRecyclableViewAdapter extends RecyclerView.Adapter<ClinicRecyclableViewAdapter.MyViewHolder> {
+public class ClinicRecyclableViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private ArrayList<Clinic> mDataset;
     private ArrayList<Clinic> clinicList;
 
@@ -35,6 +36,21 @@ public class ClinicRecyclableViewAdapter extends RecyclerView.Adapter<ClinicRecy
             super(v);
             TextView clinic = (TextView) v.findViewById(R.id.clinicName);
             textView = clinic;
+
+        }
+    }
+
+    public static class MyViewHolder2 extends RecyclerView.ViewHolder {
+        // each data item is just a string in this case
+        public TextView textView2;
+        public TextView textView3;
+
+        public MyViewHolder2(View v) {
+            super(v);
+            TextView clinic2 = (TextView) v.findViewById(R.id.clinicName2);
+            TextView sectionHeader = (TextView) v.findViewById(R.id.sectionHeader);
+            textView2 = clinic2;
+            textView3 = sectionHeader;
         }
     }
 
@@ -53,33 +69,73 @@ public class ClinicRecyclableViewAdapter extends RecyclerView.Adapter<ClinicRecy
 
     // Create new views (invoked by the layout manager)
     @Override
-    public MyViewHolder onCreateViewHolder(ViewGroup parent,
-                                                     int viewType) {
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent,
+                                                      int viewType) {
         // create a new view
-        View v =  LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.clinic_listing, parent, false);
-        MyViewHolder vh = new MyViewHolder(v);
+        View v;
+        RecyclerView.ViewHolder vh = null;
+        if(viewType == 0) {
+            v = LayoutInflater.from(parent.getContext()).inflate(R.layout.clinic_listing_section_header, parent, false);
+            vh = new MyViewHolder2(v);
+        } else {
+            v = LayoutInflater.from(parent.getContext()).inflate(R.layout.clinic_listing, parent, false);
+            vh = new MyViewHolder(v);
+        }
         return vh;
     }
 
     // Replace the contents of a view (invoked by the layout manager)
     @Override
-    public void onBindViewHolder(MyViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
-        holder.textView.setText(mDataset.get(position).toString2());
-        holder.textView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View r) {
+        final int position1 = position;
+        if (holder instanceof MyViewHolder && (mDataset.get(position).toString2()!=null)) {
+            MyViewHolder vh = (MyViewHolder) holder;
+            vh.textView.setText(mDataset.get(position).toString2());
+            vh.textView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View r) {
 
-                int index = mDataset.indexOf(mDataset.get(position));
-                Intent i = new Intent(r.getContext(), ViewClinicDetailsActivity.class);
-                i.putExtra("clinicObj", new Gson().toJson(mDataset.get(position)));
-                i.putExtra("index" ,index);
-                r.getContext().startActivity(i);
-            }
-        });
+                    int index = mDataset.indexOf(mDataset.get(position1));
+                    Intent i = new Intent(r.getContext(), ViewClinicDetailsActivity.class);
+                    i.putExtra("clinicObj", new Gson().toJson(mDataset.get(position1)));
+                    i.putExtra("index", index);
+                    r.getContext().startActivity(i);
+                }
+            });
+        } else if (holder instanceof MyViewHolder2) {
+            MyViewHolder2 vh = (MyViewHolder2) holder;
+            vh.textView2.setText(mDataset.get(position).toString2());
+            vh.textView3.setText((String.valueOf(mDataset.get(position).getClinicName().charAt(0))));
+            vh.textView2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View r) {
 
+                    int index = mDataset.indexOf(mDataset.get(position1));
+                    Intent i = new Intent(r.getContext(), ViewClinicDetailsActivity.class);
+                    i.putExtra("clinicObj", new Gson().toJson(mDataset.get(position1)));
+                    i.putExtra("index", index);
+                    r.getContext().startActivity(i);
+                }
+            });
+        }
+    }
+
+
+    @Override
+    public int getItemViewType(int position) {
+        Character c;
+        Character c2;
+        if(position == 0)
+            return 0;
+        else
+            c =  mDataset.get(position).getClinicName().charAt(0);
+            c2 =  mDataset.get(position-1).getClinicName().charAt(0);
+            if((c.equals(c2)))
+                return 1;
+            else
+                return 0;
     }
 
     // Return the size of your dataset (invoked by the layout manager)

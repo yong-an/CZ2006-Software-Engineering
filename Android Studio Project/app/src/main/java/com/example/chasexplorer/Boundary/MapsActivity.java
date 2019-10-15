@@ -118,14 +118,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     }
 
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         VoiceRecognitionDelegate.handleResult(persistentSearchView, requestCode, resultCode, data);
     }
-
-
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
