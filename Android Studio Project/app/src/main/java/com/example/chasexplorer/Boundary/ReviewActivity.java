@@ -54,8 +54,8 @@ public class ReviewActivity extends AppCompatActivity {
         //getting user id
         final FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         
-        mRatingBar.setRating(reviewAdapter.getUsersRatingForClinic(currentFirebaseUser.getUid(),clinicDetails.getPostalCode()));
-        mFeedback.setText(reviewAdapter.getUsersFeedbackForClinic(currentFirebaseUser.getUid(),clinicDetails.getPostalCode()));
+        mRatingBar.setRating(reviewAdapter.getUsersRatingForClinic(currentFirebaseUser.getUid(),clinicDetails.getClinicCode()));
+        mFeedback.setText(reviewAdapter.getUsersFeedbackForClinic(currentFirebaseUser.getUid(),clinicDetails.getClinicCode()));
 
         mSendFeedback.setOnClickListener(new View.OnClickListener() {
             @Override

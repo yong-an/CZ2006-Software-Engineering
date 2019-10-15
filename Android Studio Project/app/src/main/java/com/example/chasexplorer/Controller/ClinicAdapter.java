@@ -31,6 +31,7 @@ import static android.content.ContentValues.TAG;
 public class ClinicAdapter extends AppCompatActivity {
 
     private static ArrayList<Clinic> FIREBASEDATA;
+    private static ArrayList<Clinic> ORIGINALUNSORTED; // need the index of the original arraylist for saving purpose as DB is in unsorted manner
     private Handler mHandler;
     private Runnable mRunnable;
     private ProgressBar mProgressBar;
@@ -62,13 +63,13 @@ public class ClinicAdapter extends AppCompatActivity {
                 for(DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                     Clinic chasClinic = postSnapshot.getValue(Clinic.class);
                     for(DataSnapshot reviews: postSnapshot.child("reviewAl").getChildren()) {
-                        Log.d(TAG, "LOOPING THROUGH REVIEWAL CHILDREN");
                         Review clinicReview = reviews.getValue(Review.class);
                         reviewArrayList.add(clinicReview);
                     }
                     t.add(chasClinic);
                 }
                 ReviewAdapter.setReviewAl((ArrayList) reviewArrayList);
+                ORIGINALUNSORTED =(ArrayList<Clinic>) t.clone();
                 FIREBASEDATA = (ArrayList<Clinic>) t.clone();
                 Collections.sort(FIREBASEDATA, new Comparator<Clinic>(){
                     public int compare(Clinic clinic1, Clinic clinic2) {
@@ -108,5 +109,14 @@ public class ClinicAdapter extends AppCompatActivity {
     }
 
     public static ArrayList<Clinic> passMeAllData (){ return FIREBASEDATA; }
+
+    public static int getIndexOfUnsortedClinicAL(Clinic c) {
+        int index = 0;
+        for (int i = 0;i < ORIGINALUNSORTED.size();i++) {
+            if(ORIGINALUNSORTED.get(i).getClinicCode().equalsIgnoreCase(c.getClinicCode()))
+                return i;
+        }
+        return index;
+    }
 
 }
