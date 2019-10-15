@@ -11,20 +11,20 @@ public class Review implements  Parcelable {
     private String displayName;
     private String email;
     private String photoUrl;
-    private int clinicPostalCode;
+    private String clinicCode;
 
     public Review(){
         // Empty constructor for Firebase
     }
 
-    public Review(float rating, String feedbackText, String uid, String displayName, String email, String photoUrl, int clinicPostalCode) {
+    public Review(float rating, String feedbackText, String uid, String displayName, String email, String photoUrl, String clinicCode) {
         this.rating = rating;
         this.feedbackText = feedbackText;
         this.uid = uid;
         this.displayName = displayName;
         this.email = email;
         this.photoUrl = photoUrl;
-        this.clinicPostalCode = clinicPostalCode;
+        this.clinicCode = clinicCode;
     }
     public float getRating() {
         return rating;
@@ -54,9 +54,9 @@ public class Review implements  Parcelable {
 
     public void setPhotoUrl() { this.photoUrl = photoUrl; }
 
-    public int getClinicPostalCode(){ return clinicPostalCode; }
+    public String getClinicCode(){ return clinicCode; }
 
-    public void setClinicPostalCode(int clinicPostalCode) { this.clinicPostalCode = clinicPostalCode; }
+    public void setClinicCode(String clinicCode) { this.clinicCode = clinicCode; }
 
     @Override
     public int describeContents() {
@@ -73,7 +73,7 @@ public class Review implements  Parcelable {
         dest.writeString(displayName);
         dest.writeString(email);
         dest.writeString(photoUrl);
-        dest.writeInt(clinicPostalCode);
+        dest.writeString(clinicCode);
     }
 
     public Review(Parcel in) {
@@ -83,7 +83,7 @@ public class Review implements  Parcelable {
         displayName = in.readString();
         email = in.readString();
         photoUrl = in.readString();
-        clinicPostalCode = in.readInt();
+        clinicCode = in.readString();
     }
 
     public static final Parcelable.Creator<Review> CREATOR = new Parcelable.Creator<Review>() {

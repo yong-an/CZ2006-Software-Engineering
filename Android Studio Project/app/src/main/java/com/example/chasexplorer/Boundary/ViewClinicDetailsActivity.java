@@ -18,6 +18,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.chasexplorer.Controller.ClinicAdapter;
 import com.example.chasexplorer.Controller.ReviewAdapter;
 import com.example.chasexplorer.Controller.ReviewRecyclableViewAdapter;
 import com.example.chasexplorer.Entity.Clinic;
@@ -38,7 +39,7 @@ public class ViewClinicDetailsActivity extends AppCompatActivity {
     private ReviewRecyclableViewAdapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
     private ArrayList<Review> NEWDATA;
-    private int postalCode;
+    private String clinicCode;
     private TextView mRatingAmt;
 
 
@@ -61,9 +62,9 @@ public class ViewClinicDetailsActivity extends AppCompatActivity {
         final String index1= String.valueOf(index);
 
         final Clinic clinicDetails = new Gson().fromJson(jsonMyObject, Clinic.class);
-        postalCode = clinicDetails.getPostalCode();
+        clinicCode = clinicDetails.getClinicCode();
 
-        NEWDATA = reviewAdapter.getAllFeedbackForClinic(postalCode);
+        NEWDATA = reviewAdapter.getAllFeedbackForClinic(clinicCode);
         recyclerView = (RecyclerView) findViewById(R.id.my_recycler_view2);
 
         // use this setting to improve performance if you know that changes
@@ -79,11 +80,11 @@ public class ViewClinicDetailsActivity extends AppCompatActivity {
         recyclerView.setAdapter(mAdapter);
 
         mRatingBar = (RatingBar) findViewById(R.id.ratingBar);
-        mRatingBar.setRating(reviewAdapter.getAvgRatingForClinic(clinicDetails.getPostalCode()));
+        mRatingBar.setRating(reviewAdapter.getAvgRatingForClinic(clinicDetails.getClinicCode()));
         mRatingBar.setEnabled(false);
 
         mRatingAmt = (TextView) findViewById(R.id.noOfReviews);
-        mRatingAmt.setText("No. Reviews: " + reviewAdapter.getNumberOfFeedbackForClinic(clinicDetails.getPostalCode()));
+        mRatingAmt.setText("No. Reviews: " + reviewAdapter.getNumberOfFeedbackForClinic(clinicDetails.getClinicCode()));
 
         TextView clinicTV = (TextView) findViewById(R.id.clinicDetails);
         clinicTV.setText(clinicDetails.toString());
@@ -130,7 +131,7 @@ public class ViewClinicDetailsActivity extends AppCompatActivity {
                 if (firebase.getInstance().getCurrentUser() != null) {
                     //console.log("user id: " + firebase.auth().currentUser.uid);
                     Intent i = new Intent(r.getContext(), ReviewActivity.class);
-                    i.putExtra("index",index1);
+                    i.putExtra("index", String.valueOf(ClinicAdapter.getIndexOfUnsortedClinicAL(clinicDetails)));
                     i.putExtra("clinicObj", new Gson().toJson(clinicDetails));
                     r.getContext().startActivity(i);
                 }
@@ -146,8 +147,9 @@ public class ViewClinicDetailsActivity extends AppCompatActivity {
     @Override
     public void onResume(){
         super.onResume();
-        mAdapter.setmDataset(reviewAdapter.getAllFeedbackForClinic(postalCode));
-        mRatingBar.setRating(reviewAdapter.getAvgRatingForClinic(postalCode));
+        mAdapter.setmDataset(reviewAdapter.getAllFeedbackForClinic(clinicCode));
+        mRatingBar.setRating(reviewAdapter.getAvgRatingForClinic(clinicCode));
+        mRatingAmt.setText("No. Reviews: " + reviewAdapter.getNumberOfFeedbackForClinic(clinicCode));
         mAdapter.notifyDataSetChanged();
     }
 

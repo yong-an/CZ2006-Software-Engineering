@@ -86,7 +86,7 @@ public class ClinicRecyclableViewAdapter extends RecyclerView.Adapter<RecyclerVi
 
     // Replace the contents of a view (invoked by the layout manager)
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, final int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
         final int position1 = position;
@@ -96,11 +96,8 @@ public class ClinicRecyclableViewAdapter extends RecyclerView.Adapter<RecyclerVi
             vh.textView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View r) {
-
-                    int index = mDataset.indexOf(mDataset.get(position1));
                     Intent i = new Intent(r.getContext(), ViewClinicDetailsActivity.class);
                     i.putExtra("clinicObj", new Gson().toJson(mDataset.get(position1)));
-                    i.putExtra("index", index);
                     r.getContext().startActivity(i);
                 }
             });
@@ -111,11 +108,8 @@ public class ClinicRecyclableViewAdapter extends RecyclerView.Adapter<RecyclerVi
             vh.textView2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View r) {
-
-                    int index = mDataset.indexOf(mDataset.get(position1));
                     Intent i = new Intent(r.getContext(), ViewClinicDetailsActivity.class);
                     i.putExtra("clinicObj", new Gson().toJson(mDataset.get(position1)));
-                    i.putExtra("index", index);
                     r.getContext().startActivity(i);
                 }
             });
