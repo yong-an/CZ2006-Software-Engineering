@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.RatingBar;
@@ -50,10 +51,10 @@ public class ViewClinicDetailsActivity extends AppCompatActivity {
 
         Bundle extras = getIntent().getExtras();
 
+
         if (extras != null) {
             jsonMyObject = extras.getString("clinicObj");
             index = extras.getInt("index");
-
         }
 
         final String index1= String.valueOf(index);

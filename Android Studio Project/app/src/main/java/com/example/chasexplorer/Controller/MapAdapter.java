@@ -9,6 +9,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.gson.Gson;
 import com.google.maps.android.SphericalUtil;
 
 import java.util.ArrayList;
@@ -46,7 +47,8 @@ public class MapAdapter {
                 markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
                 Marker m = gmap.addMarker(markerOptions);
                 int position = CLINICDATA.indexOf(fb);
-                m.setTag(fb +"|"+ position);
+                Object DATA = new Gson().toJson(CLINICDATA.get(position));
+                m.setTag(DATA +"|"+ position);
                 gmap.moveCamera(CameraUpdateFactory.newLatLng(Clinic));
                 gmap.moveCamera(CameraUpdateFactory.newLatLngZoom(SGLatLng, zoom));
             }
@@ -71,7 +73,8 @@ public class MapAdapter {
                 markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
                 Marker m = gmap.addMarker(markerOptions.visible(false));
                 int position = CLINICDATA.indexOf(fb);
-                m.setTag(fb +"|"+ position);
+                Object DATA = new Gson().toJson(CLINICDATA.get(position));
+                m.setTag(DATA +"|"+ position);
                 markers.add(m);
             }
 
@@ -139,7 +142,8 @@ public class MapAdapter {
                 markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
                 Marker m = gmap.addMarker(markerOptions);
                 int position = CLINICDATA.indexOf(fb);
-                m.setTag(fb +" "+ position);
+                Object DATA = new Gson().toJson(CLINICDATA.get(position));
+                m.setTag(DATA +"|"+ position);
                 plot = true;
             }
 
@@ -151,7 +155,8 @@ public class MapAdapter {
                 gmap.addMarker(markerOptions);
                 Marker m = gmap.addMarker(markerOptions);
                 int position = CLINICDATA.indexOf(fb);
-                m.setTag(fb +" "+ position);
+                Object DATA = new Gson().toJson(CLINICDATA.get(position));
+                m.setTag(DATA +"|"+ position);
                 plot = true;
             }
         }

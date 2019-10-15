@@ -13,6 +13,7 @@ import android.content.pm.PackageManager;
 
 import android.location.Location;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -32,6 +33,9 @@ import com.google.gson.Gson;
 import com.paulrybitskyi.persistentsearchview.PersistentSearchView;
 import com.paulrybitskyi.persistentsearchview.listeners.OnSearchConfirmedListener;
 import com.paulrybitskyi.persistentsearchview.utils.VoiceRecognitionDelegate;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import static android.content.ContentValues.TAG;
 
@@ -137,25 +141,23 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
             @Override
             public void onInfoWindowClick(Marker marker) {
+                String markerInfo = (String) marker.getTag();
+                String clinicObject = markerInfo.substring(0, markerInfo.indexOf("|"));
 
-                /*int index = mDataset.indexOf(mDataset.get(position));
+                String stringPosition = markerInfo.substring(markerInfo.lastIndexOf("|") + 1);
+                int position = Integer.parseInt(stringPosition);
+
+                JSONObject obj = null;
+                try {
+                    obj = new JSONObject(clinicObject);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
                 Intent i = new Intent(MapsActivity.this,ViewClinicDetailsActivity.class);
-                i.putExtra("clinicObj", new Gson().toJson(mDataset.get(position)));
-                i.putExtra("index" ,index);
-                MapsActivity.this.startActivity(i);*/
-                //String hello = new Gson().toJson(marker.getTag());
-
-               // String markerInfo = marker.getTag().toString();
-                //String clinicObject = markerInfo.substring(0, markerInfo.indexOf("|"));
-               // String stringPosition = markerInfo.substring(markerInfo.lastIndexOf("|") + 1);
-               // int position = Integer.parseInt(stringPosition);
-
-               // Intent i = new Intent(MapsActivity.this,ViewClinicDetailsActivity.class);
-              //  i.putExtra("clinicObj", new Gson().toJson(clinicObject);
-              //  i.putExtra("index" ,position);
-              //  MapsActivity.this.startActivity(i);
-
-               // Toast.makeText(getApplicationContext(), "" + clinicObject, Toast.LENGTH_SHORT).show();
+                i.putExtra("clinicObj", String.valueOf(obj));
+                i.putExtra("index" ,position);
+                MapsActivity.this.startActivity(i);
             }
         });
     }
