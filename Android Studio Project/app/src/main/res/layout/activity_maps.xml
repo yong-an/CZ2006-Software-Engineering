@@ -98,6 +98,7 @@
         android:layout_marginLeft="10dp"
         android:alpha="0.8"
         android:background="@color/colorWhite"
+        android:fontFamily="@font/roboto_slab"
         android:padding="10dp"
         android:text="@string/NearbyClinics"/>
 

@@ -18,7 +18,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.GenericTypeIndicator;
+
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -118,5 +118,111 @@ public class ClinicAdapter extends AppCompatActivity {
         }
         return index;
     }
+
+    /* public static List<String> getPlaceID(Clinic c) {
+        c.setClinicName(c.getClinicName().replaceAll("&amp;", "&"));
+        String USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.90 Safari/537.36";
+        String url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + c.getXCoordinate() + "," + c.getYCoordinate() + "&radius=50&type=clinic&keyword=" + c.getClinicName() +  "&key=" + API_KEY;
+        List<String> GOOGLECLINIC = new ArrayList<>();
+        String isOpened = " ";
+
+        try {
+            url = url.replaceAll(" ", "%20");
+            URL obj = new URL(url);
+            Thread.sleep(1000);
+            HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+            // optional default is GET
+            con.setRequestMethod("GET");
+            //add request header
+            con.setRequestProperty("User-Agent", USER_AGENT);
+            int responseCode = con.getResponseCode();
+            System.out.println("\nSending 'GET' request to URL : " + url);
+            System.out.println("Response Code : " + responseCode);
+            BufferedReader in = new BufferedReader(
+                    new InputStreamReader(con.getInputStream()));
+            String inputLine;
+            StringBuffer response = new StringBuffer();
+            while ((inputLine = in.readLine()) != null) {
+                response.append(inputLine);
+            }
+            StringTokenizer st = new StringTokenizer(response.toString(),",");
+            while(st.hasMoreTokens()) {
+                String s = st.nextToken();
+                if(s.contains("place_id")) {
+                    s = s.replaceAll("\"place_id\" : \"","");
+                    s = s.replaceAll("\"", "");
+                    s = s.replaceAll(" ", "");
+                    GOOGLECLINIC.add(s);
+                }
+                if(s.contains("opening_hours")) {
+                    if(s.contains("true"))
+                        isOpened = "Opened";
+                    else
+                        isOpened = "Closed";
+
+                    GOOGLECLINIC.add(isOpened);
+                }
+            }
+            //print result
+            System.out.println(response.toString());
+            in.close();
+        } catch (Exception e) {e.printStackTrace();}
+        return GOOGLECLINIC;
+    } */
+
+   /* public static List<String>  getPlaceDetails (String placeId) {
+        String USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.90 Safari/537.36";
+        String url = "https://maps.googleapis.com/maps/api/place/details/json?place_id="+placeId+"&fields=name,opening_hours&key=" + API_KEY;
+        boolean weekday_text = false;
+        List<String> openingHours = new ArrayList<>();
+
+        try {
+            url = url.replaceAll(" ", "%20");
+            URL obj = new URL(url);
+            Thread.sleep(1000);
+            HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+            // optional default is GET
+            con.setRequestMethod("GET");
+            //add request header
+            con.setRequestProperty("User-Agent", USER_AGENT);
+            int responseCode = con.getResponseCode();
+            System.out.println("\nSending 'GET' request to URL : " + url);
+            System.out.println("Response Code : " + responseCode);
+            BufferedReader in = new BufferedReader(
+                    new InputStreamReader(con.getInputStream()));
+            String inputLine;
+            StringBuffer response = new StringBuffer();
+            while ((inputLine = in.readLine()) != null) {
+                response.append(inputLine);
+            }
+            StringTokenizer st = new StringTokenizer(response.toString(),",");
+            while(st.hasMoreTokens()) {
+                String s = st.nextToken();
+                if(s.contains("weekday_text")) {
+                    weekday_text = true;
+                    s = s.replaceAll("\"", "");
+                    s = s.replaceAll(",", "");
+                    openingHours.add(s);
+                }
+				else if ((weekday_text) && (!(s.contains("]")))) {
+                    s = s.replaceAll("\"", "");
+                    s = s.replaceAll(",", "");
+                    openingHours.add(s);
+                } else if ((weekday_text) && ((s.contains("]")))) {
+                    weekday_text = false;
+                    s = s.replaceAll("\"", "");
+                    s = s.replaceAll(",", "");
+                    openingHours.add(s);
+                }
+            }
+            //print result
+            System.out.println(response.toString());
+            in.close();
+            return openingHours;
+
+        } catch (Exception e) {e.printStackTrace();}
+
+        return openingHours;
+    } */
 
 }

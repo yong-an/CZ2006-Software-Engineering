@@ -42,7 +42,7 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
         userEmail = (TextView) findViewById(R.id.userEmail);
         btnSignout= (Button)findViewById(R.id.signoutBtn);
 
-        userEmail.setText("Welcome Back \n" + auth.getCurrentUser().getEmail());
+        userEmail.setText("Welcome Back \t" + auth.getCurrentUser().getEmail());
 
         btnSignout.setOnClickListener(this);
 

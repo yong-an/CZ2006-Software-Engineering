@@ -54,7 +54,7 @@
 
     <style name="RatingBar" parent="Theme.AppCompat">
         <item name="colorControlNormal">@color/chasgrey</item>
-        <item name="colorControlActivated">@color/mellow</item>
+        <item name="colorControlActivated">@color/quantum_yellow</item>
         <item name="android:minHeight">22dip</item>
         <item name="android:maxHeight">22dip</item>
     </style>

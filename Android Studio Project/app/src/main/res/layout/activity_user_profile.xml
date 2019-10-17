@@ -1,103 +1,266 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Boundary.UserProfileActivity" >
+    tools:context="com.example.chasexplorer.Boundary.UserProfileActivity">
 
-    <LinearLayout
+    <RelativeLayout
+        android:id="@+id/rellay1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_gravity="center"
-        android:layout_marginBottom="55dp"
-        android:layout_marginRight="55dp"
-        android:layout_marginLeft="55dp"
-        android:paddingBottom="15dp"
-        android:paddingTop="15dp"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true">
+        android:background="@drawable/bg_rectangle"
+        android:paddingBottom="8dp">
 
-        <androidx.appcompat.widget.AppCompatButton
+        <RelativeLayout
+            android:id="@+id/imgUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp">
+
+            <com.mikhaellopez.circularimageview.CircularImageView
+                android:layout_width="160dp"
+                android:layout_height="160dp"
+                android:src="@drawable/ic_user"
+                app:civ_border_color="@color/chasgrey"
+                app:civ_border_width="4dp"
+                app:civ_shadow="true"
+                app:civ_shadow_radius="4"
+                app:civ_shadow_color="@color/chasblue2"/>
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imgUser"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15sp"
+            android:fontFamily="@font/roboto_thin"
+            android:text="JGH"
+            android:textColor="@color/colorBlack"
+            android:textSize="32sp" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/linlay1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rellay1"
+        android:orientation="horizontal">
+
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/signoutBtn"
-            android:text="@string/logoutText" />
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="@color/chasblue2"
+            android:gravity="center"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/userEmail"
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-light"
+                    android:text="Place Holder"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="25sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-light"
+                    android:text="test"
+                    android:textAllCaps="true"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="13sp" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="hello " />
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="@color/chasgrey"
+            android:gravity="center"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-light"
+                    android:text="Place Holder"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="25sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-light"
+                    android:text="Test"
+                    android:textAllCaps="true"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="13sp" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
 
     </LinearLayout>
 
-    <View
-        android:id="@+id/horizontalLine"
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="767dp"
-        android:layout_marginBottom="20dp"
-        android:background="#5F5E5E" />
+        android:layout_height="match_parent"
+        android:layout_below="@+id/linlay1">
 
-    <RadioGroup
-        android:id="@+id/radio_group_list_selector"
-        android:layout_width="match_parent"
-        android:layout_height="69dp"
-        android:layout_gravity="bottom"
-        android:background="@color/colorWhite"
-        android:orientation="horizontal"
-        android:padding="10dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical">
 
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/viewClinicsBtn"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.5"
-            android:background="@color/colorWhite"
-            android:gravity="center_horizontal|center_vertical"
-            android:onClick="@string/app_name"
-            android:scaleType="centerInside"
-            android:src="@drawable/nav1_list"
-            android:tint="@color/chasgrey" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-        <View
-            android:id="@+id/VerticalLine0"
-            android:layout_width="1dip"
-            android:layout_height="match_parent"
-            android:background="#5F5E5E" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Email"
+                    android:textColor="@color/chasblue1"
+                    android:textSize="13sp" />
 
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/mapBtn"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.5"
-            android:background="@color/colorWhite"
-            android:gravity="center_horizontal|center_vertical"
-            android:scaleType="centerInside"
-            android:src="@drawable/nav2_map"
-            android:tint="@color/chasgrey" />
+                <TextView
+                    android:id="@+id/userEmail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-light"
+                    android:text="@string/app_name"
+                    android:textColor="#000000"
+                    android:textSize="18sp" />
 
-        <View
-            android:id="@+id/VerticalLine1"
-            android:layout_width="1dip"
-            android:layout_height="match_parent"
-            android:background="#5F5E5E" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/quantum_grey" />
 
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/meBtn"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.5"
-            android:background="@color/colorWhite"
-            android:gravity="center_horizontal|center_vertical"
-            android:scaleType="centerInside"
-            android:src="@drawable/nav3_me"
-            android:tint="@color/chasblue1"/>
+            </LinearLayout>
 
-    </RadioGroup>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_gravity="bottom"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/signoutBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_slab"
+                    android:text="@string/logoutText"
+                    android:textSize="18sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/quantum_grey" />
+
+            </LinearLayout>
 
 
+        </LinearLayout>
 
-</FrameLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <RadioGroup
+                android:id="@+id/radio_group_list_selector"
+                android:layout_width="match_parent"
+                android:layout_height="69dp"
+                android:layout_gravity="bottom"
+                android:background="@color/colorWhite"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/viewClinicsBtn"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"
+                    android:background="@color/colorWhite"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:onClick="@string/app_name"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/nav1_list"
+                    android:tint="@color/chasgrey" />
+
+                <View
+                    android:id="@+id/VerticalLine0"
+                    android:layout_width="1dip"
+                    android:layout_height="match_parent"
+                    android:background="#5F5E5E" />
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/mapBtn"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"
+                    android:background="@color/colorWhite"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/nav2_map"
+                    android:tint="@color/chasgrey" />
+
+                <View
+                    android:id="@+id/VerticalLine1"
+                    android:layout_width="1dip"
+                    android:layout_height="match_parent"
+                    android:background="#5F5E5E" />
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/meBtn"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"
+                    android:background="@color/colorWhite"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/nav3_me"
+                    android:tint="@color/chasblue1" />
+
+            </RadioGroup>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>
