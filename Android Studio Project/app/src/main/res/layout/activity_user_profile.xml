@@ -21,14 +21,14 @@
             android:layout_marginTop="20dp">
 
             <com.mikhaellopez.circularimageview.CircularImageView
-                android:layout_width="160dp"
-                android:layout_height="160dp"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
                 android:src="@drawable/ic_user"
-                app:civ_border_color="@color/chasgrey"
-                app:civ_border_width="4dp"
+                app:civ_border_color="@color/chasblue2"
+                app:civ_border_width="2.5dp"
                 app:civ_shadow="true"
-                app:civ_shadow_radius="4"
-                app:civ_shadow_color="@color/chasblue2"/>
+                app:civ_shadow_color="@color/chasgrey2"
+                app:civ_shadow_radius="5" />
 
         </RelativeLayout>
 

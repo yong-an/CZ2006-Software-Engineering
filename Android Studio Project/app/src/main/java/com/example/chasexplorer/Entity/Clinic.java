@@ -242,7 +242,7 @@ public class Clinic implements Parcelable {
             clinicDetails += " #" + getFloorNo() + "-" + getUnitNo();
         else if ((getUnitNo().equalsIgnoreCase(" ")) && !(getFloorNo().equalsIgnoreCase(" ")))
             clinicDetails += " #" + getFloorNo();
-        clinicDetails += "\nSingapore " + getPostalCode()+"\n";
+        clinicDetails += "\nSingapore " + getPostalCode();
         return clinicDetails;
     }
 

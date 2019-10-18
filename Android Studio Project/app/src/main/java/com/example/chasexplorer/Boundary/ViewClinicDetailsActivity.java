@@ -6,6 +6,7 @@ import android.annotation.TargetApi;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -19,6 +20,7 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RatingBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -49,8 +51,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
 public class ViewClinicDetailsActivity extends AppCompatActivity {
     private static FirebaseAuth firebase;
@@ -69,7 +73,8 @@ public class ViewClinicDetailsActivity extends AppCompatActivity {
     private ArrayList<String> clinicSchedule = new ArrayList<>();
     private String clinicName;
     private String clinicCode;
-    private static final String API_KEY = "AIzaSyB2EK9o2akbfD3QAFtLvXmK3Yg07k5RD70";
+    private RelativeLayout clinicStatusBox;
+    private static final String API_KEY = BuildConfig.ApiKey;
 
 
     @Override
@@ -120,6 +125,7 @@ public class ViewClinicDetailsActivity extends AppCompatActivity {
         clinicTV.setText(clinicDetails.toString());
 
         clinicStatusNow = (TextView) findViewById(R.id.opencloseTxt);
+        clinicStatusBox = (RelativeLayout) findViewById(R.id.opencloseBox);
         todayClinicOpeningHours = (TextView) findViewById(R.id.hoursTxt);
 
         final String clinicTelNo = clinicDetails.getClinicTelNo();
@@ -175,7 +181,7 @@ public class ViewClinicDetailsActivity extends AppCompatActivity {
 
         getOperatingHours();
 
-        clinicStatusNow.setOnClickListener(new View.OnClickListener() {
+        clinicStatusBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
@@ -294,31 +300,38 @@ public class ViewClinicDetailsActivity extends AppCompatActivity {
                     final StringRequest stringRequest2 = new StringRequest(Request.Method.GET, url1, response1 -> {
                         Gson gson = new Gson();
                         PlaceDetails placeDetails = gson.fromJson(response1, PlaceDetails.class);
-                        int today = Calendar.getInstance().get(Calendar.DAY_OF_WEEK);
-                        clinicSchedule.addAll(placeDetails.getResult().getOpeningHours().getWeekdayText());
 
-                        for (int i=0; i < clinicSchedule.size(); i++)
-                        {
-                            openingHours = clinicSchedule.get(i).split(" ", 2);
+                        try{
+                            int now = getDayOfTheWeek();
+                            clinicSchedule.addAll(placeDetails.getResult().getOpeningHours().getWeekdayText());
 
-                            if (i == today){
-                                String formatHours = openingHours[1];
-                                formatHours = formatHours.replace(",","\n");
-                                todayClinicOpeningHours.setText(" "+formatHours);
+                            for (int i=0; i < clinicSchedule.size(); i++)
+                            {
+                                openingHours = clinicSchedule.get(i).split(" ", 2);
+
+                                if (i == now){
+                                    String formatHours = openingHours[1];
+                                    Log.d("OPENING HOURS [0] - [?]",openingHours[0] +"TEE HEE"+ openingHours[1]);
+                                    formatHours = formatHours.replace(",","\n");
+                                    todayClinicOpeningHours.setText(" "+formatHours);
+                                }
                             }
+
+                            if (placeDetails.getResult().getOpeningHours().getOpenNow())
+                            {
+                                clinicStatusNow.setText("OPEN NOW");
+                                clinicStatusBox.setBackgroundResource(R.drawable.bg_round_green);
+                            }
+                            else
+                            {
+                                clinicStatusNow.setText("CLOSED");
+                                clinicStatusBox.setBackgroundResource(R.drawable.bg_round_red);
+                            }
+                        } catch (Exception e) {
+                            Toast.makeText(getApplicationContext(),"Something went Wrong!", Toast.LENGTH_SHORT).show();
+                            e.printStackTrace();
                         }
 
-
-                        if (placeDetails.getResult().getOpeningHours().getOpenNow())
-                        {
-                            clinicStatusNow.setTextColor(Color.GREEN);
-                            clinicStatusNow.setText("OPEN NOW");
-                        }
-                        else
-                        {
-                            clinicStatusNow.setTextColor(Color.RED);
-                            clinicStatusNow.setText("CLOSED");
-                        }
 
                     }, error -> Log.e("Volley", "An error occured"));
 
@@ -330,5 +343,13 @@ public class ViewClinicDetailsActivity extends AppCompatActivity {
         }, error -> Log.e("Volley2", "An error occured"));
 
         mRequestQueue.add(stringRequest);
+    }
+
+    private int getDayOfTheWeek(){
+        int today = Calendar.getInstance().get(Calendar.DAY_OF_WEEK);
+        if(today == 1)
+            return 6;
+        else
+            return today - 2;
     }
 }
