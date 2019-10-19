@@ -5,6 +5,13 @@
     <string name="loginText">Login</string>
     <string name="logoutText">Log out</string>
     <string name="emailLogin">Sign in</string>
+    <string name="emailTV">Email: </string>
+    <string name="passwordTV">Password: </string>
+    <string name="newPasswordTV">New Password: </string>
+    <string name="submit">Submit</string>
+    <string name="usernameTV">Name</string>
+    <string name="oldPassword">Current Password</string>
+    <string name="newPassword">New Password</string>
     <string name="NearbyClinics">Nearby Clinics</string>
     <string name="Rating">Please give us a rating</string>
     <string name="Review">Tell us more</string>

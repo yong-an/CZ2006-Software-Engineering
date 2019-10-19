@@ -80,7 +80,7 @@ public class ReviewRecyclableViewAdapter extends RecyclerView.Adapter<ReviewRecy
         Uri dpUrl = Uri.parse(mDataset.get(position).getPhotoUrl());
         holder.usernameView.setText(mDataset.get(position).getDisplayName());
         holder.reviewView.setText(mDataset.get(position).getFeedbackText());
-        Picasso.get().load(dpUrl).error(R.drawable.chaslogo).into(holder.dpView);
+        Picasso.get().load(dpUrl).resize(200,200).error(R.drawable.ic_user).into(holder.dpView);
 
     }
 

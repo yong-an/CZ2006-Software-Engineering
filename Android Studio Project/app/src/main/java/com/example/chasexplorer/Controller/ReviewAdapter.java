@@ -1,6 +1,5 @@
 package com.example.chasexplorer.Controller;
 
-import android.util.Log;
 
 import com.example.chasexplorer.Entity.Clinic;
 import com.example.chasexplorer.Entity.Review;
@@ -8,7 +7,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
-import static android.content.ContentValues.TAG;
 
 public class ReviewAdapter {
 

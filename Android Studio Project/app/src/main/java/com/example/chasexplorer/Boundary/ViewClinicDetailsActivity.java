@@ -5,8 +5,6 @@ import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -51,10 +49,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 
 public class ViewClinicDetailsActivity extends AppCompatActivity {
     private static FirebaseAuth firebase;
@@ -311,7 +307,6 @@ public class ViewClinicDetailsActivity extends AppCompatActivity {
 
                                 if (i == now){
                                     String formatHours = openingHours[1];
-                                    Log.d("OPENING HOURS [0] - [?]",openingHours[0] +"TEE HEE"+ openingHours[1]);
                                     formatHours = formatHours.replace(",","\n");
                                     todayClinicOpeningHours.setText(" "+formatHours);
                                 }

@@ -1,21 +1,30 @@
 package com.example.chasexplorer.Boundary;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.chasexplorer.Controller.ReviewAdapter;
 import com.example.chasexplorer.Entity.Clinic;
 import com.example.chasexplorer.R;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.google.gson.Gson;
+import com.squareup.picasso.Picasso;
 
 
 public class ReviewActivity extends AppCompatActivity {
@@ -27,12 +36,24 @@ public class ReviewActivity extends AppCompatActivity {
     private ReviewAdapter reviewAdapter;
     private boolean result;
     private String DP = "https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg";
-    FirebaseDatabase database = FirebaseDatabase.getInstance();
 
+    private FirebaseUser user;
+    private FirebaseAuth auth;
+    private FirebaseStorage storage;
+    private StorageReference storageReference;
+    private FirebaseDatabase database;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_review);
+
+        auth = FirebaseAuth.getInstance();
+        storage = FirebaseStorage.getInstance();
+        storageReference = storage.getReference();
+        database = FirebaseDatabase.getInstance();
+        user = auth.getCurrentUser();
+
+        downloadImage();
 
         mRatingBar = (RatingBar) findViewById(R.id.ratingBar2);
         mClinicName = (TextView) findViewById(R.id.clinicName);
@@ -76,6 +97,20 @@ public class ReviewActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
                 }
+            }
+        });
+    }
+
+    private void downloadImage(){
+        storageReference.child("images/"+ user.getUid() + "/" + "profile.png").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                DP = uri.toString();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.d("Download:",e.getMessage());
             }
         });
     }
