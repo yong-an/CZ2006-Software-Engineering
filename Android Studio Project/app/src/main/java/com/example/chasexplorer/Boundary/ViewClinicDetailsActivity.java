@@ -72,7 +72,10 @@ public class ViewClinicDetailsActivity extends AppCompatActivity {
     private RelativeLayout clinicStatusBox;
     private static final String API_KEY = BuildConfig.ApiKey;
 
-
+    /**
+     * Android Activity default constructor.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -226,6 +229,10 @@ public class ViewClinicDetailsActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * This method be executed when user return back into the app
+     * after user has minimized the app into background process
+     */
     @Override
     public void onResume(){
         super.onResume();
@@ -235,6 +242,15 @@ public class ViewClinicDetailsActivity extends AppCompatActivity {
         mAdapter.notifyDataSetChanged();
     }
 
+
+    /**
+     * Android Requests results feedback function
+     * depending on your results obtained you might want to feedback different
+     * logic to your users.
+     * @param requestCode
+     * @param permissions
+     * @param grantResults
+     */
     @Override
     public void onRequestPermissionsResult(int requestCode,
                                            String permissions[], int[] grantResults) {
@@ -252,6 +268,9 @@ public class ViewClinicDetailsActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * This method will get the user's permission to use the call function on phone.
+     */
     @TargetApi(23)
     private boolean getCallPermission(){
         if (checkSelfPermission(Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
@@ -273,6 +292,10 @@ public class ViewClinicDetailsActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * This method will make use of the Google Places API
+     * to get the Opening Hours of places.
+     */
     private void getOperatingHours()
     {
         String url = "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?key=" + API_KEY + "&input=" + clinicName + "&inputtype=textquery&fields=place_id";
@@ -340,6 +363,12 @@ public class ViewClinicDetailsActivity extends AppCompatActivity {
         mRequestQueue.add(stringRequest);
     }
 
+    /**
+     * This method will return you the day of the week in
+     * integer form.
+     * e.g. Monday : 1, Tuesday : 2 ...
+     * @return
+     */
     private int getDayOfTheWeek(){
         int today = Calendar.getInstance().get(Calendar.DAY_OF_WEEK);
         if(today == 1)

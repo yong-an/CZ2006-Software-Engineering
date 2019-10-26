@@ -67,6 +67,10 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
     private FirebaseStorage storage;
     private StorageReference storageReference;
 
+    /**
+     * Android Activity default constructor.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -190,6 +194,11 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
         });
     }
 
+    /**
+     * All On Click functions, depending on what the user tap on screen.
+     * it will execute the appropriate methods.
+     * @param view
+     */
     @Override
     public void onClick(View view) {
 
@@ -214,8 +223,16 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
 
     }
 
+    /**
+     * Android Activity results feedback function
+     * depending on your results obtained you might want to feedback different
+     * logic to your users.
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
     @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == PICK_IMAGE) {
 
@@ -234,6 +251,10 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
         }
     }
 
+    /**
+     * This method will upload user selected image as display picture
+     * into the Firebase User Database
+     */
     private void uploadImage() {
 
         if(filePath != null)
@@ -257,6 +278,10 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
         }
     }
 
+    /**
+     * This method will search the Firebase User Database for the current user
+     * and retrieve their profile picture.
+     */
     private void downloadImage(){
         storageReference.child("images/"+ user.getUid() + "/" + "profile.png").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
@@ -272,7 +297,11 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
         });
     }
 
-
+    /**
+     * this method will convert a URL into a Bitmap file
+     * @param url
+     * @return
+     */
     private Bitmap convertImageBitmap(String url) {
         Bitmap bm = null;
         try {
@@ -290,6 +319,19 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
         return bm;
     }
 
+    /**
+     * When back button is pressed.
+     */
+    @Override
+    public void onBackPressed(){
+        Toast.makeText(UserProfileActivity.this,"Use the navigation buttons instead!",Toast.LENGTH_SHORT).show();
+    }
+
+    /**
+     * when back button is held down.
+     * @param keyCode
+     * @param event
+     */
     @Override
     public boolean onKeyLongPress(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK)

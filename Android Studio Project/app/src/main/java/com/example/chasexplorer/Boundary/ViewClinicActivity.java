@@ -34,6 +34,10 @@ public class ViewClinicActivity extends AppCompatActivity implements SearchView.
     private ArrayList<Clinic> NEWDATA;
     private SearchView editsearch;
 
+    /**
+     * Android Activity default constructor.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,11 +86,19 @@ public class ViewClinicActivity extends AppCompatActivity implements SearchView.
         });
     }
 
+    /**
+     * When back button is pressed.
+     */
     @Override
     public void onBackPressed(){
         Toast.makeText(ViewClinicActivity.this,"Use the navigation buttons instead!",Toast.LENGTH_SHORT).show();
     }
 
+    /**
+     * when back button is held down.
+     * @param keyCode
+     * @param event
+     */
     @Override
     public boolean onKeyLongPress(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK)
@@ -109,12 +121,22 @@ public class ViewClinicActivity extends AppCompatActivity implements SearchView.
         return super.onKeyLongPress(keyCode, event);
     }
 
+    /**
+     * This method check if the user has submitted their
+     * search query
+     * @param query
+     */
     @Override
     public boolean onQueryTextSubmit(String query) {
         editsearch.clearFocus();
         return true;
     }
 
+    /**
+     * This method will check if there changes in the
+     * search box e.g. when the user is typing something.
+     * @param newText
+     */
     @Override
     public boolean onQueryTextChange(String newText) {
         Log.d(TAG, "Inputted text: " + newText);

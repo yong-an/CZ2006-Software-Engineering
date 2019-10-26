@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Boundary.ViewClinicActivity">
+
+
+    <SearchView
+        android:id="@+id/search"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="3dp"
+        app:iconifiedByDefault="false"
+        android:queryHint="@string/clinicName"
+        android:background="@drawable/search_bar_bg"
+        app:layout_constraintBottom_toTopOf="@id/my_recycler_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/horizontalLine"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="645dp"
+        android:background="#5F5E5E"
+        app:layout_constraintBottom_toBottomOf="@id/radio_group_list_selector"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/my_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="650dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="5dp"
+        app:layout_constraintBottom_toTopOf="@+id/radio_group_list_selector"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <RadioGroup
+        android:id="@+id/radio_group_list_selector"
+        android:layout_width="match_parent"
+        android:layout_height="69dp"
+        android:layout_gravity="bottom"
+        android:background="@color/colorWhite"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/viewClinicsBtn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:background="@color/colorWhite"
+            android:gravity="center_horizontal|center_vertical"
+            android:scaleType="centerInside"
+            android:src="@drawable/nav1_list"
+            android:tint="@color/chasblue1" />
+
+        <View
+            android:id="@+id/VerticalLine0"
+            android:layout_width="1dip"
+            android:layout_height="match_parent"
+            android:background="#5F5E5E" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/mapBtn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:background="@color/colorWhite"
+            android:gravity="center_horizontal|center_vertical"
+            android:scaleType="centerInside"
+            android:src="@drawable/nav2_map"
+            android:tint="@color/chasgrey" />
+
+        <View
+            android:id="@+id/VerticalLine1"
+            android:layout_width="1dip"
+            android:layout_height="match_parent"
+            android:background="#5F5E5E" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/meBtn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:background="@color/colorWhite"
+            android:gravity="center_horizontal|center_vertical"
+            android:scaleType="centerInside"
+            android:src="@drawable/nav3_me"
+            android:tint="@color/chasgrey" />
+
+    </RadioGroup>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

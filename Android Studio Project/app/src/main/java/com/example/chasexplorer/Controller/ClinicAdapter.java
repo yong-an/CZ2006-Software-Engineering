@@ -37,6 +37,10 @@ public class ClinicAdapter extends AppCompatActivity {
     private ProgressBar mProgressBar;
     private ObjectAnimator progressAnimator;
 
+    /**
+     * Android Activity default constructor.
+     * @param savedInstanceState
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
 
@@ -95,6 +99,9 @@ public class ClinicAdapter extends AppCompatActivity {
 
     }
 
+    /**
+     * When App closes this method will be executed
+     */
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -102,12 +109,18 @@ public class ClinicAdapter extends AppCompatActivity {
             mHandler.removeCallbacks(mRunnable);
     }
 
+    /**
+     * This method is used to animate the Splash screen loading bar
+     */
     private void startAnimation(){
         progressAnimator.setDuration(2500);
         progressAnimator.setInterpolator(new LinearInterpolator());
         progressAnimator.start();
     }
 
+    /**
+     * This method will connect to Firebase Database and retrieve all clinic data.
+     */
     public static ArrayList<Clinic> passMeAllData (){ return FIREBASEDATA; }
 
     public static int getIndexOfUnsortedClinicAL(Clinic c) {

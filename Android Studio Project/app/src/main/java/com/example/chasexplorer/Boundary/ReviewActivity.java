@@ -24,7 +24,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.gson.Gson;
-import com.squareup.picasso.Picasso;
 
 
 public class ReviewActivity extends AppCompatActivity {
@@ -42,6 +41,11 @@ public class ReviewActivity extends AppCompatActivity {
     private FirebaseStorage storage;
     private StorageReference storageReference;
     private FirebaseDatabase database;
+
+    /**
+     * Android Activity default constructor.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,7 +57,7 @@ public class ReviewActivity extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         user = auth.getCurrentUser();
 
-        downloadImage();
+        retrieveUserImage();
 
         mRatingBar = (RatingBar) findViewById(R.id.ratingBar2);
         mClinicName = (TextView) findViewById(R.id.clinicName);
@@ -101,7 +105,11 @@ public class ReviewActivity extends AppCompatActivity {
         });
     }
 
-    private void downloadImage(){
+    /**
+     * This method will search the Firebase User Database for the current user
+     * and retrieve their profile picture.
+     */
+    private void retrieveUserImage(){
         storageReference.child("images/"+ user.getUid() + "/" + "profile.png").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {

@@ -12,14 +12,33 @@ public class ReviewAdapter {
 
     private static ArrayList<Review> reviewAl;
 
+    /**
+     * Default Constructor
+     */
     public ReviewAdapter(){
 
     }
 
+    /**
+     * set reviews
+     * @param reviewArrayList
+     */
     public static void setReviewAl(ArrayList<Review> reviewArrayList){
         reviewAl = reviewArrayList;
     }
 
+    /**
+     * This method will save the user reviews into the Firebase Database
+     * @param clinic
+     * @param feedback
+     * @param rating
+     * @param uid
+     * @param email
+     * @param photoUrl
+     * @param index
+     * @param fbDatabase
+     * @param displayName
+     */
     public boolean saveReview(Clinic clinic, String feedback, float rating, String uid, String email,String photoUrl, String index, FirebaseDatabase fbDatabase, String displayName){
         //Log.d(TAG, "What is index " + index);
         DatabaseReference myRef = fbDatabase.getReference().child(index);
@@ -33,6 +52,11 @@ public class ReviewAdapter {
         return true;
     }
 
+    /**
+     * This method will retrieve an User's review on a particular clinic
+     * @param Uid
+     * @param clinicCode
+     */
     public String getUsersFeedbackForClinic(String Uid, String clinicCode){
         if(reviewAl != null) {
             for (Review r : reviewAl) {
@@ -44,6 +68,11 @@ public class ReviewAdapter {
         return null;
     }
 
+    /**
+     * This method will retrieve an User's rating on a particular clinic
+     * @param Uid
+     * @param clinicCode
+     */
     public float getUsersRatingForClinic (String Uid, String clinicCode){
         if(reviewAl != null) {
             for (Review r : reviewAl) {
@@ -55,6 +84,10 @@ public class ReviewAdapter {
         return 0;
     }
 
+    /**
+     * This method will compute the total average ratings of a clinic
+     * @param clinicCode
+     */
     public float getAvgRatingForClinic(String clinicCode){
         int size = 0;
         float rating = 0;
@@ -69,6 +102,10 @@ public class ReviewAdapter {
         return ((float) rating/size);
     }
 
+    /**
+     * This method will retrieve All reviews on a clinic
+     * @param clinicCode
+     */
     public ArrayList<Review> getAllFeedbackForClinic(String clinicCode){
         ArrayList<Review> newReviewAl = new ArrayList<Review>();
         if(reviewAl != null) {
@@ -81,6 +118,11 @@ public class ReviewAdapter {
         return newReviewAl;
     }
 
+    /**
+     * This method will retrieve the amount of ratings on a clinic
+     * Take note : This is not retrieving the rating scores
+     * @param clinicCode
+     */
     public int getNumberOfFeedbackForClinic(String clinicCode){
         int size = 0;
 

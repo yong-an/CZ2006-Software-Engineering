@@ -23,14 +23,25 @@ public class MapAdapter {
     private static List<Marker> markers = new ArrayList<>();
     private ArrayList<Clinic> CLINICDATA = ClinicAdapter.passMeAllData();
 
+    /**
+     * Default Constructor
+     */
     public MapAdapter(){
         this.gmap = null;
     }
 
+    /**
+     * Set Map
+     * @param gmap
+     */
     public void setGmap(GoogleMap gmap) {
         this.gmap = gmap;
     }
 
+    /**
+     * Get Map
+     * @param mMap
+     */
     public GoogleMap getGmap(GoogleMap mMap){
         setGmap(mMap);
         LatLng SGLatLng = new LatLng(1.3521,103.8198);// Singapore Latitude and Longitude
@@ -60,6 +71,11 @@ public class MapAdapter {
         return gmap;
     }
 
+    /**
+     * Get Map however when User have enabled Phone GPS function
+     * this method will be called instead of the default getMap
+     * @param mMap
+     */
     public GoogleMap getGmapWithGPS(GoogleMap mMap){
         setGmap(mMap);
         try{
@@ -85,6 +101,12 @@ public class MapAdapter {
         return gmap;
     }
 
+    /**
+     * This method will reveals all the markers near User
+     * at a max distance of 2.4km
+     * @param mMap
+     * @param LL
+     */
     public void revealMarkers(GoogleMap mMap, LatLng LL){
 
         for(int i = 0; i < markers.size(); i++){
@@ -94,8 +116,11 @@ public class MapAdapter {
         }
     }
 
-
-
+    /**
+     * This method will plot markers to all the Chas Clinics in Singapore
+     * @param mMap
+     * @param clinicDetails
+     */
     public GoogleMap getClinicLocation(GoogleMap mMap, Clinic clinicDetails){
         setGmap(mMap);
         try{
@@ -121,7 +146,7 @@ public class MapAdapter {
         boolean existTelNo, existClinicName;
         int postalCode = -1;
 
-        check = isMyQueryAllInteger(Query);
+        check = isMyQueryValid(Query);
 
         if(check == true)
             postalCode = Integer.parseInt(Query);
@@ -164,7 +189,7 @@ public class MapAdapter {
         return plot;
     }
 
-    public static boolean isMyQueryAllInteger(String str) {
+    private static boolean isMyQueryValid(String str) {
         if (str == null) {
             return false;
         }

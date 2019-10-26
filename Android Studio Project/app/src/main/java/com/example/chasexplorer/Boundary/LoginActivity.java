@@ -43,6 +43,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             .setEmailButtonId(R.id.emailLoginBtn)
             .build(); */
 
+    /**
+     * Android Activity default constructor.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,11 +84,19 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     }
 
+    /**
+     * When back button is pressed.
+     */
     @Override
     public void onBackPressed(){
         Toast.makeText(LoginActivity.this,"Use the navigation buttons instead!",Toast.LENGTH_SHORT).show();
     }
 
+    /**
+     * when back button is held down.
+     * @param keyCode
+     * @param event
+     */
     @Override
     public boolean onKeyLongPress(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK)
@@ -107,6 +119,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         return super.onKeyLongPress(keyCode, event);
     }
 
+    /**
+     * All On Click methods, depending on what the user tap on screen.
+     * it will execute the appropriate methods.
+     * @param view
+     */
     @Override
     public void onClick(View view) {
 
@@ -125,6 +142,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     }
 
+    /**
+     * Android Activity results feedback function
+     * depending on your results obtained you might want to feedback different
+     * logic to your users.
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         // RC_SIGN_IN is the request code you passed into startActivityForResult(...) when starting the sign in flow.

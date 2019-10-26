@@ -45,6 +45,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private Button nearbyBtn;
     private boolean result;
 
+    /**
+     * Android Activity default constructor.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -122,12 +126,25 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     }
 
+    /**
+     * Android Activity results feedback function
+     * depending on your results obtained you might want to feedback different
+     * logic to your users.
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         VoiceRecognitionDelegate.handleResult(persistentSearchView, requestCode, resultCode, data);
     }
 
+    /**
+     * When Google Map is loaded what do your want to do?
+     * All those logic should be written with here.
+     * @param googleMap
+     */
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
@@ -160,11 +177,19 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         });
     }
 
+    /**
+     * When back button is pressed.
+     */
     @Override
     public void onBackPressed() {
         Toast.makeText(getApplicationContext(), "Long press on back button to exit the app!", Toast.LENGTH_SHORT).show();
     }
 
+    /**
+     * when back button is held down.
+     * @param keyCode
+     * @param event
+     */
     @Override
     public boolean onKeyLongPress(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK)
@@ -187,6 +212,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         return super.onKeyLongPress(keyCode, event);
     }
 
+    /**
+     * This method will get the user's permission to turn on GPS function on phone.
+     */
     @TargetApi(23)
     private void getGPSPermission(){
         if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -207,6 +235,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     }
 
+    /**
+     * Android Requests results feedback function
+     * depending on your results obtained you might want to feedback different
+     * logic to your users.
+     * @param requestCode
+     * @param permissions
+     * @param grantResults
+     */
     @Override
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
         switch (requestCode) {
