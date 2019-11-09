@@ -59,6 +59,7 @@ public class ClinicRecyclableViewAdapter extends RecyclerView.Adapter<RecyclerVi
         mDataset = myDataset;
     }
 
+    // Sets the Dataset for the Recyclable View Adapter to display the data in the newly created views
     public void setDataset(ArrayList<Clinic> myDataset){
         clinicList.clear();
         myDataset.clear();
@@ -115,7 +116,10 @@ public class ClinicRecyclableViewAdapter extends RecyclerView.Adapter<RecyclerVi
         }
     }
 
-
+    /**
+     * Returns 1 if the Clinic is the first Clinic that starts with a particular alphabet
+     * Else, it returns 0
+     */
     @Override
     public int getItemViewType(int position) {
         Character c;
@@ -137,8 +141,13 @@ public class ClinicRecyclableViewAdapter extends RecyclerView.Adapter<RecyclerVi
         return mDataset.size();
     }
 
-    // Filter Class
-    public void filter(String charText) {
+    /**
+     *  Called by ViewClinicActivity to filter the Clinics based on the Clinic name provided by the user
+     *  The results of Clinics which satisfy the search condition will be added to the ArrayList[Clinic]
+     *  and it will reflected on the UI
+     * @param charText
+     */
+     public void filter(String charText) {
         charText = charText.toUpperCase(Locale.getDefault());
         if (charText.length() == 0) {
             mDataset = (ArrayList<Clinic>) clinicList.clone();

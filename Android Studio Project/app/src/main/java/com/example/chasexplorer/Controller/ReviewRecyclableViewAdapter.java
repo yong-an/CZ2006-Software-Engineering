@@ -43,6 +43,7 @@ public class ReviewRecyclableViewAdapter extends RecyclerView.Adapter<ReviewRecy
         mDataset = myDataset;
     }
 
+    // Sets the Dataset for the Recyclable View Adapter to display the data in the newly created views
     public void setmDataset(ArrayList<Review> mDataset) {
         this.mDataset = mDataset;
     }

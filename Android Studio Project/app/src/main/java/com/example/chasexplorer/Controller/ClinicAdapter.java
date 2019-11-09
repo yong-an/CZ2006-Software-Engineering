@@ -119,14 +119,18 @@ public class ClinicAdapter extends AppCompatActivity {
     }
 
     /**
+     * Returns ArrayList[Clinic]
      * This method will connect to Firebase Database and retrieve all clinic data.
      */
     public static ArrayList<Clinic> passMeAllData (){ return FIREBASEDATA; }
 
-    public static int getIndexOfUnsortedClinicAL(Clinic c) {
+    /** Returns the Index Of Clinic in Original ArrayList [Clinic]
+     * @param clinic
+     */
+    public static int getIndexOfUnsortedClinicAL(Clinic clinic) {
         int index = 0;
         for (int i = 0;i < ORIGINALUNSORTED.size();i++) {
-            if(ORIGINALUNSORTED.get(i).getClinicCode().equalsIgnoreCase(c.getClinicCode()))
+            if(ORIGINALUNSORTED.get(i).getClinicCode().equalsIgnoreCase(clinic.getClinicCode()))
                 return i;
         }
         return index;

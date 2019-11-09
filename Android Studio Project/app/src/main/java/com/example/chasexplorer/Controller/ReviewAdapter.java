@@ -119,7 +119,7 @@ public class ReviewAdapter {
     }
 
     /**
-     * This method will retrieve the amount of ratings on a clinic
+     * This method will retrieve the total number of feedback for a particular clinic
      * Take note : This is not retrieving the rating scores
      * @param clinicCode
      */

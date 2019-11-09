@@ -134,8 +134,13 @@ public class MapAdapter {
         return gmap;
     }
 
-
-
+    /**
+     * The markers for the Clinic(s) that the user wanted to search for will be displayed on the Map if
+     * it could be found.
+     * Returns false if the Query search is null or empty
+     * Else it returns True
+     * @param  Query
+     */
     public boolean plotSearchMarkers (String Query){
 
         if(Query.isEmpty())
@@ -189,6 +194,15 @@ public class MapAdapter {
         return plot;
     }
 
+    /**
+     * Checks if the query is valid and whether it satifies all of the following conditions:
+     * 1) Contains only letters
+     * 2) No negative sign
+     * 3) No special characters
+     * Returns true if it satifies all of the conditions
+     * Else, it returns false
+     * @param str
+     */
     private static boolean isMyQueryValid(String str) {
         if (str == null) {
             return false;
