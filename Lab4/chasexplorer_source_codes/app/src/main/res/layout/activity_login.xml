@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Boundary.LoginActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_gravity="center"
+        android:layout_marginLeft="55dp"
+        android:layout_marginRight="55dp"
+        android:layout_marginBottom="55dp"
+        android:orientation="vertical"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:src="@drawable/chaslogo" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/signinBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/loginText" />
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/horizontalLine"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="767dp"
+        android:layout_marginBottom="20dp"
+        android:background="#5F5E5E" />
+
+    <RadioGroup
+        android:id="@+id/radio_group_list_selector"
+        android:layout_width="match_parent"
+        android:layout_height="69dp"
+        android:layout_gravity="bottom"
+        android:background="@color/colorWhite"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/viewClinicsBtn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:background="@color/colorWhite"
+            android:gravity="center_horizontal|center_vertical"
+            android:onClick="@string/app_name"
+            android:scaleType="centerInside"
+            android:src="@drawable/nav1_list"
+            android:tint="@color/chasgrey" />
+
+        <View
+            android:id="@+id/VerticalLine0"
+            android:layout_width="1dip"
+            android:layout_height="match_parent"
+            android:background="#5F5E5E" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/mapBtn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:background="@color/colorWhite"
+            android:gravity="center_horizontal|center_vertical"
+            android:scaleType="centerInside"
+            android:src="@drawable/nav2_map"
+            android:tint="@color/chasgrey" />
+
+        <View
+            android:id="@+id/VerticalLine1"
+            android:layout_width="1dip"
+            android:layout_height="match_parent"
+            android:background="#5F5E5E" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/meBtn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:background="@color/colorWhite"
+            android:gravity="center_horizontal|center_vertical"
+            android:scaleType="centerInside"
+            android:src="@drawable/nav3_me"
+            android:tint="@color/chasblue1" />
+
+    </RadioGroup>
+
+
+</FrameLayout>

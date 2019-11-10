@@ -1,7 +1,0 @@
-Sequence Diagrams For
- 
-1) Login
-2) Give Clinic Review
-3) View Clinic Information (Search)
-4) View Clinic Information (List)
-5) Call Clinic Tel

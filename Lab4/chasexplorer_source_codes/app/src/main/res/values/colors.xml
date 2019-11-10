@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#6E4CFF</color>
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="colorBlack">#000000</color>
+
+    <color name="chasblue1">#00b0f0</color>
+    <color name="chasblue2">#0089d8</color>
+    <color name="chasgrey">#808080</color>
+    <color name="chasgrey2">#282828</color>
+
+    <color name="mellow">#F8DE7E</color>
+    <color name="greenLed">#33ff33</color>
+    <color name="redLed">#CC0000</color>
+
+    <color name="material_green_50">#E8F5E9</color>
+    <color name="material_green_500">#4CAF50</color>
+    <color name="material_green_700">#388E3C</color>
+    <color name="material_green_a200">#69F0AE</color>
+    <color name="material_lime_a700">#AEEA00</color>
+    <color name="material_purple_a700">#AA00FF</color>
+</resources>

@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.chasexplorer.Boundary.UserProfileActivity">
+
+    <RelativeLayout
+        android:id="@+id/rellay1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_rectangle"
+        android:paddingBottom="8dp">
+
+        <RelativeLayout
+            android:id="@+id/imgUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp">
+
+            <com.mikhaellopez.circularimageview.CircularImageView
+                android:id="@+id/userDP"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:src="@drawable/ic_user"
+                app:civ_border_color="@color/chasblue2"
+                app:civ_border_width="2.5dp"
+                app:civ_shadow="true"
+                app:civ_shadow_color="@color/chasgrey2"
+                app:civ_shadow_radius="5" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/linlay1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rellay1"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="@color/chasgrey2"
+            android:gravity="center"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/userName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/imgUser"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:fontFamily="@font/roboto_thin"
+                    android:text="@string/usernameTV"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="32sp" />
+
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linlay1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:layout_margin="24dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_gravity="left"
+                    android:src="@drawable/ic_email"
+                    android:tint="@color/chasblue2" />
+
+                <TextView
+                    android:id="@+id/userEmail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginBottom="4dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_gravity="left"
+                    android:text="Lorem Ipsum Dolor"
+                    android:textColor="@color/chasgrey2"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_gravity="left"
+                    android:src="@drawable/ic_password"
+                    android:tint="@color/chasblue2" />
+
+                <TextView
+                    android:id="@+id/userPassword"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginTop="2dp"
+                    android:background="@drawable/bg_button"
+                    android:text="Change"
+                    android:textColor="@color/chasgrey2"
+                    android:textSize="16sp" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                android:orientation="vertical">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/chasblue1" />
+
+                <Button
+                    android:id="@+id/signoutBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/roboto"
+                    android:text="@string/logoutText"
+                    android:textSize="18sp" />
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="4dp"
+        android:background="@color/colorWhite"
+        android:gravity="center">
+
+        <RadioGroup
+            android:id="@+id/radio_group_list_selector"
+            android:layout_width="match_parent"
+            android:layout_height="69dp"
+            android:layout_gravity="bottom"
+            android:background="@color/colorWhite"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/viewClinicsBtn"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:background="@color/colorWhite"
+                android:gravity="center_horizontal|center_vertical"
+                android:onClick="@string/app_name"
+                android:scaleType="centerInside"
+                android:src="@drawable/nav1_list"
+                android:tint="@color/chasgrey" />
+
+            <View
+                android:id="@+id/VerticalLine0"
+                android:layout_width="1dip"
+                android:layout_height="match_parent"
+                android:background="#5F5E5E" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/mapBtn"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:background="@color/colorWhite"
+                android:gravity="center_horizontal|center_vertical"
+                android:scaleType="centerInside"
+                android:src="@drawable/nav2_map"
+                android:tint="@color/chasgrey" />
+
+            <View
+                android:id="@+id/VerticalLine1"
+                android:layout_width="1dip"
+                android:layout_height="match_parent"
+                android:background="#5F5E5E" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/meBtn"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:background="@color/colorWhite"
+                android:gravity="center_horizontal|center_vertical"
+                android:scaleType="centerInside"
+                android:src="@drawable/nav3_me"
+                android:tint="@color/chasblue1" />
+
+        </RadioGroup>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Boundary.MapsActivity">
+
+    <fragment
+        android:id="@+id/map"
+        class="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:scrollbars="vertical" />
+
+    <com.paulrybitskyi.persistentsearchview.PersistentSearchView
+        android:id="@+id/persistentSearchView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="5dp"
+        android:paddingLeft="4dp"
+        android:paddingStart="4dp"
+        android:paddingRight="4dp"
+        android:paddingEnd="4dp"/>
+
+    <View
+        android:id="@+id/horizontalLine"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="767dp"
+        android:layout_marginBottom="20dp"
+        android:background="#5F5E5E" />
+
+    <RadioGroup
+        android:id="@+id/radio_group_list_selector"
+        android:layout_width="match_parent"
+        android:layout_height="69dp"
+        android:layout_gravity="bottom"
+        android:background="@color/colorWhite"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/viewClinicsBtn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:background="@color/colorWhite"
+            android:gravity="center_horizontal|center_vertical"
+            android:onClick="@string/app_name"
+            android:scaleType="centerInside"
+            android:src="@drawable/nav1_list"
+            android:tint="@color/chasgrey" />
+
+        <View
+            android:id="@+id/VerticalLine0"
+            android:layout_width="1dip"
+            android:layout_height="match_parent"
+            android:background="#5F5E5E" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/mapBtn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:background="@color/colorWhite"
+            android:gravity="center_horizontal|center_vertical"
+            android:scaleType="centerInside"
+            android:src="@drawable/nav2_map"
+            android:tint="@color/chasblue1" />
+
+        <View
+            android:id="@+id/VerticalLine1"
+            android:layout_width="1dip"
+            android:layout_height="match_parent"
+            android:background="#5F5E5E" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/meBtn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:background="@color/colorWhite"
+            android:gravity="center_horizontal|center_vertical"
+            android:scaleType="centerInside"
+            android:src="@drawable/nav3_me"
+            android:tint="@color/chasgrey" />
+
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/nearbyBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="90dp"
+        android:layout_marginLeft="10dp"
+        android:alpha="0.8"
+        android:background="@color/colorWhite"
+        android:fontFamily="@font/roboto_slab"
+        android:padding="10dp"
+        android:text="@string/NearbyClinics"/>
+
+</FrameLayout>

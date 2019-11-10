@@ -1,0 +1,27 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">ChasExplorer</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="title_activity_splash">Splash</string>
+    <string name="loginText">Login</string>
+    <string name="logoutText">Log out</string>
+    <string name="emailLogin">Sign in</string>
+    <string name="emailTV">Email: </string>
+    <string name="passwordTV">Password: </string>
+    <string name="newPasswordTV">New Password: </string>
+    <string name="submit">Submit</string>
+    <string name="usernameTV">Name</string>
+    <string name="oldPassword">Current Password</string>
+    <string name="newPassword">New Password</string>
+    <string name="NearbyClinics">Nearby Clinics</string>
+    <string name="Rating">Please give us a rating</string>
+    <string name="Review">Tell us more</string>
+    <string name="clinicName">Clinic Name</string>
+    <string name="placeHolderTiming">10:00am - 10:00pm</string>
+    <string name="mon">Monday</string>
+    <string name="tues">Tuesday</string>
+    <string name="weds">Wednesday</string>
+    <string name="thurs">Thursday</string>
+    <string name="fri">Friday</string>
+    <string name="sat">Saturday</string>
+    <string name="sun">Sunday</string>
+</resources>
